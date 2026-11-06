@@ -1,4 +1,4 @@
-# Gabis OLL Trainer
+# Gabis Cube Trainer
 
 Interactive A6 flashcards for all **57 OLL cases** (CubeHead nicknames), with learning status, favorite algs, tips, permutation order, and a single JSON file for everything.
 

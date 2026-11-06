@@ -1988,11 +1988,11 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Gabis OLL Trainer</title>
+  <title>Gabis Cube Trainer</title>
   <meta name="theme-color" content="#566996" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Gabis OLL" />
+  <meta name="apple-mobile-web-app-title" content="Gabis Cube" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" />
@@ -2005,7 +2005,7 @@ const html = `<!DOCTYPE html>
 <body>
   <header class="toolbar">
     <div class="toolbar-top">
-      <div class="brand"><img class="brand-mark" src="favicon.svg" width="27" height="27" alt="" /><span class="brand-text">Gabis OLL Trainer</span></div>
+      <div class="brand"><img class="brand-mark" src="favicon.svg" width="27" height="27" alt="" /><span class="brand-text">Gabis Cube Trainer</span></div>
       <span id="save-stamp"></span>
       <div class="actions" id="actions-menu">
         <button type="button" class="btn" id="btn-practice" aria-pressed="false" title="Practice selected cases in random order">Practice</button>

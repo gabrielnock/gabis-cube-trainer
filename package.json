@@ -1,7 +1,7 @@
 {
-  "name": "oll-trainingskarten",
+  "name": "gabis-cube-trainer",
   "version": "1.0.0",
-  "description": "DIN-A6 OLL trainings cards from CubeHead's OLL in One Month guide",
+  "description": "Gabis Cube Trainer — DIN-A6 flashcards from CubeHead's OLL in One Month guide",
   "private": true,
   "type": "module",
   "scripts": {
