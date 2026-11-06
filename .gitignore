@@ -1,5 +1,6 @@
 node_modules/
-svg-cache/
+svg-cache/*
+!svg-cache/f2l/
 .DS_Store
 Thumbs.db
 *.log

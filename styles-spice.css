@@ -48,22 +48,26 @@ body::after {
 .toolbar-sep {
   background: rgba(255, 255, 255, 0.42);
 }
+.trainer-tabs {
+  background: rgba(0, 0, 0, 0.22);
+  border-color: rgba(255, 255, 255, 0.32);
+}
 .trainer-tab {
-  background: rgba(255, 255, 255, 0.14);
+  background: transparent;
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.22);
+  border-color: transparent;
+  box-shadow: none;
 }
 .trainer-tab:hover {
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.16);
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.7);
+  border-color: transparent;
 }
 .trainer-tab.is-active {
   background: #fff;
   color: var(--spice-blue-0);
-  border-color: var(--spice-ink);
-  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.28);
+  border-color: #fff;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
 }
 
 .brand {

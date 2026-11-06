@@ -112,31 +112,37 @@ body::after {
 .trainer-tabs {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   flex: 0 0 auto;
+  padding: 0.22rem;
+  border-radius: 14px;
+  background: rgba(66, 70, 86, 0.08);
+  border: 2px solid rgba(66, 70, 86, 0.16);
 }
 .trainer-tab {
   appearance: none;
   font-family: var(--font);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  padding: 0.34rem 0.7rem;
-  border-radius: 8px;
-  border: 2px solid var(--dove);
-  background: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.48rem 0.95rem;
+  min-width: 3.6rem;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: transparent;
   color: var(--anthracite);
   cursor: pointer;
-  box-shadow: 2px 2px 3px rgba(42, 46, 51, 0.08);
 }
 .trainer-tab:hover {
-  border-color: var(--anthracite);
-  background: var(--mist);
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--dove);
 }
 .trainer-tab.is-active {
   background: var(--anthracite);
   color: var(--white);
   border-color: var(--anthracite);
+  box-shadow: 3px 3px 0 rgba(42, 46, 51, 0.18);
 }
 .trainer-tab:focus-visible {
   outline: 2px solid var(--main);
@@ -176,6 +182,9 @@ body::after {
 }
 body.practice-mode .actions { display: none !important; }
 body:not([data-trainer="oll"]) .oll-only {
+  display: none !important;
+}
+body:not([data-trainer="f2l"]) .f2l-only {
   display: none !important;
 }
 .icon-btn {
@@ -1486,7 +1495,7 @@ body.practice-mode main {
     padding-right: max(0.75rem, env(safe-area-inset-right));
   }
   .brand { font-size: 0.88rem; }
-  .trainer-tab { padding: 0.28rem 0.5rem; font-size: 0.68rem; }
+  .trainer-tab { padding: 0.36rem 0.62rem; font-size: 0.82rem; min-width: 2.8rem; }
   .toolbar-heading { gap: 0.45rem 0.55rem; }
   .trainer-soon {
     padding: 1rem max(0.75rem, env(safe-area-inset-left)) calc(2.5rem + env(safe-area-inset-bottom));
@@ -1578,5 +1587,78 @@ body.practice-mode main {
   }
   .diagram { border: none; background: transparent; padding: 0; }
   .tip-box .inline-value { white-space: normal; overflow: visible; text-overflow: unset; }
+}
+
+#f2l-anchors-wrap {
+  border-top: none;
+  margin-top: 0.35rem;
+  padding-top: 0;
+}
+.f2l-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  align-items: stretch;
+}
+.f2l-card.card {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 2.2mm 3mm 2.4mm;
+  overflow: visible;
+}
+.f2l-card .setup-box { margin-top: 0; }
+.f2l-card .diagram {
+  margin: 0.4mm auto 0.6mm;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.f2l-card .diagram .cube-svg { width: min(34mm, 100%); }
+.f2l-card .alg-list {
+  overflow: visible;
+  flex: 1 1 auto;
+  padding-right: 0;
+}
+.f2l-card .alg { font-size: 8.4pt; }
+.f2l-card .alg-tools { justify-content: flex-end; }
+.f2l-card .f2l-slot {
+  margin-right: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.15rem;
+  padding: 0 0.42rem;
+  border-radius: 999px;
+  background: var(--main);
+  color: var(--white);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.f2l-card .tip-box .inline-value {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+#f2l-modal select {
+  width: 100%;
+  border: 2px solid var(--dove);
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--off);
+}
+@media (max-width: 860px) {
+  .f2l-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .f2l-cards { grid-template-columns: 1fr; }
 }
 @page { size: 105mm 148mm; margin: 0; }

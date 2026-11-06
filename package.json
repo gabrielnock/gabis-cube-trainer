@@ -1,7 +1,7 @@
 {
   "name": "gabis-cube-trainer",
   "version": "1.0.0",
-  "description": "Gabis Cube Trainer — DIN-A6 flashcards from CubeHead's OLL in One Month guide",
+  "description": "Gabis Cube Trainer - OLL, F2L, PLL Trainer",
   "private": true,
   "type": "module",
   "scripts": {

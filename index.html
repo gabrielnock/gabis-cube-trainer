@@ -74,6 +74,21 @@
         <a class="nav-chip" href="#dot-cases" data-group-nav="dot-cases"><span class="nav-chip-label">Dot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
       </nav>
     </div>
+    <div class="anchors-wrap browse-only is-collapsed f2l-only" id="f2l-anchors-wrap">
+      <button type="button" class="anchors-toggle" id="btn-f2l-groups" aria-expanded="false" aria-controls="f2l-anchors" aria-label="Groups" title="Groups">
+        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+      </button>
+      <nav class="anchors" id="f2l-anchors" aria-label="F2L groups">
+        <a class="nav-chip" href="#f2l-easy-inserts"><span class="nav-chip-label">Easy Inserts</span></a>
+        <a class="nav-chip" href="#f2l-disconnected-pairs"><span class="nav-chip-label">Disconnected Pairs</span></a>
+        <a class="nav-chip" href="#f2l-corner-in-slot"><span class="nav-chip-label">Corner in Slot</span></a>
+        <a class="nav-chip" href="#f2l-edge-in-slot"><span class="nav-chip-label">Edge in Slot</span></a>
+        <a class="nav-chip" href="#f2l-connected-pairs"><span class="nav-chip-label">Connected Pairs</span></a>
+        <a class="nav-chip" href="#f2l-both-in-slot"><span class="nav-chip-label">Both Pieces in Slot</span></a>
+        <a class="nav-chip" href="#f2l-edge-wrong-slot"><span class="nav-chip-label">Edge in Wrong Slot</span></a>
+        <a class="nav-chip" href="#f2l-corner-wrong-slot"><span class="nav-chip-label">Corner in Wrong Slot</span></a>
+      </nav>
+    </div>
     <div class="practice-picker screen-only oll-only" id="practice-picker" hidden>
       <div class="practice-picker-options">
         <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
@@ -9131,12 +9146,9 @@
   </section>
   </main>
 
-  <section class="trainer-soon" id="trainer-f2l" data-trainer-panel="f2l" role="tabpanel" aria-labelledby="tab-f2l" hidden>
-    <div class="trainer-soon-card">
-      <h2>F2L</h2>
-      <p>No cases in this trainer yet.</p>
-    </div>
-  </section>
+  <main id="trainer-f2l" data-trainer-panel="f2l" role="tabpanel" aria-labelledby="tab-f2l" hidden>
+    <div id="f2l-root"></div>
+  </main>
   <section class="trainer-soon" id="trainer-pll" data-trainer-panel="pll" role="tabpanel" aria-labelledby="tab-pll" hidden>
     <div class="trainer-soon-card">
       <h2>PLL</h2>
@@ -9172,6 +9184,48 @@
         <span class="modal-actions-spacer"></span>
         <button type="button" class="btn btn-ghost btn-icon" id="alg-modal-cancel" title="Cancel" aria-label="Cancel"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         <button type="button" class="btn btn-primary btn-icon" id="alg-modal-save" title="Add" aria-label="Add"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="f2l-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="f2l-modal-title">
+    <div class="modal-backdrop" id="f2l-modal-backdrop"></div>
+    <div class="modal-panel">
+      <h3 id="f2l-modal-title">Edit alg</h3>
+      <label>
+        Slot
+        <select id="f2l-modal-slot">
+          <option>FR</option>
+          <option>FL</option>
+          <option>BR</option>
+          <option>BL</option>
+        </select>
+      </label>
+      <label>
+        Algorithm
+        <input type="text" id="f2l-modal-input" placeholder="e.g. U (R U' R')" autocomplete="off" />
+      </label>
+      <label>
+        Tip
+        <input type="text" id="f2l-modal-tip" placeholder="Optional tip for this alg" autocomplete="off" />
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost btn-icon" id="f2l-modal-hide" hidden title="Hide" aria-label="Hide algorithm"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-ghost btn-icon" id="f2l-modal-delete" hidden title="Delete" aria-label="Delete algorithm"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+        <span class="modal-actions-spacer"></span>
+        <button type="button" class="btn btn-ghost btn-icon" id="f2l-modal-cancel" title="Cancel" aria-label="Cancel"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-primary btn-icon" id="f2l-modal-save" title="Save" aria-label="Save"><i class="fa-solid fa-check" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="f2l-hidden-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="f2l-hidden-title">
+    <div class="modal-backdrop" id="f2l-hidden-backdrop"></div>
+    <div class="modal-panel modal-panel-wide">
+      <h3 id="f2l-hidden-title">Hidden algs</h3>
+      <div id="f2l-hidden-list" class="hidden-modal-list"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary btn-icon" id="f2l-hidden-close" title="Close" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
@@ -9619,12 +9673,32 @@ function computeAlgOrder(raw, max = 1260) {
       .sort((a, b) => a.num - b.num);
   }
 
-  function exportableState() {
+  function ollFileState() {
     return {
       version: 3,
       updatedAt: state.updatedAt || null,
       groups: state.groups || EMBEDDED_ALL_DATA.groups || [],
       cases: casesToArray(state.cases),
+    };
+  }
+
+  function readF2lEdits() {
+    if (window.gabisTrainers && typeof window.gabisTrainers.exportF2l === "function") {
+      return window.gabisTrainers.exportF2l();
+    }
+    try {
+      const saved = JSON.parse(localStorage.getItem("f2l-data-v1") || "{}");
+      return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function exportableState() {
+    return {
+      ...ollFileState(),
+      version: 4,
+      f2l: readF2lEdits(),
     };
   }
 
@@ -9739,7 +9813,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function saveLocal() {
     state.updatedAt = new Date().toISOString();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(exportableState()));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ollFileState()));
     setStamp("Saved · " + new Date().toLocaleTimeString());
   }
 
@@ -9802,7 +9876,16 @@ function computeAlgOrder(raw, max = 1260) {
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        applyParsedState(JSON.parse(reader.result));
+        const parsed = JSON.parse(reader.result);
+        const hasF2l = parsed && Object.prototype.hasOwnProperty.call(parsed, "f2l");
+        if (hasF2l) {
+          if (!window.gabisTrainers || typeof window.gabisTrainers.normalizeF2l !== "function") {
+            throw new Error("F2L trainer is not ready");
+          }
+          window.gabisTrainers.normalizeF2l(parsed.f2l);
+        }
+        applyParsedState(parsed);
+        if (hasF2l) window.gabisTrainers.importF2l(parsed.f2l);
         saveLocal();
         applyAll();
       } catch (err) {
@@ -11238,5 +11321,7 @@ function computeAlgOrder(raw, max = 1260) {
   })();
 })();
 </script>
+<script type="application/json" id="f2l-source">{"version":1,"groups":[{"id":"easy-inserts","label":"Easy Inserts"},{"id":"disconnected-pairs","label":"Disconnected Pairs"},{"id":"corner-in-slot","label":"Corner in Slot"},{"id":"edge-in-slot","label":"Edge in Slot"},{"id":"connected-pairs","label":"Connected Pairs"},{"id":"both-in-slot","label":"Both Pieces in Slot"},{"id":"edge-wrong-slot","label":"Edge in Wrong Slot"},{"id":"corner-wrong-slot","label":"Corner in Wrong Slot"}],"cases":[{"id":"easy-right-pair","group":"easy-inserts","setup":"R U R' U'","algs":[{"slot":"FR","alg":"U (R U' R')"},{"slot":"FR","alg":"U2 (R U2' R')"},{"slot":"FR","alg":"(R' F R F')","note":"EO"},{"slot":"FL","alg":"y (F' L F L')"},{"slot":"FL","alg":"U (F U' F')"},{"slot":"BL","alg":"y2 U2 (L U2 L')"},{"slot":"BL","alg":"U (L U' L')"},{"slot":"BR","alg":"y' U (f R' f')"}]},{"id":"easy-left-pair","group":"easy-inserts","setup":"L' U' L U","algs":[{"slot":"FL","alg":"U' (L' U L)"},{"slot":"FL","alg":"U2 (L' U2 L)"},{"slot":"FL","alg":"(L F' L' F)","note":"EO"},{"slot":"FR","alg":"y' (F R' F' R)"},{"slot":"FR","alg":"U' (F' U F)"},{"slot":"BR","alg":"y2 U2 (R' U2' R)"},{"slot":"BR","alg":"U' (R' U R)"},{"slot":"BL","alg":"y U' (f' L f)"}]},{"id":"easy-right-insert","group":"easy-inserts","setup":"R U' R'","algs":[{"slot":"FR","alg":"(R U R')"},{"slot":"FL","alg":"y (F U F')"},{"slot":"BL","alg":"y2 (L U L')"},{"slot":"BR","alg":"y' (f R f')"}]},{"id":"easy-left-insert","group":"easy-inserts","setup":"L' U L","algs":[{"slot":"FL","alg":"(L' U' L)"},{"slot":"FR","alg":"y' (F' U' F)"},{"slot":"BR","alg":"y2 (R' U' R)"},{"slot":"BL","alg":"y (f' L' f)"}]},{"id":"disc-1","group":"disconnected-pairs","setup":"R U R' U2 R U' R' U","algs":[{"slot":"FR","alg":"U' (R U R') [U2 R U' R']"},{"slot":"BL","alg":"y2 U' (L U L') [U' L U2 L']"}]},{"id":"disc-2","group":"disconnected-pairs","setup":"L' U' L U2 L' U L U'","algs":[{"slot":"FL","alg":"U (L' U' L) [U2' L' U L]"},{"slot":"BR","alg":"y2 U (R' U' R) [U R' U2' R]"}]},{"id":"disc-3","group":"disconnected-pairs","setup":"R U R' U2 R U2 R' U","algs":[{"slot":"FR","alg":"U' (R U2' R') [U2 R U' R']"},{"slot":"BL","alg":"y2 U' (L U2 L') [U' L U2 L']"}]},{"id":"disc-4","group":"disconnected-pairs","setup":"L' U' L U2 L' U2 L U'","algs":[{"slot":"FL","alg":"U (L' U2 L) [U2' L' U L]"},{"slot":"BR","alg":"y2 U (R' U2' R) [U R' U2' R]"}]},{"id":"disc-5","group":"disconnected-pairs","setup":"R U' R' U' R U' R' U","algs":[{"slot":"FR","alg":"U' (R U R') [U R U R']"},{"slot":"FR","alg":"U2 (R U' R') [U' R U R']"},{"slot":"FR","alg":"(R' U R2 U R')","note":"BR open"},{"slot":"BL","alg":"y2 U' (L U L') [U L U L']"},{"slot":"BL","alg":"y2 U2 (L U' L') [U' L U L']"},{"slot":"BL","alg":"y2 (L' U L2 U L')","note":"BR open"}]},{"id":"disc-6","group":"disconnected-pairs","setup":"L' U L U L' U L U'","algs":[{"slot":"FL","alg":"U (L' U' L) [U' L' U' L]"},{"slot":"FL","alg":"U2 (L' U L) [U L' U' L]"},{"slot":"FL","alg":"(L U' L2' U' L)","note":"BL open"},{"slot":"BR","alg":"y2 U (R' U' R) [U' R' U' R]"},{"slot":"BR","alg":"y2 U2 (R' U R) [U R' U' R]"},{"slot":"BR","alg":"y2 (R U' R2' U' R)","note":"FR open"}]},{"id":"disc-7","group":"disconnected-pairs","setup":"R U R' U' R U2 R' U'","algs":[{"slot":"FR","alg":"U (R U2' R') [U R U' R']"},{"slot":"BL","alg":"y2 U (L U2 L') [U L U' L']"}]},{"id":"disc-8","group":"disconnected-pairs","setup":"L' U' L U L' U2 L U","algs":[{"slot":"FL","alg":"U' (L' U2 L) [U' L' U L]"},{"slot":"BR","alg":"y2 U' (R' U2' R) [U' R' U R]"}]},{"id":"disc-9","group":"disconnected-pairs","setup":"R U' R' U2 R U R'","algs":[{"slot":"FR","alg":"U2 (R U R') [U R U' R']"},{"slot":"FR","alg":"(R U' R') [U2 R U R']"},{"slot":"BL","alg":"y2 U2 (L U L') [U L U' L']"},{"slot":"BL","alg":"y2 (L U' L') [U2' L U L']"}]},{"id":"disc-10","group":"disconnected-pairs","setup":"L' U' L U L' U L U2","algs":[{"slot":"FL","alg":"U2 (L' U' L) [U' L' U L]"},{"slot":"FL","alg":"(L' U L) [U2' L' U' L]"},{"slot":"BR","alg":"y2 U2 (R' U' R) [U' R' U R]"},{"slot":"BR","alg":"y2 (R' U R) [U2 R' U' R]"}]},{"id":"cis-1","group":"corner-in-slot","setup":"R U' R' F R' F' R U","algs":[{"slot":"FR","alg":"U' (R' F R F') [R U R']"},{"slot":"FL","alg":"y U' (L' U L) [F' L F L']"},{"slot":"BL","alg":"y2 U' (f' L f) [U L U' L']"},{"slot":"BL","alg":"y2 (L U' L') (U' L U' L') [U L U L']"},{"slot":"BR","alg":"y' U' (R' U R) [U f R' f']"}]},{"id":"cis-2","group":"corner-in-slot","setup":"L' U L F' L F L' U'","algs":[{"slot":"FL","alg":"U (L F' L' F) [L' U' L]"},{"slot":"FR","alg":"y' U (R U' R') [F R' F' R]"},{"slot":"BR","alg":"y2 U (f R' f') [U' R' U R]"},{"slot":"BR","alg":"y2 (R' U R) (U R' U R) [U' R' U' R]"},{"slot":"BL","alg":"y U (L U' L') [U' f' L f]"}]},{"id":"cis-3","group":"corner-in-slot","setup":"R U R' U' R U R'","algs":[{"slot":"FR","alg":"(R U' R') [U R U' R']"},{"slot":"BL","alg":"y2 (L U' L') [U L U' L']"}]},{"id":"cis-4","group":"corner-in-slot","setup":"L' U' L U L' U' L","algs":[{"slot":"FL","alg":"(L' U L) [U' L' U L]"},{"slot":"BR","alg":"y2 (R' U R) [U' R' U R]"}]},{"id":"cis-5","group":"corner-in-slot","setup":"R U' R' U R U' R'","algs":[{"slot":"FR","alg":"(R U R') [U' R U R']"},{"slot":"FL","alg":"y (L F' L' F) [U L' U' L]"},{"slot":"BL","alg":"y2 (L U L') [U' L U L']"}]},{"id":"cis-6","group":"corner-in-slot","setup":"L' U L U' L' U L","algs":[{"slot":"FL","alg":"(L' U' L) [U L' U' L]"},{"slot":"FR","alg":"y' (R' F R F') [U R U' R']"},{"slot":"BR","alg":"y2 (R' U' R) [U R' U' R]"}]},{"id":"eis-1","group":"edge-in-slot","setup":"R U' R' U R U' R' U R U' R'","algs":[{"slot":"FR","alg":"(U R U' R')*3"},{"slot":"FL","alg":"y (U' L' U L)*3"},{"slot":"BL","alg":"y2 (L U L' U')*2 [L U L']"},{"slot":"BR","alg":"y' (R' U' R U)*2 [R' U' R]"}]},{"id":"eis-2","group":"edge-in-slot","setup":"R U R' F R' F' R U","algs":[{"slot":"FR","alg":"U' (R' F R F') [R U' R']"},{"slot":"FR","alg":"(R U' R') [d R' U R]"},{"slot":"FL","alg":"y U (L F' L' F) [L' U L]"},{"slot":"FL","alg":"y (L' U L) [d' L U' L']"},{"slot":"BL","alg":"y2 (L U' L') [U f' L f]"},{"slot":"BR","alg":"y' (R' U R) [U' f R' f']"}]},{"id":"eis-3","group":"edge-in-slot","setup":"R U R' U2 R U R' U","algs":[{"slot":"FR","alg":"U' (R U' R') [U2 R U' R']"},{"slot":"FL","alg":"y U' (L' U' L) [U2 L' U' L]"},{"slot":"FL","alg":"y U (L' U2 L) [U' L' U' L]"},{"slot":"BL","alg":"y2 U' (L U' L') [U' L U2 L']"},{"slot":"BR","alg":"y' U' (R' U' R) [U2 R' U' R]"},{"slot":"BR","alg":"y' U (R' U2' R) [U' R' U' R]"}]},{"id":"eis-4","group":"edge-in-slot","setup":"R U' R' U2 R U' R' U'","algs":[{"slot":"FR","alg":"U (R U R') [U2' R U R']"},{"slot":"FR","alg":"U' (R U2' R') [U R U R']"},{"slot":"FL","alg":"y U (L' U L) [U2' L' U L]"},{"slot":"BL","alg":"y2 U (L U L') [U2' L U L']"},{"slot":"BL","alg":"y2 U' (L U2 L') [U L U L']"},{"slot":"BR","alg":"y' U (R' U R) [U R' U2' R]"}]},{"id":"eis-5","group":"edge-in-slot","setup":"F' U F U' R U' R' U","algs":[{"slot":"FR","alg":"U2 (R U R') [F R' F' R]"},{"slot":"FL","alg":"y U2 (F U F') [U' L' U L]"},{"slot":"BL","alg":"y2 U2 (L U L') [U' f' L f]"},{"slot":"BR","alg":"y' U2 (f R f') [U' R' U R]"}]},{"id":"eis-6","group":"edge-in-slot","setup":"R U' R' U F' U F U'","algs":[{"slot":"FR","alg":"U2 (F' U' F) [U R U' R']"},{"slot":"FL","alg":"y U2 (L' U' L) [F' L F L']"},{"slot":"BL","alg":"y2 U2 (f' L' f) [U L U' L']"},{"slot":"BR","alg":"y' U2 (R' U' R) [U f R f']"}]},{"id":"conn-1","group":"connected-pairs","setup":"R' U' R2 U' R2 U2 R","algs":[{"slot":"FR","alg":"(R U' R') (U R U' R') [U2 R U' R']"},{"slot":"FR","alg":"(R' U2' R2 U R')","note":"BR open"},{"slot":"BL","alg":"y2 (L' U2 L2 U L2' U L)"},{"slot":"BL","alg":"y2 (L' U2 L2 U L')","note":"FL open"}]},{"id":"conn-2","group":"connected-pairs","setup":"L U L2 U L2 U2 L'","algs":[{"slot":"FL","alg":"(L' U L) (U' L' U L) [U2' L' U L]"},{"slot":"FL","alg":"(L U2 L2' U' L)","note":"BL open"},{"slot":"BR","alg":"y2 (R U2' R2' U' R2 U' R')"},{"slot":"BR","alg":"y2 (R U2' R2' U' R)","note":"FR open"}]},{"id":"conn-3","group":"connected-pairs","setup":"R U' R' U' R U R' U","algs":[{"slot":"FR","alg":"U' (R U' R') [U R U R']"},{"slot":"BL","alg":"y2 U' (L U' L') [U L U L']"}]},{"id":"conn-4","group":"connected-pairs","setup":"L' U L U L' U' L U'","algs":[{"slot":"FL","alg":"U (L' U L) [U' L' U' L]"},{"slot":"BR","alg":"y2 U (R' U R) [U' R' U' R]"}]},{"id":"conn-5","group":"connected-pairs","setup":"R U' R' U2 F' U' F","algs":[{"slot":"FR","alg":"(R U R') (U2 R U' R') [U R U' R']"},{"slot":"FR","alg":"U' (R' U R) [U' R U R']","note":"BR open"},{"slot":"FL","alg":"(L' U L) [U2' F U F']"},{"slot":"BL","alg":"y2 U2 (L U L') (U' L U2 L') [U L U L']"},{"slot":"BL","alg":"y2 (f' L f) [U2' L U L']"},{"slot":"BL","alg":"y2 U' (L' U L) [U' L U L']","note":"FL open"},{"slot":"BR","alg":"y' (R' U R) [U2 f R f']"}]},{"id":"conn-6","group":"connected-pairs","setup":"L' U L U2 F U F'","algs":[{"slot":"FL","alg":"(L' U' L) (U2' L' U L) [U' L' U L]"},{"slot":"FL","alg":"U (L U' L') [U L' U' L]","note":"BL open"},{"slot":"FR","alg":"y' (R U' R') [U2 F' U' F]"},{"slot":"BR","alg":"y2 U2 (R' U' R) (U R' U2 R) [U' R' U' R]"},{"slot":"BR","alg":"y2 (f R' f') [U2 R' U' R]"},{"slot":"BR","alg":"y2 U (R U' R') [U R' U' R]","note":"FR open"},{"slot":"BL","alg":"y (L U' L') [U2' f' L' f]"}]},{"id":"conn-7","group":"connected-pairs","setup":"R U' R' U R U2 R'","algs":[{"slot":"FR","alg":"(R U2' R') [U' R U R']"},{"slot":"BL","alg":"y2 (L U2 L') [U' L U L']"}]},{"id":"conn-8","group":"connected-pairs","setup":"L' U L U' L' U2 L","algs":[{"slot":"FL","alg":"(L' U2 L) [U L' U' L]"},{"slot":"BR","alg":"y2 (R' U2' R) [U R' U' R]"}]},{"id":"conn-9","group":"connected-pairs","setup":"R U' R' F' U' F R U' R'","algs":[{"slot":"FR","alg":"U (R U' R') (U' R U' R') [U R U' R']"},{"slot":"FL","alg":"y U (L' U' L2 F' L' F) [L' U L]"},{"slot":"BL","alg":"y2 (L U L') (U2' L U L') [U' L U L']"}]},{"id":"conn-10","group":"connected-pairs","setup":"L' U L F U F' L' U L","algs":[{"slot":"FL","alg":"U' (L' U L) (U L' U L) [U' L' U L]"},{"slot":"FR","alg":"y' U' (R U R2' F R F') [R U' R']"},{"slot":"BR","alg":"y2 (R' U' R) (U2 R' U' R) [U R' U' R]"}]},{"id":"both-1","group":"both-in-slot","setup":"R U' R' U R U2 R' U R U' R'","algs":[{"slot":"FR","alg":"(R U' R') (U' R U R') [U2 R U' R']"},{"slot":"FL","alg":"y (L' U L) (U' L' U2 L) [U' L' U L]"},{"slot":"BL","alg":"y2 (L U L') (U' L U2 L') [U' L U L']"},{"slot":"BR","alg":"y' (R' U' R) (U2 R' U R) [U' R' U' R]"}]},{"id":"both-2","group":"both-in-slot","setup":"R U' R' U' R U R' U2 R U' R'","algs":[{"slot":"FR","alg":"(R U' R') (U R U2' R') [U R U' R']"},{"slot":"FL","alg":"y (L' U L) (U L' U' L) [U2' L' U L]"},{"slot":"BL","alg":"y2 (L U L') (U2' L U' L') [U L U L']"},{"slot":"BR","alg":"y' (R' U' R) (U R' U2' R) [U R' U' R]"}]},{"id":"both-3","group":"both-in-slot","setup":"R U' R' F' L' U2 L F","algs":[{"slot":"FR","alg":"(R U' R') (U' R U' R') [d R' U' R]"},{"slot":"FR","alg":"(R U' R2' U' R) [y L' U' L]","note":"BR open"},{"slot":"FL","alg":"y (L' U' L) (U L' U L) [U2' y L U L']"},{"slot":"BL","alg":"y2 (f' L f) (U2' L U L') [U L U' L']"},{"slot":"BR","alg":"y' (f R' f') (U R' U' R) [U' R' U' R]"}]},{"id":"both-4","group":"both-in-slot","setup":"F' L' U2 L F R U R'","algs":[{"slot":"FR","alg":"(R U R') (U' R U' R') [U2 y' R' U' R]"},{"slot":"FL","alg":"y (L' U L) (U L' U L) [d' L U L']"},{"slot":"FL","alg":"y (L' U L2 U L') [y' R U R']","note":"BL open"},{"slot":"BL","alg":"y2 (f L f) (U' L U L') [U L U L']"},{"slot":"BR","alg":"y' (f R' f') (U2 R' U' R) [U' R' U R]"}]},{"id":"both-5","group":"both-in-slot","setup":"R2 U2 F R2 F' U2 R' U R'","algs":[{"slot":"FR","alg":"(R U' R') (d R' U2' R) [U R' U2' R]"},{"slot":"FR","alg":"(R' F R F') (R' U2' R2 U R')","note":"BR open"},{"slot":"FL","alg":"y (L' U L) (d' L U2 L') [U' L U2 L']"},{"slot":"FL","alg":"y (L F' L' F) (L U2 L2' U' L)","note":"BL open"},{"slot":"BL","alg":"y2 (f' L f) (U' L U2 L') [U' L U2 L']"},{"slot":"BR","alg":"y' (f R' f') (U R' U2' R) [U R' U2' R]"}]},{"id":"ew-up-1","group":"edge-wrong-slot","setup":"R U R2 U' R U","algs":[{"slot":"FR","alg":"U' (R' U R2 U' R')"},{"slot":"BL","alg":"y2 U' (L' U L2 U' L')"}]},{"id":"ew-up-2","group":"edge-wrong-slot","setup":"L' U' L2 U L' U'","algs":[{"slot":"FL","alg":"U (L U' L2' U L U')"},{"slot":"BR","alg":"y2 U (R U' R2' U R)"}]},{"id":"ew-up-3","group":"edge-wrong-slot","setup":"S R' S' U R' U' R U2","algs":[{"slot":"FL","alg":"y (R' F R2 U' R' U2 F')"},{"slot":"BL","alg":"y2 U2 (L F' L' F) [L U L']"}]},{"id":"ew-up-4","group":"edge-wrong-slot","setup":"S' L S U' L U L' U2","algs":[{"slot":"FR","alg":"y' (L F' L2' U L U2' F)"},{"slot":"BR","alg":"y2 U2 (R' F R F') [R' U' R]"}]},{"id":"ew-up-5","group":"edge-wrong-slot","setup":"R2 u R2 u' R2 U2","algs":[{"slot":"FR","alg":"(L U L' U' L U L') [U R U R']"},{"slot":"FL","alg":"y (R' U' R U R' U' R U') [L' U' L]"},{"slot":"BL","alg":"y2 U (R U' R' U R U' R') [L U2 L']"},{"slot":"BR","alg":"y' U' (L' U L U' L' U L) [R' U2' R]"}]},{"id":"ew-up-6","group":"edge-wrong-slot","setup":"F' L U L' F","algs":[{"slot":"FR","alg":"(L U' L') [d' L' U L]"},{"slot":"BL","alg":"y2 L [F' U F] L'"},{"slot":"BR","alg":"y' R' [F U' F'] R"}]},{"id":"ew-right-1","group":"edge-wrong-slot","setup":"R U' R2 U R","algs":[{"slot":"FR","alg":"(R' U' R2 U R')"},{"slot":"BL","alg":"y2 (L' U' L2 U L')"}]},{"id":"ew-right-2","group":"edge-wrong-slot","setup":"F D R' D' F'","algs":[{"slot":"FR","alg":"(R' U R) [d' L' U L]"},{"slot":"FR","alg":"(F D R D' F')"},{"slot":"FL","alg":"y R [F U F'] R'"},{"slot":"BL","alg":"y2 F [L U L'] F'"},{"slot":"BR","alg":"y' (L U L') [U' f R f']"},{"slot":"BR","alg":"y' (R u R u' R')"}]},{"id":"ew-right-3","group":"edge-wrong-slot","setup":"R U R' L' U L U","algs":[{"slot":"FR","alg":"U' (L' U' L) [R U' R']"},{"slot":"FL","alg":"y U2 (L' U' L2 U L2' U' L)"},{"slot":"BL","alg":"y2 U' (R' U' R) [L U' L']"},{"slot":"BR","alg":"y' U2 (R' U' R2 U R2' U' R)"}]},{"id":"ew-right-4","group":"edge-wrong-slot","setup":"R U' R' F U2 F'","algs":[{"slot":"FR","alg":"(F U2' F') [R U R']"},{"slot":"FR","alg":"U2 (L' U L) [y' R' U2' R]"},{"slot":"FL","alg":"y (L U2 L') [F U F']"},{"slot":"BL","alg":"y2 U2 (R' U R) [U f' L f]"},{"slot":"BR","alg":"y' (R U2' R') [f R f']"}]},{"id":"ew-right-5","group":"edge-wrong-slot","setup":"R U' R' L U' L' U'","algs":[{"slot":"FR","alg":"U (L U L') [R U R']"},{"slot":"FR","alg":"U' (L U2 L') [U' R U R']"},{"slot":"FL","alg":"y U (R' U R) [L' U L]"},{"slot":"BL","alg":"y2 U (R U R') [L U L']"},{"slot":"BL","alg":"y2 U' (R U2' R') [U' L U L']"},{"slot":"BR","alg":"y' U (L' U L) [R' U R]"}]},{"id":"ew-right-6","group":"edge-wrong-slot","setup":"F' L U L' U' F U2","algs":[{"slot":"FR","alg":"U2 (F' U L U' L' F)"},{"slot":"FL","alg":"y U (R' U' R) [U F U F']"},{"slot":"FL","alg":"y U2 (R' F U F' R)"},{"slot":"BL","alg":"y2 U (F' U' F) [U L U L']"},{"slot":"BL","alg":"y2 U2 (F' L U L' F)"},{"slot":"BR","alg":"y' U (L' U' L) [d L U L']"},{"slot":"BR","alg":"y' U2 (L' B U B' L)"}]},{"id":"ew-left-1","group":"edge-wrong-slot","setup":"L' U L2 U' L'","algs":[{"slot":"FL","alg":"(L U L2' U' L)"},{"slot":"BR","alg":"y2 (R U R2 U' R)"}]},{"id":"ew-left-2","group":"edge-wrong-slot","setup":"F' D' L D F","algs":[{"slot":"FL","alg":"(L' U' L) [d R U' R']"},{"slot":"FL","alg":"(F' D' L' D F)"},{"slot":"FR","alg":"y' L' [F' U' F] L"},{"slot":"BR","alg":"y2 F' [R' U' R] F"},{"slot":"BL","alg":"y (R' U' R) [U f' L' f]"},{"slot":"BL","alg":"y (L' u' L' u L)"}]},{"id":"ew-left-3","group":"edge-wrong-slot","setup":"L' U' L R U' R' U'","algs":[{"slot":"FL","alg":"U (R U R') [L' U L]"},{"slot":"FR","alg":"y' U2 (R U R2' U' R2 U R')"},{"slot":"BR","alg":"y2 U (L U L') [R' U R]"},{"slot":"BL","alg":"y U2 (L U L2' U' L2 U L')"}]},{"id":"ew-left-4","group":"edge-wrong-slot","setup":"L' U L F' U2 F","algs":[{"slot":"FL","alg":"(F' U2' F) [L' U' L]"},{"slot":"FL","alg":"U2 (R U' R') [y L U2 L']"},{"slot":"FR","alg":"y' (R' U2' R) [F' U' F]"},{"slot":"BR","alg":"y2 U2 (L U' L') [U' f R' f']"},{"slot":"BL","alg":"y (L' U2 L) [f' L' f]"}]},{"id":"ew-left-5","group":"edge-wrong-slot","setup":"R U R' L U L' U","algs":[{"slot":"FR","alg":"U' (L U' L') [R U' R']"},{"slot":"FL","alg":"y U' (R' U' R) [L' U' L]"},{"slot":"FL","alg":"y U (R' U2' R) [U L' U' L]"},{"slot":"BL","alg":"y2 U' (R U' R') [L U' L']"},{"slot":"BR","alg":"y' U' (L' U' L) [R' U' R]"},{"slot":"BR","alg":"y' U (L' U2 L) [U R' U' R]"}]},{"id":"ew-left-6","group":"edge-wrong-slot","setup":"L F' U F L' U2","algs":[{"slot":"FR","alg":"U' (L U L') [d' L' U' L]"},{"slot":"FR","alg":"U2 (L F' U' F L')"},{"slot":"FL","alg":"y U' (f R f') [U' L' U' L]"},{"slot":"FL","alg":"y U2 (F U' R' U R F')"},{"slot":"BL","alg":"y2 U' (R U R') [d' R' U' R]"},{"slot":"BL","alg":"y2 U2 (R B' U' B R')"},{"slot":"BR","alg":"y' U' (F U F') [U' R' U' R]"},{"slot":"BR","alg":"y' U2 (F R' U' R F')"}]},{"id":"cw-down-1","group":"corner-wrong-slot","setup":"R' U2 R U' R U R' U2","algs":[{"slot":"BR","alg":"U2 (R U' R') [U R' U2' R]"},{"slot":"BR","alg":"(R U2' R') [U R' U' R]"},{"slot":"FL","alg":"y2 U2 (L U' L') [U2 L' U L]"},{"slot":"FL","alg":"y2 (L U2 L') [U L' U' L]"}]},{"id":"cw-down-2","group":"corner-wrong-slot","setup":"L U2 L' U L' U' L U2","algs":[{"slot":"FL","alg":"(R' U2' R) (U R' U R)"},{"slot":"BR","alg":"y2 (R' U2' R) (U R' U R)"}]},{"id":"cw-down-3","group":"corner-wrong-slot","setup":"L' U' L R U R' U2","algs":[{"slot":"FL","alg":"U2 (R U' R') [L' U L]"},{"slot":"BR","alg":"y2 U2 (L U L') [R' U' R]"}]},{"id":"cw-down-4","group":"corner-wrong-slot","setup":"R U R' L' U' L U2","algs":[{"slot":"FR","alg":"y' U2 (L' U L) [R U' R']"},{"slot":"BL","alg":"y2 U2 (R' U' R) [L U L']"}]},{"id":"cw-down-5","group":"corner-wrong-slot","setup":"F' L U' L' U2 F U","algs":[{"slot":"BL","alg":"U' (F' U F) [L U2 L']"},{"slot":"BL","alg":"U (R U' R' U R U R') [L U L']"},{"slot":"BR","alg":"y U' (L' U L) [U' f R' f']"},{"slot":"FL","alg":"y' U (R' U2' R) [F U F']"}]},{"id":"cw-down-6","group":"corner-wrong-slot","setup":"F R' U R U2 F' U'","algs":[{"slot":"BR","alg":"U (F U' F') [R' U2 R]"},{"slot":"BR","alg":"U' (L' U L U' L' U' L) [R' U' R]"},{"slot":"BL","alg":"y' U (R U' R') [U f' L f]"},{"slot":"FR","alg":"y U' (L U2 L') [F' U' F]"}]},{"id":"cw-left-1","group":"corner-wrong-slot","setup":"R' U R U R U R' U","algs":[{"slot":"BR","alg":"U' (R U' R' U') [R' U' R]"},{"slot":"BR","alg":"U (F U' F') [R' U' R]"},{"slot":"FR","alg":"y U (L' U' L) [F' U' F]"},{"slot":"FL","alg":"y2 U' (L U' L) [U' L' U' L]"},{"slot":"BL","alg":"y' U (R' U' R) [f' L' f]"}]},{"id":"cw-left-2","group":"corner-wrong-slot","setup":"L' U L U' R U R' U","algs":[{"slot":"FL","alg":"U' (R U' R') [U L' U' L]"},{"slot":"BL","alg":"y U (F' L F L') [U' L U2 L']"},{"slot":"BR","alg":"y2 U' (L U' L') [U R' U' R]"}]},{"id":"cw-left-3","group":"corner-wrong-slot","setup":"L U2 L' R U R'","algs":[{"slot":"BL","alg":"(R U' R') [L U2 L']"},{"slot":"BR","alg":"y (L' U' L) [f R' f']"},{"slot":"FR","alg":"y2 (L U' L') [R U2' R']"},{"slot":"FL","alg":"y' (R' U' R) [F U' F']"}]},{"id":"cw-left-4","group":"corner-wrong-slot","setup":"S R S'","algs":[{"slot":"BR","alg":"(R U' R') [f R' f']"},{"slot":"BR","alg":"(S R' S')"},{"slot":"FR","alg":"y (L' U' L) [U R U' R']"},{"slot":"FL","alg":"y2 (S' L' S)"},{"slot":"BL","alg":"y' (R' U' R) [U L U' L']"}]},{"id":"cw-left-5","group":"corner-wrong-slot","setup":"L F' L' F U' R U R'","algs":[{"slot":"BL","alg":"y (L' U' L2 U2 L')"},{"slot":"FR","alg":"y' (R' U' R2 U2' R')"}]},{"id":"cw-left-6","group":"corner-wrong-slot","setup":"L U2 L' F R' F' R U'","algs":[{"slot":"BL","alg":"U (R' F R F') [L U2 L']"},{"slot":"BR","alg":"y U2 (L' U2 L) [R' U' R]"},{"slot":"BR","alg":"y U (L' U' L) [U' R' U' R]"},{"slot":"FL","alg":"y' U2 (R' U2' R) [L' U' L]"},{"slot":"FL","alg":"y' U (R' U' R) [U' L' U' L]"}]},{"id":"cw-right-1","group":"corner-wrong-slot","setup":"L U' L' U' L' U' L U'","algs":[{"slot":"BL","alg":"U (L' U L) [U L U L']"},{"slot":"BL","alg":"U' (F' U F) [L U L']"},{"slot":"FL","alg":"y' U' (R U R') [F U F']"},{"slot":"FR","alg":"y2 U (R' U R') [U R U R']"},{"slot":"BR","alg":"y U' (L U L') [f R f']"}]},{"id":"cw-right-2","group":"corner-wrong-slot","setup":"R U' R' U L' U' L U'","algs":[{"slot":"FR","alg":"U (L' U L) [U' R U R']"},{"slot":"BR","alg":"y' U' (F R' F' R) [U R' U2 R]"},{"slot":"BL","alg":"y2 U (R' U R) [U' L U L']"}]},{"id":"cw-right-3","group":"corner-wrong-slot","setup":"R' U2 R L' U' L","algs":[{"slot":"BR","alg":"(L' U L) [R' U2 R]"},{"slot":"BL","alg":"y' (R U R') [f' L f]"},{"slot":"FL","alg":"y2 (R' U R) [L' U2 L]"},{"slot":"FR","alg":"y (L U L') [F' U F]"}]},{"id":"cw-right-4","group":"corner-wrong-slot","setup":"S' L' S","algs":[{"slot":"BL","alg":"(L' U L) [f' L f]"},{"slot":"BL","alg":"(S' L S)"},{"slot":"FL","alg":"y' (R U R') [U' L' U L]"},{"slot":"FR","alg":"y2 (S R S')"},{"slot":"BR","alg":"y2 (L U L') [U' R' U R]"}]},{"id":"cw-right-5","group":"corner-wrong-slot","setup":"R' F R F' U L' U' L","algs":[{"slot":"BR","alg":"y' (R U R2' U2' R)"},{"slot":"BL","alg":"y2 (L U L2' U2' L)"}]},{"id":"cw-right-6","group":"corner-wrong-slot","setup":"R' U2 R F' L F L' U","algs":[{"slot":"BR","alg":"U' (L F' L' F) [R' U2' R]"},{"slot":"BL","alg":"y' U2 (R U2' R') [L U L']"},{"slot":"BL","alg":"y' U' (R U R') [U L U L']"},{"slot":"FR","alg":"y U2 (L U2 L') [R U R']"},{"slot":"FR","alg":"y U' (L U L') [U' R' U' R]"}]}]}</script>
+<script src="f2l.js"></script>
 </body>
 </html>
