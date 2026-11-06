@@ -93,9 +93,54 @@ body::after {
 }
 .toolbar-top {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.55rem 0.75rem;
   align-items: center;
+}
+.toolbar-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem 0.85rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.toolbar-sep {
+  height: 1px;
+  margin: 0.75rem 0 0.7rem;
+  background: rgba(66, 70, 86, 0.35);
+}
+.trainer-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+}
+.trainer-tab {
+  appearance: none;
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.34rem 0.7rem;
+  border-radius: 8px;
+  border: 2px solid var(--dove);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--anthracite);
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(42, 46, 51, 0.08);
+}
+.trainer-tab:hover {
+  border-color: var(--anthracite);
+  background: var(--mist);
+}
+.trainer-tab.is-active {
+  background: var(--anthracite);
+  color: var(--white);
+  border-color: var(--anthracite);
+}
+.trainer-tab:focus-visible {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
 }
 .brand {
   display: flex;
@@ -106,6 +151,7 @@ body::after {
   font-size: 1.02rem;
   color: var(--anthracite);
   min-width: 0;
+  flex: 0 1 auto;
 }
 .brand-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .brand-mark {
@@ -118,15 +164,19 @@ body::after {
 #save-stamp {
   font-size: 0.65rem;
   color: var(--muted);
-  margin-left: 0.15rem;
+  margin-left: auto;
 }
 
 .actions {
-  margin-left: auto;
   position: relative;
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  flex: 0 0 auto;
+}
+body.practice-mode .actions { display: none !important; }
+body:not([data-trainer="oll"]) .oll-only {
+  display: none !important;
 }
 .icon-btn {
   appearance: none;
@@ -196,12 +246,24 @@ body::after {
 .btn-primary:hover { box-shadow: 4px 4px 5px var(--mustard); }
 .btn-ghost { background: rgba(255,255,255,0.85); }
 
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
 .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 0.7rem;
+  margin-top: 0;
   align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+#btn-practice {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 .filter-chip {
   gap: 0.35rem;
@@ -337,6 +399,28 @@ body::after {
 }
 
 main { padding: 1.25rem 1rem 3.5rem; max-width: 1140px; margin: 0 auto; }
+.trainer-soon {
+  padding: 1.25rem 1rem 3.5rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.trainer-soon-card {
+  padding: 1.15rem 1.1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 2px solid var(--dove);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+.trainer-soon-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+.trainer-soon-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
 .group-section {
   margin-bottom: 2.5rem;
   scroll-margin-top: 8.5rem;
@@ -1402,6 +1486,12 @@ body.practice-mode main {
     padding-right: max(0.75rem, env(safe-area-inset-right));
   }
   .brand { font-size: 0.88rem; }
+  .trainer-tab { padding: 0.28rem 0.5rem; font-size: 0.68rem; }
+  .toolbar-heading { gap: 0.45rem 0.55rem; }
+  .trainer-soon {
+    padding: 1rem max(0.75rem, env(safe-area-inset-left)) calc(2.5rem + env(safe-area-inset-bottom));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+  }
   #save-stamp { display: none; }
   .ref-row { grid-template-columns: 1fr; }
   .case-row { flex-direction: column; align-items: center; }
@@ -1411,16 +1501,13 @@ body.practice-mode main {
     flex-wrap: wrap;
     align-items: center;
   }
+  .filter-row { margin-top: 0.6rem; }
   .filters {
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 0.15rem;
-    margin-left: -0.15rem;
-    margin-right: -0.15rem;
-    padding-left: 0.15rem;
-    padding-right: 0.15rem;
   }
   .filters::-webkit-scrollbar { display: none; }
   .anchors {

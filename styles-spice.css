@@ -45,6 +45,26 @@ body::after {
 .toolbar-top {
   gap: 0.65rem 0.85rem;
 }
+.toolbar-sep {
+  background: rgba(255, 255, 255, 0.42);
+}
+.trainer-tab {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.22);
+}
+.trainer-tab:hover {
+  background: rgba(255, 255, 255, 0.24);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.trainer-tab.is-active {
+  background: #fff;
+  color: var(--spice-blue-0);
+  border-color: var(--spice-ink);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.28);
+}
 
 .brand {
   color: #fff;
@@ -110,8 +130,11 @@ body::after {
   border-color: var(--spice-ink);
 }
 
-.toolbar .filters {
+.toolbar .filter-row {
   margin-top: 0.85rem;
+}
+.toolbar .filters {
+  margin-top: 0;
 }
 .toolbar .filter-chip {
   background: rgba(255, 255, 255, 0.12);
@@ -242,6 +265,15 @@ body::after {
 .group-section[data-group="awkward-cases"] { border-top-color: var(--spice-blue-0); }
 .group-section[data-group="dot-cases"] { border-top-color: var(--spice-blue-3); }
 
+.trainer-soon-card {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--spice-line);
+  border-top: 6px solid var(--spice-blue-1);
+  box-shadow: 5px 5px 6px rgba(58, 79, 120, 0.1);
+}
+.trainer-soon-card h2 {
+  color: var(--spice-blue-0);
+}
 .group-heading {
   color: var(--spice-blue-0);
   font-size: 1.4rem;

@@ -17,13 +17,19 @@
   <link rel="stylesheet" href="styles-spice.css" />
 
 </head>
-<body>
+<body data-trainer="oll">
   <header class="toolbar">
     <div class="toolbar-top">
-      <div class="brand"><img class="brand-mark" src="favicon.svg" width="27" height="27" alt="" /><span class="brand-text">Gabis Cube Trainer</span></div>
-      <span id="save-stamp"></span>
+      <div class="toolbar-heading">
+        <div class="brand"><img class="brand-mark" src="favicon.svg" width="27" height="27" alt="" /><span class="brand-text">Gabis Cube Trainer</span></div>
+        <nav class="trainer-tabs" role="tablist" aria-label="Trainers">
+          <button type="button" class="trainer-tab is-active" role="tab" id="tab-oll" data-trainer="oll" aria-selected="true" aria-controls="trainer-oll">OLL</button>
+          <button type="button" class="trainer-tab" role="tab" id="tab-f2l" data-trainer="f2l" aria-selected="false" aria-controls="trainer-f2l" tabindex="-1">F2L</button>
+          <button type="button" class="trainer-tab" role="tab" id="tab-pll" data-trainer="pll" aria-selected="false" aria-controls="trainer-pll" tabindex="-1">PLL</button>
+        </nav>
+        <span id="save-stamp"></span>
+      </div>
       <div class="actions" id="actions-menu">
-        <button type="button" class="btn" id="btn-practice" aria-pressed="false" title="Practice selected cases in random order">Practice</button>
         <button type="button" class="icon-btn browse-only" id="btn-notation" aria-label="Cube notation" title="Notation">
           <i class="fa-solid fa-book" aria-hidden="true"></i>
         </button>
@@ -38,12 +44,16 @@
         <input type="file" id="import-file" accept="application/json,.json" hidden />
       </div>
     </div>
-    <div class="filters browse-only" aria-label="Status filter">
-      <button type="button" class="btn filter-chip" data-filter="red"><span class="pip"></span><span class="lbl-full"> Not learned </span><span class="lbl-short"> Not </span><span class="n" data-count="red">0</span></button>
-      <button type="button" class="btn filter-chip" data-filter="orange"><span class="pip"></span><span class="lbl-full"> Learning </span><span class="lbl-short"> Learn </span><span class="n" data-count="orange">0</span></button>
-      <button type="button" class="btn filter-chip" data-filter="green"><span class="pip"></span><span class="lbl-full"> Learned </span><span class="lbl-short"> Done </span><span class="n" data-count="green">0</span></button>
+    <div class="toolbar-sep" role="separator"></div>
+    <div class="filter-row oll-only">
+      <div class="filters browse-only" aria-label="Status filter">
+        <button type="button" class="btn filter-chip" data-filter="red"><span class="pip"></span><span class="lbl-full"> Not learned </span><span class="lbl-short"> Not </span><span class="n" data-count="red">0</span></button>
+        <button type="button" class="btn filter-chip" data-filter="orange"><span class="pip"></span><span class="lbl-full"> Learning </span><span class="lbl-short"> Learn </span><span class="n" data-count="orange">0</span></button>
+        <button type="button" class="btn filter-chip" data-filter="green"><span class="pip"></span><span class="lbl-full"> Learned </span><span class="lbl-short"> Done </span><span class="n" data-count="green">0</span></button>
+      </div>
+      <button type="button" class="btn" id="btn-practice" aria-pressed="false" title="Practice selected cases in random order">Practice</button>
     </div>
-    <div class="anchors-wrap browse-only is-collapsed" id="anchors-wrap">
+    <div class="anchors-wrap browse-only is-collapsed oll-only" id="anchors-wrap">
       <button type="button" class="anchors-toggle" id="btn-groups" aria-expanded="false" aria-controls="anchors-nav" aria-label="Groups" title="Groups">
         <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
       </button>
@@ -64,7 +74,7 @@
         <a class="nav-chip" href="#dot-cases" data-group-nav="dot-cases"><span class="nav-chip-label">Dot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
       </nav>
     </div>
-    <div class="practice-picker screen-only" id="practice-picker" hidden>
+    <div class="practice-picker screen-only oll-only" id="practice-picker" hidden>
       <div class="practice-picker-options">
         <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
         <label class="practice-check practice-check-status" title="Learning"><input type="checkbox" data-practice-status="orange" /><span class="pip orange" aria-hidden="true"></span></label>
@@ -99,7 +109,7 @@
       </div>
     </div>
   </header>
-  <main>
+  <main id="trainer-oll" data-trainer-panel="oll" role="tabpanel" aria-labelledby="tab-oll">
 
   <section class="group-section" id="ocll" data-group="ocll">
     <h2 class="group-heading">OCLL</h2>
@@ -9121,6 +9131,19 @@
   </section>
   </main>
 
+  <section class="trainer-soon" id="trainer-f2l" data-trainer-panel="f2l" role="tabpanel" aria-labelledby="tab-f2l" hidden>
+    <div class="trainer-soon-card">
+      <h2>F2L</h2>
+      <p>No cases in this trainer yet.</p>
+    </div>
+  </section>
+  <section class="trainer-soon" id="trainer-pll" data-trainer-panel="pll" role="tabpanel" aria-labelledby="tab-pll" hidden>
+    <div class="trainer-soon-card">
+      <h2>PLL</h2>
+      <p>No cases in this trainer yet.</p>
+    </div>
+  </section>
+
   <div class="practice-bar screen-only" id="practice-bar" aria-label="Practice navigation">
     <button type="button" class="btn btn-ghost" id="practice-prev" aria-label="Previous case">‹</button>
     <span class="practice-meta" id="practice-meta">0 / 0</span>
@@ -10989,6 +11012,23 @@ function computeAlgOrder(raw, max = 1260) {
     btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
+  function setTrainer(id) {
+    if (id !== "oll" && id !== "f2l" && id !== "pll") return;
+    if (document.body.dataset.trainer === id) return;
+    if (id !== "oll" && practiceOn) exitPractice();
+    document.body.dataset.trainer = id;
+    document.querySelectorAll(".trainer-tab").forEach((tab) => {
+      const on = tab.dataset.trainer === id;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll("[data-trainer-panel]").forEach((panel) => {
+      panel.hidden = panel.dataset.trainerPanel !== id;
+    });
+    setActionsOpen(false);
+  }
+
   function bindGlobal() {
     document.querySelectorAll("[data-filter]").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -11019,6 +11059,22 @@ function computeAlgOrder(raw, max = 1260) {
     document.getElementById("btn-practice")?.addEventListener("click", () => {
       if (practiceOn) exitPractice();
       else enterPractice();
+    });
+    document.querySelector(".trainer-tabs")?.addEventListener("click", (e) => {
+      const tab = e.target.closest(".trainer-tab");
+      if (!tab) return;
+      setTrainer(tab.dataset.trainer);
+    });
+    document.querySelector(".trainer-tabs")?.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const tabs = [...document.querySelectorAll(".trainer-tab")];
+      const i = tabs.findIndex((tab) => tab.classList.contains("is-active"));
+      if (i < 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      setTrainer(next.dataset.trainer);
+      next.focus();
     });
     document.getElementById("btn-notation")?.addEventListener("click", () => {
       setActionsOpen(false);
