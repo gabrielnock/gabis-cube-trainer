@@ -1458,7 +1458,8 @@ body.practice-mode main {
   pointer-events: none;
   z-index: 0;
 }
-.practice-order-switch[data-mode="fixed"] .practice-order-thumb {
+.practice-order-switch[data-mode="fixed"] .practice-order-thumb,
+.practice-order-switch[data-mode="on"] .practice-order-thumb {
   transform: translateX(100%);
 }
 .practice-order-opt {
@@ -1594,6 +1595,44 @@ body.practice-mode main {
   margin-top: 0.35rem;
   padding-top: 0;
 }
+.f2l-insert-control {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+.f2l-insert-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: inherit;
+  white-space: nowrap;
+}
+.f2l-insert-mark {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+#f2l-root > .group-section {
+  margin-bottom: 5rem;
+}
+#f2l-root .group-heading.is-stuck {
+  position: fixed;
+  top: var(--f2l-sticky-top, 0px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  margin: 0;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  padding-left: var(--f2l-stuck-pad, 0.55rem);
+  border-left-width: 0;
+  background:
+    linear-gradient(currentColor, currentColor) left var(--f2l-stuck-accent, 0px) top / 4px 100% no-repeat,
+    var(--spice-blue-0, #3a4f78);
+  color: #f4f6fb;
+}
 .f2l-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1632,14 +1671,18 @@ body.practice-mode main {
   justify-content: center;
   height: 1.15rem;
   padding: 0 0.42rem;
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--main);
-  color: var(--white);
+  color: #fff;
   font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.05em;
   line-height: 1;
 }
+.f2l-card .f2l-slot[data-rot="none"] { background: #0000F2; }
+.f2l-card .f2l-slot[data-rot="y"] { background: #EE0000; }
+.f2l-card .f2l-slot[data-rot="yp"] { background: #FFB000; color: #1a1a1a; }
+.f2l-card .f2l-slot[data-rot="y2"] { background: #00D800; color: #1a1a1a; }
 .f2l-card .tip-box .inline-value {
   white-space: normal;
   overflow: visible;

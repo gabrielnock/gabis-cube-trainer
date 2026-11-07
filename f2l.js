@@ -83,12 +83,32 @@
     }
   }
 
+  const INSERTS_KEY = "f2l-show-inserts";
+  let showInserts = false;
+  try { showInserts = localStorage.getItem(INSERTS_KEY) === "1"; } catch (err) { /* keep hidden */ }
+
+  function algMarkup(text) {
+    const raw = String(text || "").trim();
+    const match = !showInserts && raw.match(/^([\s\S]*?)\s*(\[[^\]]*\])\s*$/);
+    if (!match) return fadeRotations(raw);
+    const main = match[1].trim();
+    return `${main ? `${fadeRotations(main)} ` : ""}...`;
+  }
+
   function fadeRotations(text) {
-    return esc(text).split(/(\s+)/).map((part) => (
-      /^(?:y2['’]?|y['’]?)$/i.test(part)
-        ? `<span class="alg-auf">${part}</span>`
-        : part
-    )).join("");
+    return String(text).split(/(\s+)/).map((part) => {
+      const faded = /^(?:y2['’′]?|y['’′]?)$/i.test(part);
+      const safe = esc(part);
+      return faded ? `<span class="alg-auf">${safe}</span>` : safe;
+    }).join("");
+  }
+
+  function slotRotation(alg) {
+    const token = String(alg || "").trim().split(/\s+/)[0] || "";
+    if (/^y2['’′]?$/i.test(token)) return "y2";
+    if (/^y['’′]$/i.test(token)) return "yp";
+    if (/^y$/i.test(token)) return "y";
+    return "none";
   }
 
   function algRow(alg, index, favorite) {
@@ -99,14 +119,14 @@
     return `<div class="alg-row${on ? " is-favorite" : ""}" data-alg-index="${index}">
       <div class="alg-body">
         <div class="alg-tools">
-          <span class="f2l-slot" title="Slot">${esc(alg.slot)}</span>
+          <span class="f2l-slot" data-rot="${slotRotation(alg.alg)}" title="Slot">${esc(alg.slot)}</span>
           <button type="button" class="btn-alg-tool screen-only" data-f2l-edit="${index}" data-tooltip="Edit" aria-label="Edit algorithm"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
           <label class="fav screen-only" data-tooltip="Favorite" aria-label="${on ? "Favorite algorithm" : "Make favorite"}">
             <input type="checkbox" data-f2l-star="${index}"${on ? " checked" : ""} />
             <span>★</span>
           </label>
         </div>
-        <p class="alg${on ? " primary" : ""}">${fadeRotations(alg.alg)}</p>
+        <p class="alg${on ? " primary" : ""}">${algMarkup(alg.alg)}</p>
         ${tip}
       </div>
     </div>`;
@@ -143,9 +163,10 @@
     const y = window.scrollY;
     root.innerHTML = source.groups.map((group) => {
       const cards = source.cases.filter((entry) => entry.group === group.id).map(cardHtml).join("");
-      return `<section class="group-section" id="f2l-${group.id}"><h2 class="group-heading">${esc(group.label)}</h2><div class="f2l-cards">${cards}</div></section>`;
+      return `<section class="group-section" id="f2l-${group.id}"><div class="f2l-heading-slot"><h2 class="group-heading">${esc(group.label)}</h2></div><div class="f2l-cards">${cards}</div></section>`;
     }).join("");
     window.scrollTo(0, y);
+    syncHeadingCorners();
   }
 
   function playFlip(items, first) {
@@ -311,7 +332,7 @@
       const alg = state.algs[index];
       const tip = alg.tip ? ` · ${alg.tip}` : "";
       return `<div class="hidden-modal-item">
-        <p class="alg">${esc(alg.slot)} ${fadeRotations(alg.alg)}${esc(tip)}</p>
+        <p class="alg">${esc(alg.slot)} ${algMarkup(alg.alg)}${esc(tip)}</p>
         <div class="hidden-modal-actions">
           <button type="button" class="btn btn-ghost btn-icon" data-f2l-unhide="${index}" title="Show" aria-label="Show algorithm"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
           <button type="button" class="btn btn-danger btn-icon" data-f2l-hidden-delete="${index}" title="Remove" aria-label="Remove algorithm"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
@@ -426,6 +447,27 @@
     f2lGroupsBtn.setAttribute("aria-expanded", narrow ? "false" : "true");
   }
 
+  function syncInsertSwitch() {
+    const sw = document.getElementById("f2l-insert-switch");
+    if (!sw) return;
+    sw.dataset.mode = showInserts ? "on" : "off";
+    sw.querySelectorAll("[data-f2l-inserts]").forEach((btn) => {
+      const on = (btn.dataset.f2lInserts === "on") === showInserts;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  document.getElementById("f2l-insert-switch")?.addEventListener("click", (event) => {
+    const opt = event.target.closest("[data-f2l-inserts]");
+    if (!opt) return;
+    const next = opt.dataset.f2lInserts === "on";
+    if (next === showInserts) return;
+    showInserts = next;
+    try { localStorage.setItem(INSERTS_KEY, showInserts ? "1" : "0"); } catch (err) { /* ignore */ }
+    syncInsertSwitch();
+    render();
+  });
+  syncInsertSwitch();
+
   document.getElementById("btn-f2l-groups")?.addEventListener("click", () => {
     const wrap = document.getElementById("f2l-anchors-wrap");
     const btn = document.getElementById("btn-f2l-groups");
@@ -433,7 +475,75 @@
     const collapsed = !wrap.classList.contains("is-collapsed");
     wrap.classList.toggle("is-collapsed", collapsed);
     btn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    syncStickyTop();
   });
+
+  function syncStickyTop() {
+    const toolbar = document.querySelector(".toolbar");
+    if (!toolbar) return;
+    const bar = getComputedStyle(toolbar);
+    const accent = getComputedStyle(toolbar, "::after");
+    const borderBottom = parseFloat(bar.borderBottomWidth) || 0;
+    const accentBottom = parseFloat(accent.bottom) || 0;
+    const accentHeight = parseFloat(accent.height) || 0;
+    const hang = accentHeight > 0 ? Math.max(0, -accentBottom - borderBottom) : 0;
+    const top = Math.round(toolbar.getBoundingClientRect().height + hang);
+    document.documentElement.style.setProperty("--f2l-sticky-top", `${top}px`);
+    syncHeadingCorners();
+  }
+  function syncHeadingCorners() {
+    const top = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--f2l-sticky-top")) || 0;
+    const sections = [...document.querySelectorAll("#f2l-root > .group-section")];
+    const headings = sections.map((section) => section.querySelector(":scope > .f2l-heading-slot > .group-heading"));
+    const anchorTop = (heading) => {
+      const slot = heading.parentElement;
+      return (heading.classList.contains("is-stuck") ? slot : heading).getBoundingClientRect().top;
+    };
+    let stickAt = -1;
+    headings.forEach((heading, index) => {
+      if (!heading) return;
+      const sectionBottom = sections[index].getBoundingClientRect().bottom;
+      if (anchorTop(heading) <= top + 0.5 && sectionBottom > top + 0.5) stickAt = index;
+    });
+    const sample = headings.find((heading) => heading && !heading.classList.contains("is-stuck")) || headings.find(Boolean);
+    const pad = sample ? parseFloat(getComputedStyle(sample).paddingLeft) || 0 : 0;
+    const border = sample ? parseFloat(getComputedStyle(sample).borderLeftWidth) || 0 : 0;
+    headings.forEach((heading, index) => {
+      if (!heading) return;
+      const slot = heading.parentElement;
+      const stuck = index === stickAt;
+      if (stuck && !heading.classList.contains("is-stuck")) {
+        const marginBottom = parseFloat(getComputedStyle(heading).marginBottom) || 0;
+        slot.style.height = `${heading.offsetHeight + marginBottom}px`;
+      }
+      if (!stuck) {
+        slot.style.height = "";
+        heading.style.removeProperty("--f2l-stuck-pad");
+        heading.style.removeProperty("--f2l-stuck-accent");
+        heading.style.transform = "";
+      }
+      heading.classList.toggle("is-stuck", stuck);
+      if (!stuck) return;
+      const accent = slot.getBoundingClientRect().left;
+      heading.style.setProperty("--f2l-stuck-accent", `${accent}px`);
+      heading.style.setProperty("--f2l-stuck-pad", `${accent + border + pad}px`);
+      const limit = sections[index].getBoundingClientRect().bottom;
+      const overlap = top + heading.offsetHeight - limit;
+      heading.style.transform = overlap > 0 ? `translateY(${-overlap}px)` : "";
+    });
+  }
+  let cornerFrame = 0;
+  window.addEventListener("scroll", () => {
+    if (cornerFrame) return;
+    cornerFrame = requestAnimationFrame(() => {
+      cornerFrame = 0;
+      syncHeadingCorners();
+    });
+  }, { passive: true });
+  syncStickyTop();
+  window.addEventListener("resize", syncStickyTop);
+  const toolbar = document.querySelector(".toolbar");
+  if (toolbar && window.ResizeObserver) new ResizeObserver(syncStickyTop).observe(toolbar);
 
   function normalizeF2l(data) {
     if (!data || typeof data !== "object" || Array.isArray(data)) {
