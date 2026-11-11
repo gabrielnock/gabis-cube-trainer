@@ -287,7 +287,9 @@ body:not([data-trainer="f2l"]) .f2l-only {
 }
 .filter-chip[data-filter="red"] .pip { background: var(--status-red); }
 .filter-chip[data-filter="orange"] .pip { background: var(--status-orange); }
-.filter-chip[data-filter="green"] .pip { background: var(--status-green); }
+.filter-chip[data-filter="green"] .pip,
+.filter-chip[data-f2l-filter="green"] .pip { background: var(--status-green); }
+.filter-chip[data-f2l-filter="orange"] .pip { background: var(--status-orange); }
 .filter-chip.is-on {
   color: var(--anthracite);
   border-color: var(--dove);
@@ -300,9 +302,14 @@ body:not([data-trainer="f2l"]) .f2l-only {
   background: var(--status-orange-soft);
   box-shadow: 3px 3px 4px rgba(232, 160, 20, 0.18);
 }
-.filter-chip.is-on[data-filter="green"] {
+.filter-chip.is-on[data-filter="green"],
+.filter-chip.is-on[data-f2l-filter="green"] {
   background: var(--status-green-soft);
   box-shadow: 3px 3px 4px rgba(46, 154, 92, 0.16);
+}
+.filter-chip.is-on[data-f2l-filter="orange"] {
+  background: var(--status-orange-soft);
+  box-shadow: 3px 3px 4px rgba(232, 160, 20, 0.18);
 }
 .filter-chip.is-on:hover { transform: translate(-1px, -1px); }
 .filter-chip .n {
@@ -398,6 +405,11 @@ body:not([data-trainer="f2l"]) .f2l-only {
   border-color: var(--anthracite);
   background: var(--mist);
   color: var(--anthracite);
+}
+.nav-chip.is-current {
+  background: var(--anthracite);
+  color: var(--white);
+  border-color: var(--anthracite);
 }
 .filter-chip .lbl-short { display: none; }
 
@@ -1647,7 +1659,29 @@ body.practice-mode main {
   padding: 2.2mm 3mm 2.4mm;
   overflow: visible;
 }
-.f2l-card .setup-box { margin-top: 0; }
+.f2l-case {
+  position: relative;
+  min-width: 0;
+}
+.f2l-case .status-toggle {
+  position: absolute;
+  top: 1.4mm;
+  right: 1.4mm;
+  z-index: 4;
+}
+.f2l-case .status-pip { background: var(--status-orange); }
+.f2l-case[data-status="orange"] .status-pip { background: var(--status-orange); }
+.f2l-case[data-status="green"] .status-pip { background: var(--status-green); }
+.f2l-case .status-panel {
+  position: absolute;
+  top: 2.35rem;
+  right: 0.35rem;
+  z-index: 6;
+  width: auto;
+  min-width: 7.6rem;
+}
+.f2l-case.status-open .status-panel { display: flex; }
+.f2l-card .setup-box { margin-top: 0; padding-right: 1.8rem; }
 .f2l-card .diagram {
   margin: 0.4mm auto 0.6mm;
   padding: 0;

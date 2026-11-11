@@ -157,11 +157,13 @@ body::after {
   background: rgba(224, 75, 75, 0.42);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
 }
-.toolbar .filter-chip.is-on[data-filter="orange"] {
+.toolbar .filter-chip.is-on[data-filter="orange"],
+.toolbar .filter-chip.is-on[data-f2l-filter="orange"] {
   background: rgba(232, 160, 20, 0.48);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
 }
-.toolbar .filter-chip.is-on[data-filter="green"] {
+.toolbar .filter-chip.is-on[data-filter="green"],
+.toolbar .filter-chip.is-on[data-f2l-filter="green"] {
   background: rgba(46, 154, 92, 0.42);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
 }
@@ -187,10 +189,11 @@ body::after {
   border-color: rgba(255, 255, 255, 0.35);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
 }
-.toolbar .nav-chip:hover {
+.toolbar .nav-chip:hover,
+.toolbar .nav-chip.is-current {
   background: #fff;
   color: var(--spice-blue-0);
-  border-color: var(--spice-ink);
+  border-color: #fff;
 }
 .toolbar .nav-chip-bar {
   background: rgba(0, 0, 0, 0.32);
@@ -237,7 +240,9 @@ body::after {
 
 .filter-chip.is-on[data-filter="red"],
 .filter-chip.is-on[data-filter="orange"],
-.filter-chip.is-on[data-filter="green"] {
+.filter-chip.is-on[data-filter="green"],
+.filter-chip.is-on[data-f2l-filter="orange"],
+.filter-chip.is-on[data-f2l-filter="green"] {
   border-color: var(--spice-line);
 }
 

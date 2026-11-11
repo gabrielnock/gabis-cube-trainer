@@ -54,7 +54,8 @@
       favorite = algs.findIndex((_, index) => !hidden.includes(index));
       if (favorite < 0) favorite = 0;
     }
-    return { algs, favorite, hidden };
+    const status = saved?.status === "green" ? "green" : "orange";
+    return { algs, favorite, hidden, status };
   }
 
   function persist(id, state) {
@@ -142,7 +143,12 @@
     }
     const rows = order.map((index) => algRow(state.algs[index], index, state.favorite)).join("");
     const hiddenCount = state.hidden.length;
-    return `<article class="card f2l-card" id="f2l-case-${entry.id}" data-f2l="${entry.id}">
+    const status = state.status === "green" ? "green" : "orange";
+    return `<div class="f2l-case" id="f2l-case-${entry.id}" data-f2l="${entry.id}" data-status="${status}">
+    <article class="card f2l-card">
+      <button type="button" class="status-toggle screen-only" data-f2l-status-toggle aria-expanded="false" aria-label="Status" title="Status">
+        <span class="status-pip" aria-hidden="true"></span>
+      </button>
       <div class="inline-box setup-box">
         <span class="inline-label" title="Setup"><i class="fa-solid fa-shuffle" aria-hidden="true"></i><span class="sr-only">Setup</span></span>
         <span class="inline-value alg">${esc(entry.setup)}</span>
@@ -156,7 +162,20 @@
         </button>
         <button type="button" class="btn-card-quiet btn-add-alg" data-f2l-add title="Add algorithm" aria-label="Add algorithm">+</button>
       </div>
-    </article>`;
+    </article>
+    <aside class="status-panel screen-only" aria-label="Status">
+      <label class="status-opt orange" data-f2l-status="orange" title="Consider">
+        <input type="checkbox"${status === "orange" ? " checked" : ""} />
+        <span class="dot"></span>
+        <span class="status-text">Consider</span>
+      </label>
+      <label class="status-opt green" data-f2l-status="green" title="Using">
+        <input type="checkbox"${status === "green" ? " checked" : ""} />
+        <span class="dot"></span>
+        <span class="status-text">Using</span>
+      </label>
+    </aside>
+  </div>`;
   }
 
   function render() {
@@ -166,7 +185,7 @@
       return `<section class="group-section" id="f2l-${group.id}"><div class="f2l-heading-slot"><h2 class="group-heading">${esc(group.label)}</h2></div><div class="f2l-cards">${cards}</div></section>`;
     }).join("");
     window.scrollTo(0, y);
-    syncHeadingCorners();
+    applyF2lFilter();
   }
 
   function playFlip(items, first) {
@@ -382,7 +401,93 @@
     else refreshHidden();
   }
 
+  let f2lFilter = "";
+
+  function closeF2lStatus(except) {
+    document.querySelectorAll("#f2l-root .f2l-case.status-open").forEach((wrap) => {
+      if (except && wrap === except) return;
+      wrap.classList.remove("status-open");
+      const toggle = wrap.querySelector("[data-f2l-status-toggle]");
+      if (toggle) toggle.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  function applyF2lFilter() {
+    const counts = { orange: 0, green: 0 };
+    document.querySelectorAll("#f2l-root .f2l-case").forEach((wrap) => {
+      const status = wrap.dataset.status === "green" ? "green" : "orange";
+      counts[status] += 1;
+      const show = !f2lFilter || status === f2lFilter;
+      wrap.hidden = !show;
+    });
+    document.querySelectorAll("#f2l-root > .group-section").forEach((section) => {
+      const any = [...section.querySelectorAll(".f2l-case")].some((wrap) => !wrap.hidden);
+      section.hidden = !any;
+    });
+    document.querySelectorAll("[data-f2l-count]").forEach((el) => {
+      el.textContent = String(counts[el.dataset.f2lCount] || 0);
+    });
+    document.querySelectorAll("#f2l-anchors .nav-chip[data-f2l-group]").forEach((chip) => {
+      const section = document.getElementById("f2l-" + chip.dataset.f2lGroup);
+      const tallies = { orange: 0, green: 0 };
+      section?.querySelectorAll(".f2l-case").forEach((wrap) => {
+        tallies[wrap.dataset.status === "green" ? "green" : "orange"] += 1;
+      });
+      const total = tallies.orange + tallies.green;
+      ["orange", "green"].forEach((key) => {
+        const seg = chip.querySelector('[data-seg="' + key + '"]');
+        if (!seg) return;
+        const n = tallies[key];
+        seg.style.flex = n > 0 ? n + " 1 0%" : "0 0 0%";
+        seg.style.display = n > 0 ? "block" : "none";
+      });
+      const parts = [
+        tallies.orange ? tallies.orange + " consider" : "",
+        tallies.green ? tallies.green + " using" : "",
+      ].filter(Boolean).join(", ");
+      const base = chip.querySelector(".nav-chip-label")?.textContent || "";
+      chip.title = base + (parts ? " · " + parts : "");
+    });
+    syncHeadingCorners();
+  }
+
+  function setStatus(id, status) {
+    if (status !== "green" && status !== "orange") return;
+    const entry = source.cases.find((item) => item.id === id);
+    if (!entry) return;
+    const state = caseState(entry);
+    state.status = status;
+    persist(id, state);
+    const wrap = document.querySelector(`#f2l-root .f2l-case[data-f2l="${id}"]`);
+    if (wrap) {
+      wrap.dataset.status = status;
+      wrap.querySelectorAll("[data-f2l-status]").forEach((opt) => {
+        const input = opt.querySelector("input");
+        if (input) input.checked = opt.dataset.f2lStatus === status;
+      });
+    }
+    closeF2lStatus();
+    applyF2lFilter();
+  }
+
   root.addEventListener("click", (event) => {
+    const statusToggle = event.target.closest("[data-f2l-status-toggle]");
+    if (statusToggle) {
+      const wrap = statusToggle.closest(".f2l-case");
+      if (!wrap) return;
+      const open = !wrap.classList.contains("status-open");
+      closeF2lStatus(open ? wrap : null);
+      wrap.classList.toggle("status-open", open);
+      statusToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      return;
+    }
+    const statusOpt = event.target.closest("[data-f2l-status]");
+    if (statusOpt) {
+      event.preventDefault();
+      const wrap = statusOpt.closest(".f2l-case");
+      if (wrap) setStatus(wrap.dataset.f2l, statusOpt.dataset.f2lStatus);
+      return;
+    }
     const card = event.target.closest("[data-f2l]");
     if (!card) return;
     const starLabel = event.target.closest(".fav");
@@ -456,6 +561,23 @@
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
   }
+  document.querySelectorAll("[data-f2l-filter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const wasOn = btn.classList.contains("is-on");
+      document.querySelectorAll("[data-f2l-filter]").forEach((other) => other.classList.remove("is-on"));
+      f2lFilter = "";
+      if (!wasOn) {
+        btn.classList.add("is-on");
+        f2lFilter = btn.dataset.f2lFilter;
+      }
+      applyF2lFilter();
+    });
+  });
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("#f2l-root .f2l-case")) return;
+    closeF2lStatus();
+  });
+
   document.getElementById("f2l-insert-switch")?.addEventListener("click", (event) => {
     const opt = event.target.closest("[data-f2l-inserts]");
     if (!opt) return;
@@ -531,6 +653,7 @@
       const overlap = top + heading.offsetHeight - limit;
       heading.style.transform = overlap > 0 ? `translateY(${-overlap}px)` : "";
     });
+    if (window.gabisSyncGroupAnchor) window.gabisSyncGroupAnchor();
   }
   let cornerFrame = 0;
   window.addEventListener("scroll", () => {
@@ -574,7 +697,8 @@
         favorite = algs.findIndex((_, index) => !hidden.includes(index));
         if (favorite < 0) favorite = 0;
       }
-      next[id] = { algs, favorite, hidden };
+      const status = saved.status === "green" ? "green" : "orange";
+      next[id] = { algs, favorite, hidden, status };
     });
     return next;
   }

@@ -74,19 +74,25 @@
         <a class="nav-chip" href="#dot-cases" data-group-nav="dot-cases"><span class="nav-chip-label">Dot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
       </nav>
     </div>
+    <div class="filter-row f2l-only">
+      <div class="filters browse-only" aria-label="F2L status filter">
+        <button type="button" class="btn filter-chip" data-f2l-filter="orange"><span class="pip"></span><span class="lbl-full"> Consider </span><span class="lbl-short"> Consider </span><span class="n" data-f2l-count="orange">0</span></button>
+        <button type="button" class="btn filter-chip" data-f2l-filter="green"><span class="pip"></span><span class="lbl-full"> Using </span><span class="lbl-short"> Using </span><span class="n" data-f2l-count="green">0</span></button>
+      </div>
+    </div>
     <div class="anchors-wrap browse-only is-collapsed f2l-only" id="f2l-anchors-wrap">
       <button type="button" class="anchors-toggle" id="btn-f2l-groups" aria-expanded="false" aria-controls="f2l-anchors" aria-label="Groups" title="Groups">
         <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
       </button>
       <nav class="anchors" id="f2l-anchors" aria-label="F2L groups">
-        <a class="nav-chip" href="#f2l-easy-inserts"><span class="nav-chip-label">Easy Inserts</span></a>
-        <a class="nav-chip" href="#f2l-disconnected-pairs"><span class="nav-chip-label">Disconnected Pairs</span></a>
-        <a class="nav-chip" href="#f2l-corner-in-slot"><span class="nav-chip-label">Corner in Slot</span></a>
-        <a class="nav-chip" href="#f2l-edge-in-slot"><span class="nav-chip-label">Edge in Slot</span></a>
-        <a class="nav-chip" href="#f2l-connected-pairs"><span class="nav-chip-label">Connected Pairs</span></a>
-        <a class="nav-chip" href="#f2l-both-in-slot"><span class="nav-chip-label">Both Pieces in Slot</span></a>
-        <a class="nav-chip" href="#f2l-edge-wrong-slot"><span class="nav-chip-label">Edge in Wrong Slot</span></a>
-        <a class="nav-chip" href="#f2l-corner-wrong-slot"><span class="nav-chip-label">Corner in Wrong Slot</span></a>
+        <a class="nav-chip" href="#f2l-easy-inserts" data-f2l-group="easy-inserts"><span class="nav-chip-label">Easy Inserts</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-disconnected-pairs" data-f2l-group="disconnected-pairs"><span class="nav-chip-label">Disconnected Pairs</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-corner-in-slot" data-f2l-group="corner-in-slot"><span class="nav-chip-label">Corner in Slot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-edge-in-slot" data-f2l-group="edge-in-slot"><span class="nav-chip-label">Edge in Slot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-connected-pairs" data-f2l-group="connected-pairs"><span class="nav-chip-label">Connected Pairs</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-both-in-slot" data-f2l-group="both-in-slot"><span class="nav-chip-label">Both Pieces in Slot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-edge-wrong-slot" data-f2l-group="edge-wrong-slot"><span class="nav-chip-label">Edge in Wrong Slot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#f2l-corner-wrong-slot" data-f2l-group="corner-wrong-slot"><span class="nav-chip-label">Corner in Wrong Slot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
       </nav>
       <div class="f2l-insert-control">
         <span class="f2l-insert-label">Easy inserts</span>
@@ -10570,11 +10576,12 @@ function computeAlgOrder(raw, max = 1260) {
         el.hidden = false;
         el.classList.remove("is-filtered-out");
       });
-      document.querySelectorAll(".group-section").forEach((sec) => {
-        sec.hidden = false;
-      });
+    document.querySelectorAll("#trainer-oll .group-section").forEach((sec) => {
+      sec.hidden = false;
+    });
       rebuildPracticeQueue(true);
       refreshPractice();
+      scheduleGroupAnchor();
       return;
     }
     const activeBtn = document.querySelector("[data-filter].is-on");
@@ -10586,12 +10593,13 @@ function computeAlgOrder(raw, max = 1260) {
       el.hidden = !show;
       el.classList.toggle("is-filtered-out", !show);
     });
-    document.querySelectorAll(".group-section").forEach((sec) => {
+    document.querySelectorAll("#trainer-oll .group-section").forEach((sec) => {
       const any = [...sec.querySelectorAll(".case-row")].some(
         (r) => !r.hidden && !r.classList.contains("is-filtered-out")
       );
       sec.hidden = !any;
     });
+    scheduleGroupAnchor();
   }
 
   function visibleCaseRows() {
@@ -11122,6 +11130,7 @@ function computeAlgOrder(raw, max = 1260) {
       panel.hidden = panel.dataset.trainerPanel !== id;
     });
     setActionsOpen(false);
+    scheduleGroupAnchor();
   }
 
   function bindGlobal() {
@@ -11237,6 +11246,7 @@ function computeAlgOrder(raw, max = 1260) {
     window.addEventListener(
       "scroll",
       () => {
+        scheduleGroupAnchor();
         if (!window.matchMedia("(max-width: 720px)").matches) return;
         const y = window.scrollY;
         if (Date.now() < anchorsScrollLockUntil) {
@@ -11324,7 +11334,47 @@ function computeAlgOrder(raw, max = 1260) {
     });
 
     setAnchorsCollapsed(window.matchMedia("(max-width: 720px)").matches);
+    scheduleGroupAnchor();
   }
+
+  function syncCurrentGroupAnchor() {
+    const trainer = document.body.dataset.trainer || "oll";
+    const navId = trainer === "f2l" ? "f2l-anchors" : trainer === "oll" ? "anchors-nav" : "";
+    document.querySelectorAll("a.nav-chip.is-current").forEach((chip) => {
+      chip.classList.remove("is-current");
+      chip.removeAttribute("aria-current");
+    });
+    const nav = navId ? document.getElementById(navId) : null;
+    if (!nav) return;
+    const sticky = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--f2l-sticky-top"));
+    const probe = sticky || (document.querySelector(".toolbar")?.getBoundingClientRect().bottom || 0);
+    const chips = [...nav.querySelectorAll("a.nav-chip[href^='#']")];
+    let pick = null;
+    let last = null;
+    chips.forEach((chip) => {
+      const section = document.getElementById((chip.getAttribute("href") || "").slice(1));
+      if (!section || section.hidden) return;
+      last = chip;
+      if (pick) return;
+      const cards = section.querySelector(":scope > .f2l-cards, :scope > .cards");
+      const bottom = (cards || section).getBoundingClientRect().bottom;
+      if (bottom > probe + 0.5) pick = chip;
+    });
+    if (!pick) pick = last;
+    if (pick) {
+      pick.classList.add("is-current");
+      pick.setAttribute("aria-current", "location");
+    }
+  }
+  let groupAnchorFrame = 0;
+  function scheduleGroupAnchor() {
+    if (groupAnchorFrame) return;
+    groupAnchorFrame = requestAnimationFrame(() => {
+      groupAnchorFrame = 0;
+      syncCurrentGroupAnchor();
+    });
+  }
+  window.gabisSyncGroupAnchor = scheduleGroupAnchor;
 
   (async () => {
     await loadProgress();
