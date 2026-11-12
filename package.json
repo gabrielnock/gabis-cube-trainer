@@ -1,15 +1,13 @@
 {
   "name": "gabis-cube-trainer",
   "version": "1.0.0",
-  "description": "Gabis Cube Trainer - OLL, F2L, PLL Trainer",
+  "description": "Gabis Cube Trainer — OLL, F2L, and PLL in one page",
   "private": true,
-  "type": "module",
   "scripts": {
-    "build": "node generate-html.mjs",
-    "test:order": "node test-alg-order.mjs",
     "start": "npx --yes serve . -p 4173",
-    "open": "start index.html"
+    "open": "start index.html",
+    "build": "node -e \"console.error('index.html is the app. There is no build, and nothing should rewrite that file.'); process.exit(1)\""
   },
-  "keywords": ["oll", "rubiks-cube", "speedcubing", "flashcards"],
+  "keywords": ["oll", "f2l", "pll", "rubiks-cube", "speedcubing"],
   "license": "UNLICENSED"
 }

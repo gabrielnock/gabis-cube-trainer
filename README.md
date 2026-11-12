@@ -1,66 +1,77 @@
 # Gabis Cube Trainer
 
-Interactive A6 flashcards for all **57 OLL cases** (CubeHead nicknames), with learning status, favorite algs, tips, permutation order, and a single JSON file for everything.
+A single-page trainer for **OLL**, **F2L**, and **PLL**. Open `index.html`. The page contains the cases and the scripts. The layout lives in `styles.css`.
 
-## Quick start
+## Open it
 
 ```bash
-npm run open
-# or
 npm start
 ```
 
-## Features
+That serves the folder at `http://localhost:4173`. `npm run open` opens `index.html` directly in the browser. Progress is stored in the browser, so the same browser profile keeps your edits.
 
-- Sticky glass header with group anchors + status filters (red / orange / green)
-- Case thumbnails in each group submenu
-- Status beside each card (not learned / learning / learned) — default is not learned
-- ★ favorite toggle per alg — favorite is bold and shown first (also in Print/PDF)
-- **+ Alg** opens a modal to add your own algorithms (tip + order of permutation)
-- **Edit** to change alg / tip / order, or **Hide** (permanent remove only from Hidden algs)
-- Setup scramble + tip icons; order pill with tooltip
-- **Export / Import** of the full `all-data.json`
-- Progress auto-saved in `localStorage`
-- On load: saved browser data (`localStorage`) first, else `all-data.json` / embedded defaults (first visit only)
-- Practice mode: filtered cases in random order
+There is no build. `npm run build` refuses to run, because rewriting `index.html` would wipe the trainer.
 
-## Data file (`all-data.json`)
+## What is on the page
 
-One file holds **defaults and learning state**:
+The header switches between three trainers.
+
+**OLL** has the 57 cases, grouped (OCLL, T, P, Fish, and the rest). Each case has a diagram, a setup, algorithms, a tip, and an order-of-permutation pill. A status pip is red (not learned), orange (learning), or green (learned). The filter chips and the group bars use those three colours. Practice mode drills the cases you tick by status or group, either shuffled or in a fixed order.
+
+**F2L** has 77 cases in eight groups, from Easy Inserts through Corner in Wrong Slot. Each card has a slot-coloured algorithm. A leading `y` rotation sets the colour: none is blue, `y` is red, `y'` is orange, and `y2` is green. Status has two options: orange **Consider** (the default) and green **Using**. The filter and the group bars count those two. The Easy inserts switch shows the trailing bracket insert in full, or replaces it with `...` while you are reading. Editing a case still keeps the full algorithm.
+
+**PLL** is the third tab. It has no cases yet.
+
+The group chip for the section currently on screen is highlighted. It moves on as soon as the last card of the current group leaves the top of the page, so the gap between groups does not leave the highlight behind.
+
+## Backup
+
+**Export** downloads `all-data.json`. **Import** reads that file back. The file is a full snapshot:
+
+- every OLL case: status, favourite algorithm, hidden algorithms, custom algorithms, tips, and order
+- every F2L change: edited algorithms, the favourite, hidden algorithms, and a Using status
+- settings: Easy inserts, practice shuffle, and the practice status and group ticks
+
+A F2L case you have only marked Using is stored as `{ "status": "green" }`. Consider is the default, so it is left out. Editing an algorithm stores that case’s algorithms; the status is stored with them.
+
+Older exports still import. A file with no `f2l` block leaves F2L as it is. A file with no `settings` block leaves the current settings as they are.
 
 ```json
 {
-  "version": 3,
+  "version": 5,
   "updatedAt": null,
-  "groups": [{ "id": "ocll", "label": "OCLL", "order": 0 }],
-  "cases": [
-    {
-      "num": 25,
-      "group": "ocll",
-      "name": "Chameleon",
-      "setup": "…",
-      "status": "red",
-      "favorite": "primary",
-      "hidden": [],
-      "discarded": [],
-      "custom": [],
-      "primary": { "alg": "(r U R' U') (r' F R F')", "order": 3, "tip": "…" },
-      "secondary": { "alg": "…", "order": 3 }
-    }
-  ]
+  "groups": [],
+  "cases": [],
+  "f2l": {},
+  "settings": {
+    "showInserts": false,
+    "practiceShuffle": true,
+    "practiceStatuses": [],
+    "practiceGroups": []
+  }
 }
 ```
 
-Edit `all-data.json`, then `npm run build`. Export/import use the same format so one file is a full snapshot of the app.
+The same browser also keeps three local stores, so a reopen restores the page before you import anything:
 
-## Rebuild
+| Store | What it keeps |
+| --- | --- |
+| `oll-all-data-v3` | OLL cases |
+| `f2l-data-v1` | F2L edits and Using status |
+| `gabis-trainer-prefs` | Practice shuffle and practice ticks |
 
-```bash
-npm run build   # reads all-data.json, fetches VisualCube SVGs (cached), writes index.html
-```
+Easy inserts live with the F2L store and are included in the export settings.
 
-## Styles
+## Files
 
-Edit **`styles.css`** for layout/colors. Linked from `index.html` (no rebuild needed for CSS-only tweaks — just refresh). Run `npm run build` after changing `generate-html.mjs` or `all-data.json`.
+| File | Role |
+| --- | --- |
+| `index.html` | The page: markup, OLL cases, F2L cases, and scripts |
+| `styles.css` | Layout, type, and colors |
+| `svg-cache/f2l/*.svg` | The 77 F2L diagrams. OLL diagrams are drawn inside the page |
+| `favicon.svg`, `apple-touch-icon.png` | Icons |
+| `package.json` | `npm start` and `npm run open` |
 
-Cube diagrams are **inline SVGs**. Yellow `#FEFE00` → `#E8C20A`, grey `#404040` → `#424656`.
+Fonts and icons load from the network (Roboto Slab and Font Awesome). The cube cases do not.
+
+Do not add a generator that writes `index.html`. Change the page itself.
