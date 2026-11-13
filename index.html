@@ -104,6 +104,65 @@
         </div>
       </div>
     </div>
+    <div class="filter-row pll-only">
+      <div class="filters browse-only" aria-label="PLL status filter">
+        <button type="button" class="btn filter-chip" data-pll-filter="black"><span class="pip"></span><span class="lbl-full"> TO CHECK ! </span><span class="lbl-short"> Check </span><span class="n" data-pll-count="black">0</span></button>
+        <button type="button" class="btn filter-chip" data-pll-filter="red"><span class="pip"></span><span class="lbl-full"> Not learned </span><span class="lbl-short"> Not </span><span class="n" data-pll-count="red">0</span></button>
+        <button type="button" class="btn filter-chip" data-pll-filter="orange"><span class="pip"></span><span class="lbl-full"> Learning </span><span class="lbl-short"> Learn </span><span class="n" data-pll-count="orange">0</span></button>
+        <button type="button" class="btn filter-chip" data-pll-filter="green"><span class="pip"></span><span class="lbl-full"> Learned </span><span class="lbl-short"> Done </span><span class="n" data-pll-count="green">0</span></button>
+      </div>
+      <button type="button" class="btn" id="btn-pll-practice" aria-pressed="false" title="Practice selected cases">Practice</button>
+    </div>
+    <div class="anchors-wrap browse-only is-collapsed pll-only" id="pll-anchors-wrap">
+      <button type="button" class="anchors-toggle" id="btn-pll-groups" aria-expanded="false" aria-controls="pll-anchors" aria-label="Groups" title="Groups">
+        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+      </button>
+      <nav class="anchors" id="pll-anchors" aria-label="PLL groups">
+        <a class="nav-chip" href="#pll-edges-only" data-pll-group="edges-only"><span class="nav-chip-label">Edges Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#pll-corners-only" data-pll-group="corners-only"><span class="nav-chip-label">Corners Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#pll-adjacent-swap" data-pll-group="adjacent-swap"><span class="nav-chip-label">Adjacent Swap</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#pll-diagonal-swap" data-pll-group="diagonal-swap"><span class="nav-chip-label">Diagonal Swap</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+        <a class="nav-chip" href="#pll-g-perms" data-pll-group="g-perms"><span class="nav-chip-label">G-Perms</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
+      </nav>
+      <div class="f2l-insert-control pll-arrows-control">
+        <span class="f2l-insert-label">Arrows</span>
+        <div class="practice-order-switch" id="pll-arrows-switch" data-mode="off" role="group" aria-label="Permutation arrows">
+          <span class="practice-order-thumb" aria-hidden="true"></span>
+          <button type="button" class="practice-order-opt" data-pll-arrows="off" aria-pressed="true" title="Hide arrows" aria-label="Hide arrows">
+            <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="practice-order-opt" data-pll-arrows="on" aria-pressed="false" title="Show arrows" aria-label="Show arrows">
+            <i class="fa-solid fa-share" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="practice-picker screen-only pll-only" id="pll-practice-picker" hidden>
+      <div class="practice-picker-options">
+        <label class="practice-check practice-check-status" title="TO CHECK !"><input type="checkbox" data-pll-practice-status="black" /><span class="pip black" aria-hidden="true"></span></label>
+        <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-pll-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
+        <label class="practice-check practice-check-status" title="Learning"><input type="checkbox" data-pll-practice-status="orange" /><span class="pip orange" aria-hidden="true"></span></label>
+        <label class="practice-check practice-check-status" title="Learned"><input type="checkbox" data-pll-practice-status="green" /><span class="pip green" aria-hidden="true"></span></label>
+        <span class="practice-picker-sep" aria-hidden="true"></span>
+        <label class="practice-check practice-check-group" data-pll-practice-group-bar="edges-only"><input type="checkbox" data-pll-practice-group="edges-only" /><span class="practice-check-label">Edges Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+        <label class="practice-check practice-check-group" data-pll-practice-group-bar="corners-only"><input type="checkbox" data-pll-practice-group="corners-only" /><span class="practice-check-label">Corners Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+        <label class="practice-check practice-check-group" data-pll-practice-group-bar="adjacent-swap"><input type="checkbox" data-pll-practice-group="adjacent-swap" /><span class="practice-check-label">Adjacent Swap</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+        <label class="practice-check practice-check-group" data-pll-practice-group-bar="diagonal-swap"><input type="checkbox" data-pll-practice-group="diagonal-swap" /><span class="practice-check-label">Diagonal Swap</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+        <label class="practice-check practice-check-group" data-pll-practice-group-bar="g-perms"><input type="checkbox" data-pll-practice-group="g-perms" /><span class="practice-check-label">G-Perms</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg black" data-seg="black"></span><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+        <div class="practice-picker-end">
+          <span class="practice-picker-count" id="pll-practice-pool-count" title="Cases in practice pool">0</span>
+          <div class="practice-order-switch" id="pll-practice-order-switch" data-mode="shuffle" role="group" aria-label="Practice order">
+            <span class="practice-order-thumb" aria-hidden="true"></span>
+            <button type="button" class="practice-order-opt" data-pll-practice-order="shuffle" aria-pressed="true" title="Shuffled" aria-label="Shuffled">
+              <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="practice-order-opt" data-pll-practice-order="fixed" aria-pressed="false" title="Fixed order" aria-label="Fixed order">
+              <i class="fa-solid fa-arrow-down-short-wide" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="practice-picker screen-only oll-only" id="practice-picker" hidden>
       <div class="practice-picker-options">
         <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
@@ -9164,12 +9223,9 @@
   <main id="trainer-f2l" data-trainer-panel="f2l" role="tabpanel" aria-labelledby="tab-f2l" hidden>
     <div id="f2l-root"></div>
   </main>
-  <section class="trainer-soon" id="trainer-pll" data-trainer-panel="pll" role="tabpanel" aria-labelledby="tab-pll" hidden>
-    <div class="trainer-soon-card">
-      <h2>PLL</h2>
-      <p>No cases in this trainer yet.</p>
-    </div>
-  </section>
+  <main id="trainer-pll" data-trainer-panel="pll" role="tabpanel" aria-labelledby="tab-pll" hidden>
+    <div id="pll-root"></div>
+  </main>
 
   <div class="practice-bar screen-only" id="practice-bar" aria-label="Practice navigation">
     <button type="button" class="btn btn-ghost" id="practice-prev" aria-label="Previous case">‹</button>
@@ -9710,6 +9766,18 @@ function computeAlgOrder(raw, max = 1260) {
     };
   }
 
+  function readPllEdits() {
+    if (window.gabisTrainers && typeof window.gabisTrainers.exportPll === "function") {
+      return window.gabisTrainers.exportPll();
+    }
+    try {
+      const saved = JSON.parse(localStorage.getItem("pll-data-v1") || "{}");
+      return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    } catch {
+      return {};
+    }
+  }
+
   function readF2lEdits() {
     if (window.gabisTrainers && typeof window.gabisTrainers.exportF2l === "function") {
       return window.gabisTrainers.exportF2l();
@@ -9726,17 +9794,23 @@ function computeAlgOrder(raw, max = 1260) {
     const inserts = window.gabisTrainers && typeof window.gabisTrainers.exportSettings === "function"
       ? window.gabisTrainers.exportSettings()
       : {};
+    const pll = window.gabisTrainers && typeof window.gabisTrainers.exportPllSettings === "function"
+      ? window.gabisTrainers.exportPllSettings()
+      : {};
     return {
       showInserts: !!inserts.showInserts,
       practiceShuffle: !!practiceShuffle,
       practiceStatuses: [...document.querySelectorAll("[data-practice-status]:checked")].map((el) => el.dataset.practiceStatus),
       practiceGroups: [...document.querySelectorAll("[data-practice-group]:checked")].map((el) => el.dataset.practiceGroup),
+      ...pll,
     };
   }
 
   function savePrefs() {
     const settings = currentSettings();
+    const prev = readPrefs();
     localStorage.setItem(PREFS_KEY, JSON.stringify({
+      ...prev,
       practiceShuffle: settings.practiceShuffle,
       practiceStatuses: settings.practiceStatuses,
       practiceGroups: settings.practiceGroups,
@@ -9764,13 +9838,17 @@ function computeAlgOrder(raw, max = 1260) {
     if (typeof settings.showInserts === "boolean" && window.gabisTrainers && typeof window.gabisTrainers.applySettings === "function") {
       window.gabisTrainers.applySettings({ showInserts: settings.showInserts });
     }
+    if (window.gabisTrainers && typeof window.gabisTrainers.applyPllSettings === "function") {
+      window.gabisTrainers.applyPllSettings(settings);
+    }
   }
 
   function exportableState() {
     return {
       ...ollFileState(),
-      version: 5,
+      version: 6,
       f2l: readF2lEdits(),
+      pll: readPllEdits(),
       settings: currentSettings(),
     };
   }
@@ -9934,14 +10012,22 @@ function computeAlgOrder(raw, max = 1260) {
       try {
         const parsed = JSON.parse(reader.result);
         const hasF2l = parsed && Object.prototype.hasOwnProperty.call(parsed, "f2l");
+        const hasPll = parsed && Object.prototype.hasOwnProperty.call(parsed, "pll");
         if (hasF2l) {
           if (!window.gabisTrainers || typeof window.gabisTrainers.normalizeF2l !== "function") {
             throw new Error("F2L trainer is not ready");
           }
           window.gabisTrainers.normalizeF2l(parsed.f2l);
         }
+        if (hasPll) {
+          if (!window.gabisTrainers || typeof window.gabisTrainers.normalizePll !== "function") {
+            throw new Error("PLL trainer is not ready");
+          }
+          window.gabisTrainers.normalizePll(parsed.pll);
+        }
         applyParsedState(parsed);
         if (hasF2l) window.gabisTrainers.importF2l(parsed.f2l);
+        if (hasPll) window.gabisTrainers.importPll(parsed.pll);
         if (parsed.settings) applyImportedSettings(parsed.settings);
         saveLocal();
         applyAll();
@@ -10375,7 +10461,7 @@ function computeAlgOrder(raw, max = 1260) {
     if (!Array.isArray(data.hidden)) data.hidden = [];
     data.hidden = data.hidden.filter((s) => String(s) !== String(slot));
     saveLocal();
-    const row = document.querySelector('.case-row[data-case="' + caseNum + '"]');
+    const row = document.querySelector('#trainer-oll .case-row[data-case="' + caseNum + '"]');
     if (row) applyAlgOrder(row, false);
     if (hiddenModalCase === caseNum) {
       if (!data.hidden.length) closeHiddenModal();
@@ -10385,7 +10471,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function afterHiddenListChange(caseNum) {
     const data = ensure(caseNum);
-    const row = document.querySelector('.case-row[data-case="' + caseNum + '"]');
+    const row = document.querySelector('#trainer-oll .case-row[data-case="' + caseNum + '"]');
     if (row) {
       syncCustomRows(row);
       applyAlgOrder(row, false);
@@ -10426,7 +10512,7 @@ function computeAlgOrder(raw, max = 1260) {
     if (Array.isArray(data.hidden)) {
       data.hidden = data.hidden.filter((s) => String(s) !== String(slot));
     }
-    const row = document.querySelector('.case-row[data-case="' + caseNum + '"]');
+    const row = document.querySelector('#trainer-oll .case-row[data-case="' + caseNum + '"]');
     if (data.favorite === slot && row) {
       const absent = absentSet(data);
       const next = [...row.querySelectorAll(".alg-row")].find(
@@ -10467,7 +10553,7 @@ function computeAlgOrder(raw, max = 1260) {
     const list = document.getElementById("hidden-modal-list");
     if (!list || hiddenModalCase == null) return;
     const data = ensure(hiddenModalCase);
-    const row = document.querySelector('.case-row[data-case="' + hiddenModalCase + '"]');
+    const row = document.querySelector('#trainer-oll .case-row[data-case="' + hiddenModalCase + '"]');
     const hidden = Array.isArray(data.hidden) ? data.hidden.map(String) : [];
     list.innerHTML = "";
     if (!hidden.length) {
@@ -10592,7 +10678,7 @@ function computeAlgOrder(raw, max = 1260) {
   }
 
   function applyAll() {
-    document.querySelectorAll(".case-row").forEach((row) => {
+    document.querySelectorAll("#trainer-oll .case-row").forEach((row) => {
       syncCustomRows(row);
       applyStatus(row);
       applyAlgOrder(row, false);
@@ -10609,7 +10695,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function applyFilter() {
     if (practiceOn) {
-      document.querySelectorAll(".case-row, .ref-row").forEach((el) => {
+      document.querySelectorAll("#trainer-oll .case-row, #trainer-oll .ref-row").forEach((el) => {
         const st = caseStatus(el.dataset.case);
         el.setAttribute("data-status", st);
         el.hidden = false;
@@ -10625,7 +10711,7 @@ function computeAlgOrder(raw, max = 1260) {
     }
     const activeBtn = document.querySelector("[data-filter].is-on");
     const filter = activeBtn ? activeBtn.dataset.filter : "";
-    document.querySelectorAll(".case-row, .ref-row").forEach((el) => {
+    document.querySelectorAll("#trainer-oll .case-row, #trainer-oll .ref-row").forEach((el) => {
       const st = caseStatus(el.dataset.case);
       el.setAttribute("data-status", st);
       const show = !(filter === "red" || filter === "orange" || filter === "green") || st === filter;
@@ -10642,7 +10728,7 @@ function computeAlgOrder(raw, max = 1260) {
   }
 
   function visibleCaseRows() {
-    return [...document.querySelectorAll(".case-row")].filter(
+    return [...document.querySelectorAll("#trainer-oll .case-row")].filter(
       (r) => !r.hidden && !r.classList.contains("is-filtered-out")
     );
   }
@@ -10678,7 +10764,7 @@ function computeAlgOrder(raw, max = 1260) {
     const statuses = selectedPracticeStatuses();
     const groups = selectedPracticeGroups();
     if (!statuses.size && !groups.size) return [];
-    return [...document.querySelectorAll(".case-row")].filter((row) => {
+    return [...document.querySelectorAll("#trainer-oll .case-row")].filter((row) => {
       const st = caseStatus(row.dataset.case);
       const statusMatch = statuses.size > 0 && statuses.has(st);
       const groupMatch = groups.size > 0 && groups.has(row.dataset.group);
@@ -10733,7 +10819,7 @@ function computeAlgOrder(raw, max = 1260) {
     if (!on) {
       practiceQueue = [];
       practiceIndex = 0;
-      document.querySelectorAll(".case-row.is-practice-current").forEach((r) => {
+      document.querySelectorAll("#trainer-oll .case-row.is-practice-current").forEach((r) => {
         r.classList.remove("is-practice-current");
       });
       setActionsOpen(false);
@@ -10744,7 +10830,7 @@ function computeAlgOrder(raw, max = 1260) {
     if (!practiceOn) return;
     updatePracticePoolCount();
     if (!practiceQueue.length) {
-      document.querySelectorAll(".case-row").forEach((r) => r.classList.remove("is-practice-current"));
+      document.querySelectorAll("#trainer-oll .case-row").forEach((r) => r.classList.remove("is-practice-current"));
       const meta = document.getElementById("practice-meta");
       if (meta) {
         meta.textContent = "0 / 0";
@@ -10754,9 +10840,9 @@ function computeAlgOrder(raw, max = 1260) {
     }
     if (practiceIndex >= practiceQueue.length) practiceIndex = practiceQueue.length - 1;
     if (practiceIndex < 0) practiceIndex = 0;
-    document.querySelectorAll(".case-row").forEach((r) => r.classList.remove("is-practice-current"));
+    document.querySelectorAll("#trainer-oll .case-row").forEach((r) => r.classList.remove("is-practice-current"));
     const current = document.querySelector(
-      '.case-row[data-case="' + practiceQueue[practiceIndex] + '"]'
+      '#trainer-oll .case-row[data-case="' + practiceQueue[practiceIndex] + '"]'
     );
     if (!current) return;
     current.classList.add("is-practice-current");
@@ -10801,7 +10887,7 @@ function computeAlgOrder(raw, max = 1260) {
   }
 
   function exitPractice() {
-    const current = document.querySelector(".case-row.is-practice-current");
+    const current = document.querySelector("#trainer-oll .case-row.is-practice-current");
     const id = current?.id;
     setPracticeUi(false);
     applyFilter();
@@ -10826,7 +10912,7 @@ function computeAlgOrder(raw, max = 1260) {
   }
 
   function closeAllStatusPanels(exceptRow) {
-    document.querySelectorAll(".case-row.status-open").forEach((row) => {
+    document.querySelectorAll("#trainer-oll .case-row.status-open").forEach((row) => {
       if (exceptRow && row === exceptRow) return;
       row.classList.remove("status-open");
       const t = row.querySelector("[data-status-toggle]");
@@ -10836,7 +10922,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function updateCounts() {
     const counts = { red: 0, orange: 0, green: 0 };
-    document.querySelectorAll(".case-row").forEach((row) => {
+    document.querySelectorAll("#trainer-oll .case-row").forEach((row) => {
       const st = ensure(row.dataset.case).status;
       const key = st === "orange" || st === "green" ? st : "red";
       counts[key]++;
@@ -10850,7 +10936,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function groupStatusTallies(slug) {
     const tallies = { red: 0, orange: 0, green: 0 };
-    document.querySelectorAll('.case-row[data-group="' + slug + '"]').forEach((row) => {
+    document.querySelectorAll('#trainer-oll .case-row[data-group="' + slug + '"]').forEach((row) => {
       const st = caseStatus(row.dataset.case);
       tallies[st === "orange" || st === "green" ? st : "red"]++;
     });
@@ -10986,7 +11072,7 @@ function computeAlgOrder(raw, max = 1260) {
     let algText = "";
     if (editing) {
       const data = ensure(caseNum);
-      const row = document.querySelector('.case-row[data-case="' + caseNum + '"]');
+      const row = document.querySelector('#trainer-oll .case-row[data-case="' + caseNum + '"]');
       const fromDom = row
         ? row.querySelector('.alg-row[data-slot="' + modalEditSlot + '"] [data-alg-text]')
         : null;
@@ -11074,7 +11160,7 @@ function computeAlgOrder(raw, max = 1260) {
       if (computed != null && finalOrder === computed) finalOrder = null;
     }
     if (modalEditSlot != null) {
-      const rowEl = document.querySelector('.case-row[data-case="' + modalCase + '"]');
+      const rowEl = document.querySelector('#trainer-oll .case-row[data-case="' + modalCase + '"]');
       const algEl = rowEl?.querySelector(
         '.alg-row[data-slot="' + modalEditSlot + '"] [data-alg-text]'
       );
@@ -11089,7 +11175,7 @@ function computeAlgOrder(raw, max = 1260) {
       data.favorite = "custom-" + (data.custom.length - 1);
     }
     saveLocal();
-    const row = document.querySelector('.case-row[data-case="' + modalCase + '"]');
+    const row = document.querySelector('#trainer-oll .case-row[data-case="' + modalCase + '"]');
     if (row) {
       syncCustomRows(row);
       applyAlgOrder(row);
@@ -11108,7 +11194,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function hideModalAlg() {
     if (modalCase == null || modalEditSlot == null) return;
-    const row = document.querySelector('.case-row[data-case="' + modalCase + '"]');
+    const row = document.querySelector('#trainer-oll .case-row[data-case="' + modalCase + '"]');
     if (!row) return;
     const slot = modalEditSlot;
     hideAlg(row, slot);
@@ -11158,6 +11244,9 @@ function computeAlgOrder(raw, max = 1260) {
     if (id !== "oll" && id !== "f2l" && id !== "pll") return;
     if (document.body.dataset.trainer === id) return;
     if (id !== "oll" && practiceOn) exitPractice();
+    if (id !== "pll" && window.gabisTrainers && typeof window.gabisTrainers.pllExitPractice === "function") {
+      window.gabisTrainers.pllExitPractice();
+    }
     document.body.dataset.trainer = id;
     document.querySelectorAll(".trainer-tab").forEach((tab) => {
       const on = tab.dataset.trainer === id;
@@ -11207,9 +11296,20 @@ function computeAlgOrder(raw, max = 1260) {
         if (!id || !document.getElementById(id)) return;
         e.preventDefault();
         if (practiceOn) exitPractice();
+        if (window.gabisTrainers && typeof window.gabisTrainers.pllExitPractice === "function") {
+          window.gabisTrainers.pllExitPractice();
+        }
         scrollToId(id, a.classList.contains("nav-chip") ? 180 : 240);
         history.pushState(null, "", "#" + id);
-        if (window.matchMedia("(max-width: 720px)").matches) setAnchorsCollapsed(true);
+        if (window.matchMedia("(max-width: 720px)").matches) {
+          setAnchorsCollapsed(true);
+          const pllWrap = document.getElementById("pll-anchors-wrap");
+          const pllBtn = document.getElementById("btn-pll-groups");
+          if (pllWrap && pllBtn) {
+            pllWrap.classList.add("is-collapsed");
+            pllBtn.setAttribute("aria-expanded", "false");
+          }
+        }
       });
     });
 
@@ -11244,9 +11344,18 @@ function computeAlgOrder(raw, max = 1260) {
     });
     document.getElementById("notation-modal-backdrop")?.addEventListener("click", closeNotationModal);
     document.getElementById("notation-modal-close")?.addEventListener("click", closeNotationModal);
-    document.getElementById("practice-prev")?.addEventListener("click", () => practiceStep(-1));
-    document.getElementById("practice-next")?.addEventListener("click", () => practiceStep(1));
-    document.getElementById("practice-exit")?.addEventListener("click", () => exitPractice());
+    document.getElementById("practice-prev")?.addEventListener("click", () => {
+      if (document.body.dataset.trainer === "pll") window.gabisTrainers?.pllPracticeStep?.(-1);
+      else practiceStep(-1);
+    });
+    document.getElementById("practice-next")?.addEventListener("click", () => {
+      if (document.body.dataset.trainer === "pll") window.gabisTrainers?.pllPracticeStep?.(1);
+      else practiceStep(1);
+    });
+    document.getElementById("practice-exit")?.addEventListener("click", () => {
+      if (document.body.dataset.trainer === "pll") window.gabisTrainers?.pllExitPractice?.();
+      else exitPractice();
+    });
     document.getElementById("practice-picker")?.addEventListener("change", (e) => {
       if (e.target.matches("[data-practice-status], [data-practice-group]")) {
         savePrefs();
@@ -11277,7 +11386,7 @@ function computeAlgOrder(raw, max = 1260) {
       if (menu && menu.classList.contains("is-open") && !menu.contains(e.target)) {
         setActionsOpen(false);
       }
-      if (!e.target.closest(".case-row") && !e.target.closest(".status-panel")) {
+      if (!e.target.closest("#trainer-oll .case-row") && !e.target.closest("#trainer-oll .status-panel")) {
         closeAllStatusPanels();
       }
     });
@@ -11289,6 +11398,21 @@ function computeAlgOrder(raw, max = 1260) {
         closeHiddenModal();
         closeNotationModal();
         if (practiceOn) exitPractice();
+        if (window.gabisTrainers && typeof window.gabisTrainers.pllExitPractice === "function") {
+          window.gabisTrainers.pllExitPractice();
+        }
+        return;
+      }
+      if (document.body.dataset.trainer === "pll" && window.gabisTrainers?.pllPracticeOn?.()) {
+        const tag = (e.target && e.target.tagName) || "";
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          e.preventDefault();
+          window.gabisTrainers.pllPracticeStep(-1);
+        } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          e.preventDefault();
+          window.gabisTrainers.pllPracticeStep(1);
+        }
         return;
       }
       if (!practiceOn) return;
@@ -11342,7 +11466,7 @@ function computeAlgOrder(raw, max = 1260) {
 
     document.getElementById("btn-print")?.addEventListener("click", () => {
       setActionsOpen(false);
-      document.querySelectorAll(".case-row").forEach(applyAlgOrder);
+      document.querySelectorAll("#trainer-oll .case-row").forEach(applyAlgOrder);
       window.print();
     });
     document.getElementById("btn-export")?.addEventListener("click", () => {
@@ -11399,7 +11523,7 @@ function computeAlgOrder(raw, max = 1260) {
 
   function syncCurrentGroupAnchor() {
     const trainer = document.body.dataset.trainer || "oll";
-    const navId = trainer === "f2l" ? "f2l-anchors" : trainer === "oll" ? "anchors-nav" : "";
+    const navId = trainer === "f2l" ? "f2l-anchors" : trainer === "pll" ? "pll-anchors" : trainer === "oll" ? "anchors-nav" : "";
     document.querySelectorAll("a.nav-chip.is-current").forEach((chip) => {
       chip.classList.remove("is-current");
       chip.removeAttribute("aria-current");
@@ -11435,6 +11559,8 @@ function computeAlgOrder(raw, max = 1260) {
     });
   }
   window.gabisSyncGroupAnchor = scheduleGroupAnchor;
+
+  window.gabisCube = { computeAlgOrder };
 
   (async () => {
     await loadProgress();
@@ -12203,6 +12329,1179 @@ function computeAlgOrder(raw, max = 1260) {
   };
 
   render();
+})();
+
+</script>
+
+<script type="application/json" id="pll-source">{"version":1,"groups":[{"id":"edges-only","label":"Edges Only"},{"id":"corners-only","label":"Corners Only"},{"id":"adjacent-swap","label":"Adjacent Swap"},{"id":"diagonal-swap","label":"Diagonal Swap"},{"id":"g-perms","label":"G-Perms"}],"cases":[{"id":"ua","group":"edges-only","name":"Ua","arrows":[["UL","UR"],["UR","UB"],["UB","UL"]],"probability":"1/18","alg":"(R U R' U R') U' R2 U' (R' U R' U R)","setup":"R' U' R U' R U R2 U R U' R U' R'","notes":"Looks like a long alg, but it flows super well and is regripless, which makes it one of my fastest PLL's. To help memorize: see how you move pairs around.","recognition":"Bar in the front & edge on the left side is opposite relative to its side (or the edge on the right isn't)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#00D800' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#0000F2' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>"},{"id":"ub","group":"edges-only","name":"Ub","probability":"1/18","alg":"(R' U) (R' U') (R' U') (R' U) R U R2","setup":"R2 U' R' U' R U R U R U' R","notes":"Make sure to watch the video to finger trick this one, since the third R' can be tricky. Notice how (R' U) & (R' U') repeat.","recognition":"Bar in the back & edge on the right side is opposite relative to its side (or the edge on the left isn't)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#0000F2' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#00D800' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UR","UF"],["UF","UL"],["UL","UR"]]},{"id":"h","group":"edges-only","name":"H","probability":"1/72","alg":"M2 (U') M2 (U2) M2 (U') M2","setup":"M2 U M2 U2 M2 U M2","notes":"You can perform this alg from any side. If you use left hand for M slices, do the inverse alg M2 (U) M2 (U2) M2 (U) M2. Double-flick U2's.","recognition":"All edges are opposite compared to its corners. If you notice this is the case for two sides, you can tell it's an H perm.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#00D800' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UB","UF","swap"],["UL","UR","swap"]]},{"id":"z","group":"edges-only","name":"Z","probability":"1/36","alg":"M' U' (M2 U') (M2 U') M' U2 M2","setup":"M2 U2 M U M2 U M2 U M","notes":"Make sure to hold a checkerboard (two sides with only two colors) on the right side for this alg. Inverse alg: y M' U (M2 U) (M2 U) M' U2 M2","recognition":"Very similar to the H perm, although this one doesn't have any opposite colors on any side. This forms two checkerboard patterns (red/green and blue/orange)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#C40000' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#E06A00' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UB","UL","swap"],["UF","UR","swap"]]},{"id":"aa","group":"corners-only","name":"Aa","probability":"1/18","alg":"x (R' U R') D2 (R U' R') D2 R2 x'","setup":"x R2 D2 R U R' D2 R U' R x'","notes":"The rotation and the R' are executed as an l'. Make sure to use alternating fingers (pinky/ring or ring/pinky) for the D moves.","recognition":"Block in the left front, and headlights in the back.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UBR"],["UBR","UFR"],["UFR","UBL"]]},{"id":"ab","group":"corners-only","name":"Ab","probability":"1/18","alg":"x R2 D2 (R U R') D2 (R U' R) x'","setup":"x R' U R' D2 R U' R' D2 R2 x'","notes":"Same alg as the Aa, just mirrored. Once again make sure to use alternating fingers for the D2's. That's all I ask from you.","recognition":"Block in the left front, and headlights on the right.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#E06A00' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFR"],["UFR","UBR"],["UBR","UBL"]]},{"id":"e","group":"corners-only","name":"E","probability":"1/36","alg":"x' (R U' R' D) (R U R' D') (R U R' D) (R U' R' D') x","setup":"x' D R U R' D' R U' R' D R U' R' D' R U R' x","notes":"Get ready to hate this one. Make sure you push the D's with your ring finger (watch video to be sure).","recognition":"No blocks or bars. Make sure that the two pieces pointed to with arrows are the same color, otherwise you'll end up with a H perm.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#E06A00' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFL","swap"],["UBR","UFR","swap"]]},{"id":"t","group":"adjacent-swap","name":"T","probability":"1/18","alg":"(R U R' U') (R' F R2 U') R' U' (R U R' F')","setup":"F R U' R' U R U R2 F' R U R U' R'","notes":"Probably the best known PLL. To memorize this one it can help to track the pairs","recognition":"Two bars attached to headlights, hold the headlights on the left","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UL","UR","swap"],["UBR","UFR","swap"]]},{"id":"f","group":"adjacent-swap","name":"F","probability":"1/18","alg":"(R' U' F') (R U R' U') (R' F R2 U') (R' U' R U) (R' U R)","setup":"R' U' R U' R' U R U R2 F' R U R U' R' F U R","notes":"(R' U' F') followed by T-perm with different ending. Long alg, but really easy to recognize (and pretty fast if executed properly)","recognition":"Block in the left front, and headlights on the right.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UB","UF","swap"],["UBR","UFR","swap"]]},{"id":"ja","group":"adjacent-swap","name":"Ja","probability":"1/18","alg":"(R' U L' U2) (R U' R' U2) R L","setup":"L' R' U2 R U R' U2 L U' R","notes":"Alternation between R and L moves can be tricky, but super fast if you master it. You can also execute the last \"L\" as \"r\" (I do that when there's no AUF)","recognition":"J-shaped big bar, and small bars always on the left side. (hold big bar front)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#E06A00' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#00D800' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UBR","swap"],["UL","UB","swap"]]},{"id":"jb","group":"adjacent-swap","name":"Jb","probability":"1/18","alg":"(R U R' F') (R U R' U') R' F R2 U' R'","setup":"R U R2 F' R U R U' R' F R U' R'","notes":"Most people's favorite PLL (and Youtuber) for a reason; it's very fast. Notice how (R U R' F') is really similar to (R U R' U')","recognition":"L-shaped big bar, and small bars always on the right side. (hold big bar left)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#E06A00' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#0000F2' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBR","UFR","swap"],["UR","UF","swap"]]},{"id":"ra","group":"adjacent-swap","name":"Ra","probability":"1/18","alg":"(R U' R' U') (R U R) D (R' U' R) D' (R' U2 R')","setup":"R U2 R D R' U R D' R' U' R' U R U R'","notes":"Key here is to be able to push the D' with your left ring finger.","recognition":"One bar attached to the right side of the headlights. Hold headlights left","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#E06A00' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#0000F2' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UB","UL","swap"],["UBR","UFR","swap"]]},{"id":"rb","group":"adjacent-swap","name":"Rb","probability":"1/18","alg":"(R' U2 R U2') R' F (R U R' U') R' F' R2","setup":"R2 F R U R U' R' F' R U2 R' U2 R","notes":"One of my favorites. Key here is to dubbelflick the U moves (right/left hand). The end of the alg has some similarities to a T perm","recognition":"One bar attached to the left side of the headlights. Hold headlights in front.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#E06A00' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#00D800' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UBR","swap"],["UR","UF","swap"]]},{"id":"y","group":"diagonal-swap","name":"Y","probability":"1/18","alg":"F (R U' R' U') (R U R' F') (R U R' U') (R' F R F')","setup":"F R' F' R U R U' R' F R U' R' U R U R' F'","notes":"The alg consists of two OLL's: F (R U' R' U') (R U R' F') and (R U R' U') (R' F R F'). Once you can do them seperately, learning the alg is very easy.","recognition":"Two bars with a corner in between (notice how the corner in between is opposite color to the bars)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#00D800' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFR","swap"],["UB","UL","swap"]]},{"id":"v","group":"diagonal-swap","name":"V","probability":"1/18","alg":"(R' U R' U') y (R' F' R2 U') (R' U R' F) R F","setup":"F' R' F' R U' R U R2 F R y' U R U' R","notes":"The only PLL I do with a rotation. It is hard to master, but once you do it is a solid alg. I use my right index finger for both last F-moves.","recognition":"Block in the left front, no headlights.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#E06A00' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFR","swap"],["UB","UR","swap"]]},{"id":"na","group":"diagonal-swap","name":"Na","probability":"1/72","alg":"(R U R' U) (R U R' F') (R U R' U') R' F (R2 U' R') (U2 R U' R')","setup":"R U R' U2 R U R2 F' R U R U' R' F R U' R' U' R U' R'","notes":"Super long alg, but very easy to memorize. It's basically (R U R' U) (Jb-perm) (U2 R U' R')","recognition":"Bars on the right, each side of the cube with the corner opposite colored. (I think of it as arrows pointing to the left)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#00D800' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#0000F2' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBR","UFL","swap"],["UL","UR","swap"]]},{"id":"nb","group":"diagonal-swap","name":"Nb","probability":"1/72","alg":"(R' U R U') (R' F' U' F) (R U R' F) R' F' (R U' R)","setup":"R' U R' F R F' R U' R' F' U F R U R' U' R","notes":"One of the most difficult algs to learn, since it's pretty random moves, and you only get an n-perm in 1/72 solves. So make sure you practice this one well.","recognition":"Bars on the left, each side of the cube with the corner opposite colored. (I think of it as arrows pointing to the right)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#00D800' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#C40000' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFR","swap"],["UL","UR","swap"]]},{"id":"ga","group":"g-perms","name":"Ga","probability":"1/18","alg":"R2 U (R' U R' U') (R U' R2) D U' (R' U R D')","setup":"D R' U' R U D' R2 U R' U R U' R U' R2","notes":"One of my faster G perms, and probably the easiest to recognize. Start with thumb on bottom and make sure to push the last D' with your left ring finger","recognition":"Headlights left, bar in front not attached to headlights","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBR","UFL","swap"],["UB","UL","swap"]]},{"id":"gb","group":"g-perms","name":"Gb","probability":"1/18","alg":"D (R' U' R U) D' (R2 U R' U) (R U' R U') R2'","setup":"R2 U R' U R' U' R U' R2 D U' R' U R D'","notes":"I finger trick it in a pretty unique way so you probably need to watch the video for this one","recognition":"Headlights left, bar in right back opposite to headlights. Notice how the left/front side are almost an H perm, except for the blue sticker in front/right (arrow)","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFR","swap"],["UF","UR"],["UR","UB"],["UB","UF"]]},{"id":"gc","group":"g-perms","name":"Gc","probability":"1/18","alg":"R2' F2 (R U2 R U2') R' F (R U R' U') R' F R2","setup":"R2 F' R U R U' R' F' R U2 R' U2 R' F2 R2","notes":"This is the only G-perm I don't use D-moves for. Alg is long and difficult, but pretty fool-proof once you master it. Double flicking U2's is important here.","recognition":"Headlights on the right, bar in front not attached to headlights.","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#E06A00' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#E06A00' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UBL","UFR","swap"],["UB","UF"],["UF","UL"],["UL","UB"]]},{"id":"gd","group":"g-perms","name":"Gd","probability":"1/18","alg":"(R U R' U') D (R2 U' R U') (R' U R' U) R2 D'","setup":"D R2 U' R U' R U R' U R2 D' U R U' R'","notes":"My favourite G-perm! The entire alg flows super well. Make sure to do the U' and D simultaneously.","recognition":"Headlights left, bar in right/front opposite to headlights","svg":"<svg class='cube-svg' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-0.9 -0.9 1.8 1.8'><g style='stroke-width:0.1;stroke-linejoin:round;opacity:1'><polygon fill='#000000' stroke='#000000' points='-0.52222222222222,-0.52222222222222 0.52222222222222,-0.52222222222222 0.52222222222222,0.52222222222222 -0.52222222222222,0.52222222222222'/></g><g style='opacity:1;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round'><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.52777777777778 -0.21296296296296,-0.52777777777778 -0.21296296296296,-0.21296296296296 -0.52777777777778,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.52777777777778 0.15740740740741,-0.52777777777778 0.15740740740741,-0.21296296296296 -0.15740740740741,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.52777777777778 0.52777777777778,-0.52777777777778 0.52777777777778,-0.21296296296296 0.21296296296296,-0.21296296296296'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,-0.15740740740741 -0.21296296296296,-0.15740740740741 -0.21296296296296,0.15740740740741 -0.52777777777778,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,-0.15740740740741 0.15740740740741,-0.15740740740741 0.15740740740741,0.15740740740741 -0.15740740740741,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,-0.15740740740741 0.52777777777778,-0.15740740740741 0.52777777777778,0.15740740740741 0.21296296296296,0.15740740740741'/><polygon fill='#F3D34E' stroke='#000000' points='-0.52777777777778,0.21296296296296 -0.21296296296296,0.21296296296296 -0.21296296296296,0.52777777777778 -0.52777777777778,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='-0.15740740740741,0.21296296296296 0.15740740740741,0.21296296296296 0.15740740740741,0.52777777777778 -0.15740740740741,0.52777777777778'/><polygon fill='#F3D34E' stroke='#000000' points='0.21296296296296,0.21296296296296 0.52777777777778,0.21296296296296 0.52777777777778,0.52777777777778 0.21296296296296,0.52777777777778'/></g><g style='opacity:1;stroke-opacity:1;stroke-width:0.02;stroke-linejoin:round'><polygon fill='#0000F2' stroke='#000000' points='-0.54406130268199,0.5544061302682 -0.19591315453384,0.5544061302682 -0.18390804597701,0.7183908045977 -0.50804597701149,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.17445721583653,0.5544061302682 0.17369093231162,0.5544061302682 0.16168582375479,0.7183908045977 -0.16245210727969,0.7183908045977'/><polygon fill='#C40000' stroke='#000000' points='0.19514687100894,0.5544061302682 0.54329501915709,0.5544061302682 0.50727969348659,0.7183908045977 0.18314176245211,0.7183908045977'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,-0.54406130268199 -0.5544061302682,-0.19591315453384 -0.7183908045977,-0.18390804597701 -0.7183908045977,-0.50804597701149'/><polygon fill='#C40000' stroke='#000000' points='-0.5544061302682,-0.17445721583653 -0.5544061302682,0.17369093231162 -0.7183908045977,0.16168582375479 -0.7183908045977,-0.16245210727969'/><polygon fill='#E06A00' stroke='#000000' points='-0.5544061302682,0.19514687100894 -0.5544061302682,0.54329501915709 -0.7183908045977,0.50727969348659 -0.7183908045977,0.18314176245211'/><polygon fill='#C40000' stroke='#000000' points='0.54406130268199,-0.5544061302682 0.19591315453384,-0.5544061302682 0.18390804597701,-0.7183908045977 0.50804597701149,-0.7183908045977'/><polygon fill='#0000F2' stroke='#000000' points='0.17445721583653,-0.5544061302682 -0.17369093231162,-0.5544061302682 -0.16168582375479,-0.7183908045977 0.16245210727969,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='-0.19514687100894,-0.5544061302682 -0.54329501915709,-0.5544061302682 -0.50727969348659,-0.7183908045977 -0.18314176245211,-0.7183908045977'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.54406130268199 0.5544061302682,0.19591315453384 0.7183908045977,0.18390804597701 0.7183908045977,0.50804597701149'/><polygon fill='#00D800' stroke='#000000' points='0.5544061302682,0.17445721583653 0.5544061302682,-0.17369093231162 0.7183908045977,-0.16168582375479 0.7183908045977,0.16245210727969'/><polygon fill='#0000F2' stroke='#000000' points='0.5544061302682,-0.19514687100894 0.5544061302682,-0.54329501915709 0.7183908045977,-0.50727969348659 0.7183908045977,-0.18314176245211'/></g></svg>","arrows":[["UFL","UBR","swap"],["UB","UR","swap"]]}]}</script>
+<script>
+(() => {
+  const KEY = "pll-data-v1";
+  const PREFS_KEY = "gabis-trainer-prefs";
+  const root = document.getElementById("pll-root");
+  const sourceEl = document.getElementById("pll-source");
+  if (!root || !sourceEl) return;
+
+  let source;
+  try {
+    source = JSON.parse(sourceEl.textContent);
+  } catch (err) {
+    console.error(err);
+    root.innerHTML = '<p class="f2l-error">PLL cases could not be loaded.</p>';
+    return;
+  }
+
+  const byId = {};
+  source.cases.forEach((c) => { byId[c.id] = c; });
+  let edits = {};
+  let filter = "";
+  let practiceOn = false;
+  let practiceIndex = 0;
+  let practiceQueue = [];
+  let practiceShuffle = true;
+  let showArrows = false;
+  let modalId = null;
+  let modalSlot = null;
+  let caseModalId = null;
+  let caseModalRot = 0;
+  let hiddenId = null;
+
+  function readPrefs() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(PREFS_KEY) || "{}");
+      return parsed && typeof parsed === "object" ? parsed : {};
+    } catch {
+      return {};
+    }
+  }
+  function writePrefs(patch) {
+    const prev = readPrefs();
+    localStorage.setItem(PREFS_KEY, JSON.stringify({ ...prev, ...patch }));
+  }
+  {
+    const prefs = readPrefs();
+    if (typeof prefs.pllPracticeShuffle === "boolean") practiceShuffle = prefs.pllPracticeShuffle;
+    if (typeof prefs.pllShowArrows === "boolean") showArrows = prefs.pllShowArrows;
+  }
+  function syncArrowsSwitch() {
+    document.body.classList.toggle("pll-show-arrows", showArrows);
+    const sw = document.getElementById("pll-arrows-switch");
+    if (!sw) return;
+    sw.dataset.mode = showArrows ? "on" : "off";
+    sw.querySelectorAll("[data-pll-arrows]").forEach((btn) => {
+      const on = (btn.dataset.pllArrows === "on") === showArrows;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function blankEdit(c) {
+    return {
+      status: "black",
+      favorite: "primary",
+      hidden: [],
+      discarded: [],
+      primary: { alg: c.alg, tip: c.notes, order: null },
+      custom: [],
+      probability: c.probability || "",
+      recognition: c.recognition || "",
+      setup: c.setup || "",
+      baseRot: 0,
+    };
+  }
+
+  function normalizeStatus(status) {
+    return status === "red" || status === "orange" || status === "green" || status === "black"
+      ? status
+      : "black";
+  }
+
+  function normalizeEntry(item) {
+    if (!item || typeof item !== "object") return null;
+    const alg = String(item.alg || "").trim();
+    if (!alg) return null;
+    const out = { alg };
+    if (typeof item.tip === "string") out.tip = item.tip;
+    if (item.order != null && Number.isFinite(Number(item.order))) out.order = Number(item.order);
+    return out;
+  }
+
+  function normalizePll(data) {
+    if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("Invalid PLL data");
+    const out = {};
+    Object.keys(data).forEach((id) => {
+      if (!byId[id]) return;
+      const raw = data[id];
+      if (!raw || typeof raw !== "object" || Array.isArray(raw)) return;
+      const slim = {};
+      if (raw.status === "red" || raw.status === "orange" || raw.status === "green") slim.status = raw.status;
+      if (typeof raw.favorite === "string" && raw.favorite) slim.favorite = raw.favorite;
+      if (Array.isArray(raw.hidden)) slim.hidden = raw.hidden.map(String).filter(Boolean);
+      if (Array.isArray(raw.discarded)) slim.discarded = raw.discarded.map(String).filter(Boolean);
+      if (raw.primary && typeof raw.primary === "object") {
+        const primary = {};
+        if (typeof raw.primary.alg === "string" && raw.primary.alg.trim()) primary.alg = raw.primary.alg.trim();
+        if (typeof raw.primary.tip === "string") primary.tip = raw.primary.tip;
+        if (raw.primary.order != null && Number.isFinite(Number(raw.primary.order))) primary.order = Number(raw.primary.order);
+        if (Object.keys(primary).length) slim.primary = primary;
+      }
+      if (Array.isArray(raw.custom)) {
+        slim.custom = raw.custom.map(normalizeEntry).filter(Boolean);
+        if (!slim.custom.length) delete slim.custom;
+      }
+      if (typeof raw.probability === "string") slim.probability = raw.probability;
+      if (typeof raw.recognition === "string") slim.recognition = raw.recognition;
+      if (typeof raw.setup === "string") slim.setup = raw.setup;
+      if (raw.baseRot != null && Number.isFinite(Number(raw.baseRot))) {
+        const rot = ((Number(raw.baseRot) % 360) + 360) % 360;
+        if (rot === 0 || rot === 90 || rot === 180 || rot === 270) slim.baseRot = rot;
+      }
+      if (Object.keys(slim).length) out[id] = slim;
+    });
+    return out;
+  }
+
+  function applySaved(saved) {
+    edits = {};
+    source.cases.forEach((c) => {
+      const o = saved[c.id] || {};
+      const edit = blankEdit(c);
+      if (o.status === "red" || o.status === "orange" || o.status === "green") edit.status = o.status;
+      if (o.favorite) edit.favorite = o.favorite;
+      if (Array.isArray(o.hidden)) edit.hidden = o.hidden.map(String);
+      if (Array.isArray(o.discarded)) edit.discarded = o.discarded.map(String);
+      if (o.primary && typeof o.primary.alg === "string" && o.primary.alg.trim()) edit.primary.alg = o.primary.alg.trim();
+      if (o.primary && typeof o.primary.tip === "string") edit.primary.tip = o.primary.tip;
+      if (o.primary && o.primary.order != null && Number.isFinite(Number(o.primary.order))) edit.primary.order = Number(o.primary.order);
+      if (Array.isArray(o.custom)) edit.custom = o.custom.map(normalizeEntry).filter(Boolean);
+      if (typeof o.probability === "string") edit.probability = o.probability;
+      if (typeof o.recognition === "string") edit.recognition = o.recognition;
+      if (typeof o.setup === "string") edit.setup = o.setup;
+      if (o.baseRot != null && Number.isFinite(Number(o.baseRot))) {
+        const rot = ((Number(o.baseRot) % 360) + 360) % 360;
+        if (rot === 0 || rot === 90 || rot === 180 || rot === 270) edit.baseRot = rot;
+      }
+      edits[c.id] = edit;
+    });
+  }
+
+  function load() {
+    try {
+      applySaved(normalizePll(JSON.parse(localStorage.getItem(KEY) || "{}")));
+    } catch {
+      applySaved({});
+    }
+  }
+
+  function compact() {
+    const out = {};
+    source.cases.forEach((c) => {
+      const e = edits[c.id];
+      const slim = {};
+      if (e.status === "red" || e.status === "orange" || e.status === "green") slim.status = e.status;
+      if (e.favorite && e.favorite !== "primary") slim.favorite = e.favorite;
+      if (e.hidden.length) slim.hidden = e.hidden.slice();
+      if (e.discarded.length) slim.discarded = e.discarded.slice();
+      const primary = {};
+      if (e.primary.alg !== c.alg) primary.alg = e.primary.alg;
+      if (e.primary.tip !== c.notes) primary.tip = e.primary.tip;
+      if (e.primary.order != null) primary.order = e.primary.order;
+      if (Object.keys(primary).length) slim.primary = primary;
+      if (e.custom.length) slim.custom = e.custom.map((item) => ({ ...item }));
+      if (e.probability !== (c.probability || "")) slim.probability = e.probability;
+      if (e.recognition !== (c.recognition || "")) slim.recognition = e.recognition;
+      if (e.setup !== (c.setup || "")) slim.setup = e.setup;
+      if (e.baseRot === 90 || e.baseRot === 180 || e.baseRot === 270) slim.baseRot = e.baseRot;
+      if (Object.keys(slim).length) out[c.id] = slim;
+    });
+    return out;
+  }
+
+  function save() {
+    localStorage.setItem(KEY, JSON.stringify(compact()));
+    const stamp = document.getElementById("save-stamp");
+    if (stamp) stamp.textContent = "Saved · " + new Date().toLocaleTimeString();
+  }
+
+  function slotsOf(e) {
+    const slots = [];
+    if (!e.discarded.includes("primary")) slots.push("primary");
+    e.custom.forEach((_, i) => slots.push("custom-" + i));
+    return slots;
+  }
+  function entryOf(e, slot) {
+    if (slot === "primary") return e.primary;
+    const m = /^custom-(\d+)$/.exec(slot);
+    return m ? e.custom[Number(m[1])] : null;
+  }
+  function absent(e) {
+    return new Set([...(e.hidden || []), ...(e.discarded || [])]);
+  }
+
+  function orderOf(entry) {
+    if (entry && entry.order != null && Number.isFinite(Number(entry.order))) return Number(entry.order);
+    const computed = window.gabisCube && window.gabisCube.computeAlgOrder
+      ? window.gabisCube.computeAlgOrder(entry ? entry.alg : "")
+      : null;
+    return computed;
+  }
+
+  function parseLeadingY(alg) {
+    const trimmed = String(alg || "").trim();
+    const m = trimmed.match(/^(y2'|y2|y'|y)(?:\s+|$)(.*)$/i);
+    if (!m) return { auf: null, rest: trimmed, deg: 0 };
+    const token = m[1].toLowerCase();
+    const deg = token === "y" ? 90 : token === "y'" ? -90 : 180;
+    return { auf: m[1], rest: (m[2] || "").trim(), deg };
+  }
+  function normDeg(deg) {
+    return ((Number(deg) || 0) % 360 + 360) % 360;
+  }
+
+  function formatAlgHtml(alg, fadeY) {
+    const source = String(alg || "");
+    if (!fadeY) return esc(source);
+    const { auf, rest } = parseLeadingY(source);
+    if (!auf) return esc(source);
+    return (
+      '<span class="alg-auf">' + esc(auf) + "</span>" +
+      (rest ? ' <span class="alg-rest">' + esc(rest) + "</span>" : "")
+    );
+  }
+
+  function algRowHtml(slot, entry, fav) {
+    const order = orderOf(entry);
+    const tip = typeof entry.tip === "string" ? entry.tip.trim() : "";
+    return (
+      '<div class="alg-row" data-slot="' + esc(slot) + '">' +
+      '<div class="alg-body">' +
+      '<div class="alg-tools screen-only">' +
+      '<button type="button" class="btn-alg-tool" data-pll-edit="' + esc(slot) + '" data-tooltip="Edit" aria-label="Edit algorithm"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>' +
+      '<span class="alg-order" data-tooltip="Order of permutation — times to repeat this alg to return to start" aria-label="Order of permutation"><span class="alg-order-n">' +
+      (order != null ? esc(order) : "?") +
+      "</span></span>" +
+      '<label class="fav" data-tooltip="Favorite" aria-label="Favorite"><input type="checkbox" data-pll-fav="' + esc(slot) + '"' +
+      (fav ? " checked" : "") +
+      ' /><span>★</span></label>' +
+      "</div>" +
+      '<p class="alg' + (fav ? " primary" : "") + '" data-alg-text>' + formatAlgHtml(entry.alg, fav) + "</p>" +
+      (tip
+        ? '<div class="inline-box tip-box alg-meta"><span class="inline-label" title="Notes"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span class="sr-only">Notes</span></span><span class="inline-value">' +
+          esc(tip) +
+          "</span></div>"
+        : "") +
+      "</div></div>"
+    );
+  }
+
+  function paintRow(row) {
+    const id = row.dataset.case;
+    const c = byId[id];
+    const e = edits[id];
+    const gone = absent(e);
+    const slots = slotsOf(e);
+    const visible = slots.filter((s) => !gone.has(s));
+    if (!visible.includes(e.favorite)) e.favorite = visible[0] || slots[0] || "primary";
+    const ordered = [];
+    if (e.favorite && slots.includes(e.favorite)) ordered.push(e.favorite);
+    slots.forEach((s) => { if (s !== e.favorite) ordered.push(s); });
+    const list = row.querySelector("[data-alg-list]");
+    if (list) {
+      list.innerHTML = ordered.map((slot) => {
+        const entry = entryOf(e, slot);
+        if (!entry) return "";
+        return algRowHtml(slot, entry, slot === e.favorite && !gone.has(slot));
+      }).join("");
+      list.querySelectorAll(".alg-row").forEach((algRow) => {
+        const hidden = gone.has(algRow.dataset.slot);
+        algRow.hidden = hidden;
+        algRow.classList.toggle("is-favorite", algRow.dataset.slot === e.favorite && !hidden);
+      });
+    }
+    const showBtn = row.querySelector("[data-pll-show-hidden]");
+    if (showBtn) {
+      showBtn.hidden = e.hidden.length === 0;
+      const n = showBtn.querySelector("[data-hidden-count]");
+      if (n) n.textContent = String(e.hidden.length);
+    }
+    e.status = normalizeStatus(e.status);
+    row.dataset.status = e.status;
+    row.querySelectorAll("[data-pll-status]").forEach((input) => {
+      input.checked = input.dataset.pllStatus === e.status;
+    });
+    const caseNo = row.querySelector(".case-no");
+    if (caseNo) caseNo.textContent = e.probability || "";
+    const setupVal = row.querySelector(".setup-box .inline-value");
+    if (setupVal) setupVal.textContent = e.setup || "";
+    const recogVal = row.querySelector(".recog-box .inline-value");
+    if (recogVal) recogVal.textContent = e.recognition || "";
+    const recogBox = row.querySelector(".recog-box");
+    if (recogBox) recogBox.hidden = !(e.recognition || "").trim();
+    const favEntry = entryOf(e, e.favorite) || e.primary;
+    const deg = favEntry ? parseLeadingY(favEntry.alg).deg : 0;
+    const base = normDeg(e.baseRot);
+    const manual = normDeg(row.dataset.manualRot);
+    const total = normDeg(base + deg + manual);
+    const svg = row.querySelector(".diagram .cube-svg");
+    if (svg) svg.style.transform = "rotate(" + total + "deg)";
+    const twisted = manual !== 0;
+    row.classList.toggle("diagram-twisted", twisted);
+    const figure = row.querySelector(".diagram");
+    if (figure) {
+      figure.classList.toggle("is-rotated", twisted);
+      figure.title = twisted ? "Rotated view. Click the image to reset." : "";
+    }
+  }
+
+  const PIECE_POS = {
+    UF: [0, 0.37], UR: [0.37, 0], UB: [0, -0.37], UL: [-0.37, 0],
+    UFL: [-0.37, 0.37], UFR: [0.37, 0.37], UBR: [0.37, -0.37], UBL: [-0.37, -0.37],
+  };
+  function withArrows(svg, arrows) {
+    const f = (n) => n.toFixed(4);
+    const tipLen = 0.09;
+    const wing = 0.045;
+    function head(tx, ty, dx, dy) {
+      const hx = tx - dx * tipLen;
+      const hy = ty - dy * tipLen;
+      const nx = -dy * wing;
+      const ny = dx * wing;
+      return "<polyline fill='none' points='" + f(hx + nx) + "," + f(hy + ny) + " " + f(tx) + "," + f(ty) + " " + f(hx - nx) + "," + f(hy - ny) + "'/>";
+    }
+    const parts = arrows.map((spec) => {
+      const from = spec[0];
+      const to = spec[1];
+      const swap = spec[2] === "swap" || spec[2] === true || spec[2] === "both";
+      const a = PIECE_POS[from];
+      const b = PIECE_POS[to];
+      if (!a || !b) return "";
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      const dx = (b[0] - a[0]) / len;
+      const dy = (b[1] - a[1]) / len;
+      const tipInset = 0.012;
+      const tailInset = swap ? tipInset : 0.115;
+      const sx = a[0] + dx * tailInset;
+      const sy = a[1] + dy * tailInset;
+      const tx = b[0] - dx * tipInset;
+      const ty = b[1] - dy * tipInset;
+      return (
+        "<line x1='" + f(sx) + "' y1='" + f(sy) + "' x2='" + f(tx) + "' y2='" + f(ty) + "'/>" +
+        head(tx, ty, dx, dy) +
+        (swap ? head(sx, sy, -dx, -dy) : "")
+      );
+    }).join("");
+    const overlay = "<g class='pll-arrows' style='stroke:#3a4150;stroke-width:0.026;stroke-linecap:round;stroke-linejoin:round;fill:none'>" + parts + "</g>";
+    const end = svg.lastIndexOf("</svg>");
+    return end < 0 ? svg : svg.slice(0, end) + overlay + svg.slice(end);
+  }
+
+  function render() {
+    const html = source.groups.map((group) => {
+      const cases = source.cases.filter((c) => c.group === group.id);
+      const cards = cases.map((c) => {
+        return (
+          '<div class="case-row" data-case="' + esc(c.id) + '" data-group="' + esc(c.group) + '" data-status="black" id="pll-' + esc(c.id) + '">' +
+          '<article class="card">' +
+          '<header class="card-header"><span class="group">' + esc(group.label) + "</span></header>" +
+          '<div class="title-row"><h1 class="title">' + esc(c.name) + '</h1><span class="case-no">' + esc(c.probability) + "</span>" +
+          '<button type="button" class="status-toggle screen-only" data-pll-status-toggle aria-expanded="false" aria-label="Learning status" title="Status"><span class="status-pip" aria-hidden="true"></span></button></div>' +
+          '<div class="inline-box setup-box"><span class="inline-label" title="Setup"><i class="fa-solid fa-shuffle" aria-hidden="true"></i><span class="sr-only">Setup</span></span><span class="inline-value alg">' +
+          esc(c.setup) + "</span></div>" +
+          '<div class="diagram-tools screen-only">' +
+          '<button type="button" class="btn-rotate" data-pll-rotate="-90" title="Rotate 90° left" aria-label="Rotate diagram 90 degrees counter-clockwise"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></button>' +
+          '<button type="button" class="btn-rotate" data-pll-rotate="90" title="Rotate 90° right" aria-label="Rotate diagram 90 degrees clockwise"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></button>' +
+          "</div>" +
+          '<figure class="diagram">' +
+          (Array.isArray(c.arrows) && c.arrows.length ? withArrows(c.svg, c.arrows) : c.svg) +
+          "</figure>" +
+          '<div class="alg-list" data-alg-list></div>' +
+          '<div class="inline-box tip-box recog-box"><span class="inline-label" title="Recognition"><i class="fa-solid fa-binoculars" aria-hidden="true"></i><span class="sr-only">Recognition</span></span><span class="inline-value">' +
+          esc(c.recognition) + "</span></div>" +
+          '<div class="card-actions screen-only">' +
+          '<button type="button" class="btn-card-quiet" data-pll-edit-case title="Edit case" aria-label="Edit case"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>' +
+          '<button type="button" class="btn-card-quiet btn-show-hidden" data-pll-show-hidden hidden title="Show hidden algorithms" aria-label="Show hidden algorithms"><i class="fa-solid fa-eye" aria-hidden="true"></i><span class="n" data-hidden-count>0</span></button>' +
+          '<button type="button" class="btn-card-quiet btn-add-alg" data-pll-add title="Add algorithm" aria-label="Add algorithm">+</button>' +
+          "</div></article>" +
+          '<aside class="status-panel screen-only" aria-label="Learning status">' +
+          '<label class="status-opt black" title="TO CHECK !"><input type="checkbox" data-pll-status="black" checked /><span class="dot"></span><span class="status-text">TO CHECK !</span></label>' +
+          '<label class="status-opt red" title="Not learned"><input type="checkbox" data-pll-status="red" /><span class="dot"></span><span class="status-text">Not learned</span></label>' +
+          '<label class="status-opt orange" title="Learning"><input type="checkbox" data-pll-status="orange" /><span class="dot"></span><span class="status-text">Learning</span></label>' +
+          '<label class="status-opt green" title="Learned"><input type="checkbox" data-pll-status="green" /><span class="dot"></span><span class="status-text">Learned</span></label>' +
+          "</aside></div>"
+        );
+      }).join("");
+      return (
+        '<section class="group-section" id="pll-' + esc(group.id) + '" data-group="' + esc(group.id) + '">' +
+        '<h2 class="group-heading">' + esc(group.label) + "</h2>" +
+        '<div class="cards">' + cards + "</div></section>"
+      );
+    }).join("");
+    root.innerHTML = html;
+    root.querySelectorAll(".case-row").forEach(paintRow);
+    applyFilter();
+    updateCounts();
+  }
+
+  function rowById(id) {
+    return root.querySelector('.case-row[data-case="' + id + '"]');
+  }
+
+  function closeStatus(except) {
+    root.querySelectorAll(".case-row.status-open").forEach((row) => {
+      if (except && row === except) return;
+      row.classList.remove("status-open");
+      const t = row.querySelector("[data-pll-status-toggle]");
+      if (t) t.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  function updateCounts() {
+    const counts = { black: 0, red: 0, orange: 0, green: 0 };
+    source.cases.forEach((c) => { counts[normalizeStatus(edits[c.id].status)] += 1; });
+    document.querySelectorAll("[data-pll-count]").forEach((el) => {
+      el.textContent = String(counts[el.dataset.pllCount] || 0);
+    });
+    document.querySelectorAll("#pll-anchors .nav-chip[data-pll-group], #pll-practice-picker [data-pll-practice-group-bar]").forEach((chip) => {
+      const slug = chip.dataset.pllGroup || chip.dataset.pllPracticeGroupBar;
+      const tallies = { black: 0, red: 0, orange: 0, green: 0 };
+      source.cases.forEach((c) => {
+        if (c.group === slug) tallies[normalizeStatus(edits[c.id].status)] += 1;
+      });
+      const total = tallies.black + tallies.red + tallies.orange + tallies.green;
+      ["black", "red", "orange", "green"].forEach((key) => {
+        const seg = chip.querySelector('[data-seg="' + key + '"]');
+        if (!seg) return;
+        seg.style.flex = tallies[key] > 0 ? tallies[key] + " 1 0%" : "0 0 0%";
+        seg.style.display = tallies[key] > 0 ? "block" : "none";
+      });
+      const label = [
+        tallies.black ? tallies.black + " to check" : "",
+        tallies.red ? tallies.red + " not learned" : "",
+        tallies.orange ? tallies.orange + " learning" : "",
+        tallies.green ? tallies.green + " learned" : "",
+      ].filter(Boolean).join(", ");
+      const base = chip.querySelector(".nav-chip-label, .practice-check-label")?.textContent || slug;
+      chip.title = base + (total ? " · " + label : "");
+    });
+  }
+
+  function applyFilter() {
+    if (practiceOn) {
+      root.querySelectorAll(".case-row, .group-section").forEach((el) => {
+        el.hidden = false;
+        el.classList.remove("is-filtered-out");
+      });
+      rebuildPractice(true);
+      refreshPractice();
+      window.gabisSyncGroupAnchor?.();
+      return;
+    }
+    root.querySelectorAll(".case-row").forEach((row) => {
+      const show = !filter || edits[row.dataset.case].status === filter;
+      row.hidden = !show;
+      row.classList.toggle("is-filtered-out", !show);
+    });
+    root.querySelectorAll(".group-section").forEach((sec) => {
+      const any = [...sec.querySelectorAll(".case-row")].some((row) => !row.hidden);
+      sec.hidden = !any;
+    });
+    window.gabisSyncGroupAnchor?.();
+  }
+
+  function selectedStatuses() {
+    return new Set([...document.querySelectorAll("[data-pll-practice-status]:checked")].map((el) => el.dataset.pllPracticeStatus));
+  }
+  function selectedGroups() {
+    return new Set([...document.querySelectorAll("[data-pll-practice-group]:checked")].map((el) => el.dataset.pllPracticeGroup));
+  }
+  function eligibleIds() {
+    const statuses = selectedStatuses();
+    const groups = selectedGroups();
+    if (!statuses.size && !groups.size) return [];
+    return source.cases.filter((c) => {
+      const statusMatch = statuses.size > 0 && statuses.has(edits[c.id].status);
+      const groupMatch = groups.size > 0 && groups.has(c.group);
+      return statusMatch || groupMatch;
+    }).map((c) => c.id);
+  }
+  function shuffle(ids) {
+    const a = ids.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = a[i];
+      a[i] = a[j];
+      a[j] = tmp;
+    }
+    return a;
+  }
+  function updatePool() {
+    const n = eligibleIds().length;
+    const el = document.getElementById("pll-practice-pool-count");
+    if (el) {
+      el.textContent = String(n);
+      el.title = n + (n === 1 ? " case" : " cases") + " in practice pool";
+    }
+  }
+  function syncOrderSwitch() {
+    const sw = document.getElementById("pll-practice-order-switch");
+    if (!sw) return;
+    sw.dataset.mode = practiceShuffle ? "shuffle" : "fixed";
+    sw.querySelectorAll("[data-pll-practice-order]").forEach((btn) => {
+      const on = btn.dataset.pllPracticeOrder === (practiceShuffle ? "shuffle" : "fixed");
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  function savePracticePrefs() {
+    writePrefs({
+      pllPracticeShuffle: practiceShuffle,
+      pllPracticeStatuses: [...selectedStatuses()],
+      pllPracticeGroups: [...selectedGroups()],
+    });
+  }
+  function restorePracticePrefs() {
+    const prefs = readPrefs();
+    if (Array.isArray(prefs.pllPracticeStatuses)) {
+      const on = new Set(prefs.pllPracticeStatuses);
+      document.querySelectorAll("[data-pll-practice-status]").forEach((el) => {
+        el.checked = on.has(el.dataset.pllPracticeStatus);
+      });
+    }
+    if (Array.isArray(prefs.pllPracticeGroups)) {
+      const on = new Set(prefs.pllPracticeGroups);
+      document.querySelectorAll("[data-pll-practice-group]").forEach((el) => {
+        el.checked = on.has(el.dataset.pllPracticeGroup);
+      });
+    }
+    syncOrderSwitch();
+    updatePool();
+  }
+  function rebuildPractice(keep) {
+    const ids = eligibleIds();
+    const current = keep ? practiceQueue[practiceIndex] : null;
+    practiceQueue = practiceShuffle ? shuffle(ids) : ids;
+    if (current) {
+      const idx = practiceQueue.indexOf(current);
+      practiceIndex = idx >= 0 ? idx : 0;
+    } else practiceIndex = 0;
+    updatePool();
+  }
+  function refreshPractice() {
+    if (!practiceOn) return;
+    updatePool();
+    const meta = document.getElementById("practice-meta");
+    root.querySelectorAll(".case-row").forEach((row) => row.classList.remove("is-practice-current"));
+    if (!practiceQueue.length) {
+      if (meta) {
+        meta.textContent = "0 / 0";
+        meta.title = "No cases match the practice filters";
+      }
+      return;
+    }
+    if (practiceIndex >= practiceQueue.length) practiceIndex = practiceQueue.length - 1;
+    if (practiceIndex < 0) practiceIndex = 0;
+    const current = rowById(practiceQueue[practiceIndex]);
+    if (!current) return;
+    current.classList.add("is-practice-current");
+    current.hidden = false;
+    current.classList.remove("is-filtered-out");
+    if (meta) {
+      meta.textContent = (practiceIndex + 1) + " / " + practiceQueue.length;
+      const name = current.querySelector(".title")?.textContent?.trim() || current.dataset.case;
+      meta.title = name + (practiceShuffle ? " · shuffled" : " · fixed order");
+    }
+    current.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+  function setPractice(on) {
+    practiceOn = on;
+    document.body.classList.toggle("practice-mode", on && document.body.dataset.trainer === "pll");
+    const btn = document.getElementById("btn-pll-practice");
+    if (btn) {
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.textContent = on ? "Exit practice" : "Practice";
+    }
+    const picker = document.getElementById("pll-practice-picker");
+    if (picker) picker.hidden = !on;
+    if (!on) {
+      practiceQueue = [];
+      practiceIndex = 0;
+      root.querySelectorAll(".case-row.is-practice-current").forEach((row) => row.classList.remove("is-practice-current"));
+    }
+  }
+  function enterPractice() {
+    if (document.body.classList.contains("practice-mode")) document.body.classList.remove("practice-mode");
+    setPractice(true);
+    const wrap = document.getElementById("pll-anchors-wrap");
+    const toggle = document.getElementById("btn-pll-groups");
+    if (wrap && toggle) {
+      wrap.classList.add("is-collapsed");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    rebuildPractice(false);
+    refreshPractice();
+  }
+  function exitPractice() {
+    if (!practiceOn) return;
+    const current = root.querySelector(".case-row.is-practice-current");
+    const id = current?.id;
+    setPractice(false);
+    document.body.classList.remove("practice-mode");
+    applyFilter();
+    if (id) document.getElementById(id)?.scrollIntoView({ block: "nearest" });
+  }
+  function practiceStep(delta) {
+    if (!practiceOn) return;
+    if (!practiceQueue.length) {
+      rebuildPractice(false);
+      refreshPractice();
+      return;
+    }
+    practiceIndex = (practiceIndex + delta + practiceQueue.length) % practiceQueue.length;
+    refreshPractice();
+  }
+
+  function ensureModals() {
+    if (!document.getElementById("pll-modal")) {
+      const wrap = document.createElement("div");
+      wrap.innerHTML =
+        '<div class="modal" id="pll-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pll-modal-title">' +
+        '<div class="modal-backdrop" id="pll-modal-backdrop"></div><div class="modal-panel">' +
+        '<h3 id="pll-modal-title">Add alg</h3>' +
+        "<label>Algorithm<input type=\"text\" id=\"pll-modal-input\" autocomplete=\"off\" /></label>" +
+        "<label>Notes<input type=\"text\" id=\"pll-modal-tip\" autocomplete=\"off\" /></label>" +
+        "<label>Order of permutation<input type=\"number\" id=\"pll-modal-order\" min=\"1\" max=\"1260\" inputmode=\"numeric\" autocomplete=\"off\" /></label>" +
+        '<div class="modal-actions"><button type="button" class="btn btn-ghost btn-icon" id="pll-modal-hide" hidden title="Hide" aria-label="Hide algorithm"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></button>' +
+        '<span class="modal-actions-spacer"></span>' +
+        '<button type="button" class="btn btn-ghost btn-icon" id="pll-modal-cancel" title="Cancel" aria-label="Cancel"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>' +
+        '<button type="button" class="btn btn-primary btn-icon" id="pll-modal-save" title="Add" aria-label="Add"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>' +
+        "</div></div></div>" +
+        '<div class="modal" id="pll-hidden-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pll-hidden-title">' +
+        '<div class="modal-backdrop" id="pll-hidden-backdrop"></div><div class="modal-panel modal-panel-wide">' +
+        '<h3 id="pll-hidden-title">Hidden algs</h3><div id="pll-hidden-list" class="hidden-modal-list"></div>' +
+        '<div class="modal-actions"><button type="button" class="btn btn-primary btn-icon" id="pll-hidden-close" title="Close" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>' +
+        "</div></div>";
+      document.body.appendChild(wrap);
+    }
+    if (!document.getElementById("pll-case-modal")) {
+      const wrap = document.createElement("div");
+      wrap.innerHTML =
+        '<div class="modal" id="pll-case-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pll-case-modal-title">' +
+        '<div class="modal-backdrop" id="pll-case-modal-backdrop"></div><div class="modal-panel">' +
+        '<h3 id="pll-case-modal-title">Edit case</h3>' +
+        "<label>Probability<input type=\"text\" id=\"pll-case-probability\" placeholder=\"e.g. 1/18\" autocomplete=\"off\" /></label>" +
+        "<label>Recognition<textarea id=\"pll-case-recognition\" rows=\"3\" placeholder=\"How to recognise this case\"></textarea></label>" +
+        "<label>Setup<input type=\"text\" id=\"pll-case-setup\" placeholder=\"Setup moves\" autocomplete=\"off\" /></label>" +
+        '<div class="pll-case-rot-field"><span class="pll-case-rot-label">Initial rotation</span>' +
+        '<p class="pll-case-rot-hint">Orients the diagram so leading y / y′ / y2 can stay out of the algorithms.</p>' +
+        '<div class="pll-case-rot-switch" id="pll-case-rot-switch" role="group" aria-label="Initial rotation">' +
+        '<button type="button" class="practice-order-opt" data-pll-case-rot="0" aria-pressed="true">0°</button>' +
+        '<button type="button" class="practice-order-opt" data-pll-case-rot="90" aria-pressed="false">90°</button>' +
+        '<button type="button" class="practice-order-opt" data-pll-case-rot="180" aria-pressed="false">180°</button>' +
+        '<button type="button" class="practice-order-opt" data-pll-case-rot="270" aria-pressed="false">270°</button>' +
+        "</div>" +
+        '<figure class="pll-case-preview" id="pll-case-preview" aria-hidden="true"></figure>' +
+        "</div>" +
+        '<div class="modal-actions">' +
+        '<span class="modal-actions-spacer"></span>' +
+        '<button type="button" class="btn btn-ghost btn-icon" id="pll-case-modal-cancel" title="Cancel" aria-label="Cancel"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>' +
+        '<button type="button" class="btn btn-primary btn-icon" id="pll-case-modal-save" title="Save" aria-label="Save"><i class="fa-solid fa-check" aria-hidden="true"></i></button>' +
+        "</div></div></div>";
+      document.body.appendChild(wrap);
+    }
+  }
+
+  function syncCaseRotSwitch() {
+    const sw = document.getElementById("pll-case-rot-switch");
+    if (!sw) return;
+    sw.querySelectorAll("[data-pll-case-rot]").forEach((btn) => {
+      const on = Number(btn.dataset.pllCaseRot) === caseModalRot;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    const preview = document.getElementById("pll-case-preview");
+    const svg = preview?.querySelector(".cube-svg");
+    if (svg) svg.style.transform = "rotate(" + caseModalRot + "deg)";
+  }
+
+  function openCaseModal(id) {
+    ensureModals();
+    const c = byId[id];
+    const e = edits[id];
+    if (!c || !e) return;
+    caseModalId = id;
+    caseModalRot = normDeg(e.baseRot);
+    const title = document.getElementById("pll-case-modal-title");
+    if (title) title.textContent = "Edit case · " + (c.name || id);
+    const prob = document.getElementById("pll-case-probability");
+    const recog = document.getElementById("pll-case-recognition");
+    const setup = document.getElementById("pll-case-setup");
+    if (prob) prob.value = e.probability || "";
+    if (recog) recog.value = e.recognition || "";
+    if (setup) setup.value = e.setup || "";
+    const preview = document.getElementById("pll-case-preview");
+    if (preview) {
+      preview.innerHTML = Array.isArray(c.arrows) && c.arrows.length ? withArrows(c.svg, c.arrows) : c.svg;
+    }
+    syncCaseRotSwitch();
+    const modal = document.getElementById("pll-case-modal");
+    modal?.classList.add("is-open");
+    modal?.setAttribute("aria-hidden", "false");
+    setTimeout(() => prob?.focus(), 30);
+  }
+
+  function closeCaseModal() {
+    caseModalId = null;
+    caseModalRot = 0;
+    const modal = document.getElementById("pll-case-modal");
+    modal?.classList.remove("is-open");
+    modal?.setAttribute("aria-hidden", "true");
+  }
+
+  function submitCaseModal() {
+    if (!caseModalId) return;
+    const e = edits[caseModalId];
+    if (!e) return;
+    e.probability = (document.getElementById("pll-case-probability")?.value || "").trim();
+    e.recognition = (document.getElementById("pll-case-recognition")?.value || "").trim();
+    e.setup = (document.getElementById("pll-case-setup")?.value || "").trim();
+    e.baseRot = caseModalRot === 90 || caseModalRot === 180 || caseModalRot === 270 ? caseModalRot : 0;
+    save();
+    const row = rowById(caseModalId);
+    if (row) paintRow(row);
+    closeCaseModal();
+  }
+
+  function syncModalOrder(force) {
+    const input = document.getElementById("pll-modal-input");
+    const orderInput = document.getElementById("pll-modal-order");
+    if (!input || !orderInput) return;
+    if (!force && orderInput.dataset.manual === "1") return;
+    const computed = window.gabisCube?.computeAlgOrder?.((input.value || "").trim());
+    orderInput.value = computed != null ? String(computed) : "";
+    orderInput.dataset.manual = "0";
+  }
+
+  function openModal(id, slot) {
+    ensureModals();
+    modalId = id;
+    modalSlot = slot;
+    const editing = slot != null;
+    const title = document.getElementById("pll-modal-title");
+    const saveBtn = document.getElementById("pll-modal-save");
+    const hideBtn = document.getElementById("pll-modal-hide");
+    const input = document.getElementById("pll-modal-input");
+    const tipInput = document.getElementById("pll-modal-tip");
+    const orderInput = document.getElementById("pll-modal-order");
+    const name = byId[id]?.name || id;
+    if (title) title.textContent = (editing ? "Edit alg" : "Add alg") + " · " + name;
+    if (saveBtn) {
+      saveBtn.title = editing ? "Save" : "Add";
+      saveBtn.setAttribute("aria-label", editing ? "Save" : "Add");
+      saveBtn.innerHTML = '<i class="fa-solid ' + (editing ? "fa-check" : "fa-plus") + '" aria-hidden="true"></i>';
+    }
+    if (hideBtn) hideBtn.hidden = !editing;
+    const entry = editing ? entryOf(edits[id], slot) : null;
+    if (input) input.value = entry ? entry.alg : "";
+    if (tipInput) tipInput.value = entry && typeof entry.tip === "string" ? entry.tip : "";
+    if (orderInput) {
+      const shown = entry ? orderOf(entry) : null;
+      orderInput.value = shown != null ? String(shown) : "";
+      orderInput.dataset.manual = entry && entry.order != null ? "1" : "0";
+    }
+    const modal = document.getElementById("pll-modal");
+    modal?.classList.add("is-open");
+    modal?.setAttribute("aria-hidden", "false");
+    setTimeout(() => input?.focus(), 30);
+  }
+  function closeModal() {
+    modalId = null;
+    modalSlot = null;
+    const modal = document.getElementById("pll-modal");
+    modal?.classList.remove("is-open");
+    modal?.setAttribute("aria-hidden", "true");
+  }
+  function submitModal() {
+    const alg = (document.getElementById("pll-modal-input")?.value || "").trim();
+    if (!alg || !modalId) return;
+    const tip = (document.getElementById("pll-modal-tip")?.value || "").trim();
+    const orderVal = Number(document.getElementById("pll-modal-order")?.value);
+    const computed = window.gabisCube?.computeAlgOrder?.(alg);
+    let order = Number.isFinite(orderVal) && orderVal >= 1 ? Math.round(orderVal) : null;
+    if (order != null && computed != null && order === computed) order = null;
+    const e = edits[modalId];
+    if (modalSlot) {
+      const entry = entryOf(e, modalSlot);
+      if (!entry) return;
+      entry.alg = alg;
+      entry.tip = tip;
+      if (order == null) delete entry.order;
+      else entry.order = order;
+    } else {
+      const entry = { alg };
+      if (tip) entry.tip = tip;
+      if (order != null) entry.order = order;
+      e.custom.push(entry);
+      e.favorite = "custom-" + (e.custom.length - 1);
+    }
+    save();
+    const row = rowById(modalId);
+    if (row) paintRow(row);
+    closeModal();
+  }
+  function hideSlot(id, slot) {
+    const e = edits[id];
+    const gone = absent(e);
+    if (gone.has(slot)) return false;
+    const visible = slotsOf(e).filter((s) => !gone.has(s) && s !== slot);
+    if (!visible.length) return false;
+    e.hidden.push(slot);
+    if (e.favorite === slot) e.favorite = visible[0];
+    save();
+    const row = rowById(id);
+    if (row) paintRow(row);
+    return true;
+  }
+  function remap(slot, removed) {
+    const m = /^custom-(\d+)$/.exec(String(slot));
+    if (!m) return slot;
+    const i = Number(m[1]);
+    if (i === removed) return null;
+    if (i > removed) return "custom-" + (i - 1);
+    return slot;
+  }
+  function refreshHidden() {
+    const list = document.getElementById("pll-hidden-list");
+    const e = edits[hiddenId];
+    if (!list || !e) return;
+    list.innerHTML = "";
+    if (!e.hidden.length) {
+      closeHidden();
+      return;
+    }
+    e.hidden.forEach((slot) => {
+      const entry = entryOf(e, slot);
+      const item = document.createElement("div");
+      item.className = "hidden-modal-item";
+      const text = document.createElement("p");
+      text.className = "alg";
+      text.textContent = entry ? entry.alg : slot;
+      const actions = document.createElement("div");
+      actions.className = "hidden-modal-actions";
+      const showBtn = document.createElement("button");
+      showBtn.type = "button";
+      showBtn.className = "btn btn-ghost btn-icon";
+      showBtn.title = "Show";
+      showBtn.setAttribute("aria-label", "Show algorithm");
+      showBtn.innerHTML = '<i class="fa-solid fa-eye" aria-hidden="true"></i>';
+      showBtn.addEventListener("click", () => {
+        e.hidden = e.hidden.filter((s) => s !== slot);
+        save();
+        const row = rowById(hiddenId);
+        if (row) paintRow(row);
+        refreshHidden();
+      });
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "btn btn-danger btn-icon";
+      removeBtn.title = "Remove";
+      removeBtn.setAttribute("aria-label", "Remove algorithm");
+      removeBtn.innerHTML = '<i class="fa-solid fa-trash" aria-hidden="true"></i>';
+      removeBtn.addEventListener("click", () => {
+        if (!confirm("Remove this algorithm permanently?")) return;
+        const m = /^custom-(\d+)$/.exec(slot);
+        if (m) {
+          const idx = Number(m[1]);
+          e.custom.splice(idx, 1);
+          if (String(e.favorite).startsWith("custom-")) e.favorite = remap(e.favorite, idx) || "primary";
+          e.hidden = e.hidden.map((s) => remap(s, idx)).filter(Boolean);
+          e.discarded = e.discarded.map((s) => remap(s, idx)).filter(Boolean);
+        } else if (slot === "primary" && !e.discarded.includes("primary")) {
+          e.discarded.push("primary");
+          e.hidden = e.hidden.filter((s) => s !== "primary");
+          if (e.favorite === "primary") e.favorite = slotsOf(e).find((s) => !absent(e).has(s)) || "primary";
+        }
+        save();
+        const row = rowById(hiddenId);
+        if (row) paintRow(row);
+        refreshHidden();
+      });
+      actions.append(showBtn, removeBtn);
+      item.append(text, actions);
+      list.appendChild(item);
+    });
+  }
+  function openHidden(id) {
+    ensureModals();
+    hiddenId = id;
+    refreshHidden();
+    const modal = document.getElementById("pll-hidden-modal");
+    modal?.classList.add("is-open");
+    modal?.setAttribute("aria-hidden", "false");
+  }
+  function closeHidden() {
+    hiddenId = null;
+    const modal = document.getElementById("pll-hidden-modal");
+    modal?.classList.remove("is-open");
+    modal?.setAttribute("aria-hidden", "true");
+  }
+
+  root.addEventListener("click", (event) => {
+    const row = event.target.closest(".case-row");
+    if (!row || !root.contains(row)) return;
+    const toggle = event.target.closest("[data-pll-status-toggle]");
+    if (toggle) {
+      const open = !row.classList.contains("status-open");
+      closeStatus(open ? row : null);
+      row.classList.toggle("status-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      return;
+    }
+    const rot = event.target.closest("[data-pll-rotate]");
+    if (rot) {
+      row.dataset.manualRot = String(normDeg(normDeg(row.dataset.manualRot) + Number(rot.dataset.pllRotate || 0)));
+      paintRow(row);
+      return;
+    }
+    if (event.target.closest(".diagram")) {
+      if (normDeg(row.dataset.manualRot) === 0) return;
+      row.dataset.manualRot = "0";
+      paintRow(row);
+      return;
+    }
+    if (event.target.closest("[data-pll-edit-case]")) {
+      openCaseModal(row.dataset.case);
+      return;
+    }
+    if (event.target.closest("[data-pll-add]")) {
+      openModal(row.dataset.case, null);
+      return;
+    }
+    if (event.target.closest("[data-pll-show-hidden]")) {
+      openHidden(row.dataset.case);
+      return;
+    }
+    const edit = event.target.closest("[data-pll-edit]");
+    if (edit) openModal(row.dataset.case, edit.dataset.pllEdit);
+  });
+  root.addEventListener("change", (event) => {
+    const row = event.target.closest(".case-row");
+    if (!row) return;
+    const e = edits[row.dataset.case];
+    if (event.target.matches("[data-pll-status]")) {
+      const next = event.target.checked ? event.target.dataset.pllStatus : "black";
+      e.status = normalizeStatus(next);
+      save();
+      paintRow(row);
+      applyFilter();
+      updateCounts();
+      closeStatus();
+      return;
+    }
+    if (event.target.matches("[data-pll-fav]")) {
+      e.favorite = event.target.checked ? event.target.dataset.pllFav : "primary";
+      save();
+      paintRow(row);
+    }
+  });
+
+  document.querySelectorAll("[data-pll-filter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const wasOn = btn.classList.contains("is-on");
+      document.querySelectorAll("[data-pll-filter]").forEach((other) => other.classList.remove("is-on"));
+      filter = "";
+      if (!wasOn) {
+        btn.classList.add("is-on");
+        filter = btn.dataset.pllFilter;
+      }
+      applyFilter();
+    });
+  });
+  document.getElementById("btn-pll-practice")?.addEventListener("click", () => {
+    if (practiceOn) exitPractice();
+    else enterPractice();
+  });
+  document.getElementById("pll-practice-picker")?.addEventListener("change", (event) => {
+    if (!event.target.matches("[data-pll-practice-status], [data-pll-practice-group]")) return;
+    savePracticePrefs();
+    if (!practiceOn) return;
+    rebuildPractice(true);
+    refreshPractice();
+  });
+  document.getElementById("pll-practice-order-switch")?.addEventListener("click", (event) => {
+    const opt = event.target.closest("[data-pll-practice-order]");
+    if (!opt) return;
+    const next = opt.dataset.pllPracticeOrder === "shuffle";
+    if (next === practiceShuffle) return;
+    practiceShuffle = next;
+    savePracticePrefs();
+    syncOrderSwitch();
+    if (!practiceOn) return;
+    rebuildPractice(true);
+    refreshPractice();
+  });
+  document.getElementById("pll-arrows-switch")?.addEventListener("click", (event) => {
+    const opt = event.target.closest("[data-pll-arrows]");
+    if (!opt) return;
+    const next = opt.dataset.pllArrows === "on";
+    if (next === showArrows) return;
+    showArrows = next;
+    writePrefs({ pllShowArrows: showArrows });
+    syncArrowsSwitch();
+  });
+  document.getElementById("btn-pll-groups")?.addEventListener("click", () => {
+    const wrap = document.getElementById("pll-anchors-wrap");
+    const btn = document.getElementById("btn-pll-groups");
+    if (!wrap || !btn) return;
+    const collapsed = !wrap.classList.contains("is-collapsed");
+    wrap.classList.toggle("is-collapsed", collapsed);
+    btn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+  });
+  document.addEventListener("click", (event) => {
+    const rotOpt = event.target.closest("#pll-case-rot-switch [data-pll-case-rot]");
+    if (rotOpt) {
+      caseModalRot = Number(rotOpt.dataset.pllCaseRot) || 0;
+      syncCaseRotSwitch();
+      return;
+    }
+    const modalBtn = event.target.closest("#pll-modal-cancel, #pll-modal-backdrop, #pll-modal-save, #pll-modal-hide, #pll-case-modal-cancel, #pll-case-modal-backdrop, #pll-case-modal-save, #pll-hidden-close, #pll-hidden-backdrop");
+    if (modalBtn) {
+      if (modalBtn.id === "pll-modal-save") submitModal();
+      else if (modalBtn.id === "pll-case-modal-save") submitCaseModal();
+      else if (modalBtn.id === "pll-modal-hide") {
+        if (modalId && modalSlot) {
+          const ok = hideSlot(modalId, modalSlot);
+          if (!ok) alert("Keep at least one algorithm visible.");
+          else closeModal();
+        }
+      } else if (modalBtn.id === "pll-hidden-close" || modalBtn.id === "pll-hidden-backdrop") closeHidden();
+      else if (modalBtn.id === "pll-case-modal-cancel" || modalBtn.id === "pll-case-modal-backdrop") closeCaseModal();
+      else closeModal();
+      return;
+    }
+    if (event.target.closest("#pll-modal") || event.target.closest("#pll-case-modal") || event.target.closest("#pll-hidden-modal")) return;
+    if (!event.target.closest("#trainer-pll .case-row") && !event.target.closest("#trainer-pll .status-panel")) closeStatus();
+  });
+  let trainerTouch = null;
+  document.getElementById("trainer-pll")?.addEventListener("touchstart", (event) => {
+    if (!practiceOn || event.touches.length !== 1) return;
+    trainerTouch = event.touches[0].clientX;
+  }, { passive: true });
+  document.getElementById("trainer-pll")?.addEventListener("touchend", (event) => {
+    if (!practiceOn || trainerTouch == null) return;
+    const dx = event.changedTouches[0].clientX - trainerTouch;
+    trainerTouch = null;
+    if (Math.abs(dx) < 48) return;
+    practiceStep(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal();
+      closeCaseModal();
+      closeHidden();
+      closeStatus();
+    }
+    if (event.target && event.target.id === "pll-modal-input" && event.key === "Enter") {
+      event.preventDefault();
+      submitModal();
+    }
+    if (
+      event.key === "Enter" &&
+      event.target &&
+      (event.target.id === "pll-case-probability" || event.target.id === "pll-case-setup")
+    ) {
+      event.preventDefault();
+      submitCaseModal();
+    }
+  });
+  document.getElementById("pll-modal-input")?.addEventListener("input", () => syncModalOrder(false));
+  document.addEventListener("input", (event) => {
+    if (event.target && event.target.id === "pll-modal-input") syncModalOrder(false);
+    if (event.target && event.target.id === "pll-modal-order") event.target.dataset.manual = "1";
+  });
+
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    if (document.body.dataset.trainer !== "pll") return;
+    if (!window.matchMedia("(max-width: 720px)").matches) return;
+    const y = window.scrollY;
+    if (y > lastScrollY + 48) {
+      const wrap = document.getElementById("pll-anchors-wrap");
+      const btn = document.getElementById("btn-pll-groups");
+      if (wrap && btn && !wrap.classList.contains("is-collapsed")) {
+        wrap.classList.add("is-collapsed");
+        btn.setAttribute("aria-expanded", "false");
+      }
+    }
+    lastScrollY = y;
+  }, { passive: true });
+
+  const pllWrap = document.getElementById("pll-anchors-wrap");
+  const pllBtn = document.getElementById("btn-pll-groups");
+  if (pllWrap && pllBtn && window.matchMedia("(max-width: 720px)").matches) {
+    pllWrap.classList.add("is-collapsed");
+    pllBtn.setAttribute("aria-expanded", "false");
+  }
+
+  load();
+  restorePracticePrefs();
+  ensureModals();
+  syncArrowsSwitch();
+  render();
+
+  window.gabisTrainers = Object.assign(window.gabisTrainers || {}, {
+    exportPll: compact,
+    normalizePll,
+    importPll(data) {
+      const clean = normalizePll(data);
+      localStorage.setItem(KEY, JSON.stringify(clean));
+      applySaved(clean);
+      render();
+    },
+    exportPllSettings() {
+      return {
+        pllPracticeShuffle: practiceShuffle,
+        pllPracticeStatuses: [...selectedStatuses()],
+        pllPracticeGroups: [...selectedGroups()],
+        pllShowArrows: showArrows,
+      };
+    },
+    applyPllSettings(settings) {
+      if (!settings || typeof settings !== "object") return;
+      if (typeof settings.pllShowArrows === "boolean" && settings.pllShowArrows !== showArrows) {
+        showArrows = settings.pllShowArrows;
+        writePrefs({ pllShowArrows: showArrows });
+        syncArrowsSwitch();
+      }
+      if (typeof settings.pllPracticeShuffle === "boolean") practiceShuffle = settings.pllPracticeShuffle;
+      if (Array.isArray(settings.pllPracticeStatuses)) {
+        const on = new Set(settings.pllPracticeStatuses);
+        document.querySelectorAll("[data-pll-practice-status]").forEach((el) => {
+          el.checked = on.has(el.dataset.pllPracticeStatus);
+        });
+      }
+      if (Array.isArray(settings.pllPracticeGroups)) {
+        const on = new Set(settings.pllPracticeGroups);
+        document.querySelectorAll("[data-pll-practice-group]").forEach((el) => {
+          el.checked = on.has(el.dataset.pllPracticeGroup);
+        });
+      }
+      savePracticePrefs();
+      syncOrderSwitch();
+      updatePool();
+      if (practiceOn) {
+        rebuildPractice(true);
+        refreshPractice();
+      }
+    },
+    pllPracticeOn: () => practiceOn,
+    pllPracticeStep: practiceStep,
+    pllExitPractice: exitPractice,
+  });
 })();
 
 </script>
