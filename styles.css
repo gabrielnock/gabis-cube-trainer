@@ -2318,46 +2318,27 @@ body:not([data-trainer="pll"]) .pll-only {
 .filter-chip[data-pll-filter="red"] .pip { background: var(--status-red); }
 .filter-chip[data-pll-filter="orange"] .pip { background: var(--status-orange); }
 .filter-chip[data-pll-filter="green"] .pip { background: var(--status-green); }
-.filter-chip.is-on[data-pll-filter="black"] {
-  background: var(--status-black-soft);
-  border-color: var(--spice-line);
-  box-shadow: 3px 3px 4px rgba(42, 46, 51, 0.16);
-}
-.filter-chip.is-on[data-pll-filter="red"] {
-  background: var(--status-red-soft);
-  border-color: var(--spice-line);
-  box-shadow: 3px 3px 4px rgba(224, 75, 75, 0.16);
-}
-.filter-chip.is-on[data-pll-filter="orange"] {
-  background: var(--status-orange-soft);
-  border-color: var(--spice-line);
-  box-shadow: 3px 3px 4px rgba(232, 160, 20, 0.18);
-}
-.filter-chip.is-on[data-pll-filter="green"] {
-  background: var(--status-green-soft);
-  border-color: var(--spice-line);
-  box-shadow: 3px 3px 4px rgba(46, 154, 92, 0.16);
-}
-.toolbar .filter-chip.is-on[data-pll-filter="black"] {
-  background: rgba(42, 46, 51, 0.55);
+.filter-chip[data-pll-filter].is-on,
+.filter-chip.pll-trait-chip.is-on {
   color: #fff;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
+  border-color: transparent;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-.toolbar .filter-chip.is-on[data-pll-filter="red"] {
-  background: rgba(224, 75, 75, 0.42);
+.filter-chip[data-pll-filter="black"].is-on { background: var(--status-black); }
+.filter-chip[data-pll-filter="red"].is-on { background: var(--status-red); }
+.filter-chip[data-pll-filter="orange"].is-on { background: var(--status-orange); }
+.filter-chip[data-pll-filter="green"].is-on { background: var(--status-green); }
+.filter-chip.pll-trait-chip.is-on { background: var(--anthracite); }
+.toolbar .filter-chip[data-pll-filter].is-on,
+.toolbar .filter-chip.pll-trait-chip.is-on {
   color: #fff;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.22);
 }
-.toolbar .filter-chip.is-on[data-pll-filter="orange"] {
-  background: rgba(232, 160, 20, 0.48);
-  color: #fff;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
-}
-.toolbar .filter-chip.is-on[data-pll-filter="green"] {
-  background: rgba(46, 154, 92, 0.42);
-  color: #fff;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.18);
-}
+.toolbar .filter-chip[data-pll-filter="black"].is-on { background: var(--status-black); }
+.toolbar .filter-chip[data-pll-filter="red"].is-on { background: var(--status-red); }
+.toolbar .filter-chip[data-pll-filter="orange"].is-on { background: var(--status-orange); }
+.toolbar .filter-chip[data-pll-filter="green"].is-on { background: var(--status-green); }
+.toolbar .filter-chip.pll-trait-chip.is-on { background: var(--anthracite); }
 .case-row[data-group="edges-only"] .card-header { background: var(--spice-blue-0); }
 .case-row[data-group="corners-only"] .card-header { background: var(--spice-blue-3); }
 .case-row[data-group="adjacent-swap"] .card-header { background: var(--spice-blue-1); }
@@ -2446,5 +2427,52 @@ body.pll-show-arrows #trainer-pll .pll-arrows {
   width: 7.5rem;
   height: 7.5rem;
   transition: transform 0.18s ease;
+}
+.filters [data-pll-trait-filter="full-row"] {
+  margin-left: 0.7rem;
+}
+#trainer-pll .title {
+  flex: 0 1 auto;
+}
+#trainer-pll .pll-trait-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+  margin-left: 0.65rem;
+}
+#trainer-pll .case-no {
+  margin-left: auto;
+}
+#trainer-pll .pll-trait-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dove-blue);
+  background: var(--mist);
+  border: 1.5px solid var(--dove);
+  border-radius: 0.45rem;
+  padding: 0.55mm 1.1mm;
+  line-height: 0;
+}
+.pll-trait-icon {
+  height: 0.9em;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  fill: currentColor;
+  overflow: visible;
+}
+.pll-trait-icon .pll-trait-cell-empty {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.7;
+}
+#trainer-pll .pll-trait-pill .pll-trait-icon {
+  height: 1.2em;
+}
+.filter-chip.pll-trait-chip .pll-trait-icon {
+  height: 1em;
 }
 
