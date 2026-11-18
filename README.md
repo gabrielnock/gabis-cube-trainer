@@ -16,17 +16,17 @@ There is no build. `npm run build` refuses to run, because rewriting `index.html
 
 The header switches between three trainers.
 
-**OLL** has the 57 cases, grouped (OCLL, T, P, Fish, and the rest). Each case has a diagram, a setup, algorithms, a tip, and an order-of-permutation pill. A status pip is red (not learned), orange (learning), or green (learned). The filter chips and the group bars use those three colours. Practice mode drills the cases you tick by status or group, either shuffled or in a fixed order.
+**OLL** has the 57 cases, grouped (OCLL, T, P, Fish, and the rest), rendered from JSON like PLL. Each case has a diagram, a setup, algorithms, a tip, and an order-of-permutation pill. A status pip is red (not learned), orange (learning), or green (learned). The filter chips and the group bars use those three colours. Jump-to search finds a case by number or title. Practice mode drills the cases you tick by status or group, either shuffled or in a fixed order.
 
 **F2L** has 77 cases in eight groups, from Easy Inserts through Corner in Wrong Slot. Each card has a slot-coloured algorithm. A leading `y` rotation sets the colour: none is blue, `y` is red, `y'` is orange, and `y2` is green. Status has two options: orange **Consider** (the default) and green **Using**. The filter and the group bars count those two. The Easy inserts switch shows the trailing bracket insert in full, or replaces it with `...` while you are reading. Editing a case still keeps the full algorithm.
 
-**PLL** has the 21 cases from the CubeHead sheet, in five groups: Edges Only, Corners Only, Adjacent Corner Swap, Diagonal Corner Swap, and G-Perms. Each card has one algorithm, a setup made by reversing that algorithm, notes, and a recognition line under the notes. The probability sits where an OLL number would. Status has three options: red **Not learned** (the default), orange **Learning**, and green **Learned**. The filter, the group bars, and practice mode use those three. Recognition traits (Full bar, Block, Headlights, No pattern) also filter the list. Practice drills the cases you tick by status or group, shuffled or in a fixed order. Each algorithm can be edited, starred, hidden, or removed, and extra algorithms can be added. Edit case lets you change probability, recognition, setup, and an initial diagram rotation so leading `y` / `y'` / `y2` can stay out of the algorithms. The rotate buttons still turn the diagram temporarily without changing the algorithm. Arrows on a case can be shown with the Arrows switch.
+**PLL** has the 21 cases from the CubeHead sheet, in five groups: Edges Only, Corners Only, Adjacent Corner Swap, Diagonal Corner Swap, and G-Perms. Each card has one algorithm, a setup made by reversing that algorithm, notes, and a recognition line under the notes. The probability sits where an OLL number would. Status has three options: red **Not learned** (the default), orange **Learning**, and green **Learned**. The filter, the group bars, and practice mode use those three. Recognition traits (Full bar, Block, Headlights, No pattern) also filter the list. Jump-to search finds a case by name or id. Practice drills the cases you tick by status or group, shuffled or in a fixed order. Each algorithm can be edited, starred, hidden, or removed, and extra algorithms can be added. Edit case lets you change probability, recognition, setup, and an initial diagram rotation so leading `y` / `y'` / `y2` can stay out of the algorithms. The rotate buttons still turn the diagram temporarily without changing the algorithm. Arrows on a case can be shown with the Arrows switch.
 
 The group chip for the section currently on screen is highlighted. It moves on as soon as the last card of the current group leaves the top of the page, so the gap between groups does not leave the highlight behind.
 
 ## Backup
 
-**Export** downloads `all-data.json`. **Import** reads that file back. The file is a full snapshot:
+**Export** lets you choose the file name (default `all-data.json`; Chromium browsers open a Save dialog, others ask with a prompt). **Import** reads a JSON backup back. The file is a full snapshot:
 
 - every OLL case: status, favourite algorithm, hidden algorithms, custom algorithms, tips, and order
 - every F2L change: edited algorithms, the favourite, hidden algorithms, and a Using status
@@ -35,7 +35,7 @@ The group chip for the section currently on screen is highlighted. It moves on a
 
 A F2L case you have only marked Using is stored as `{ "status": "green" }`. Consider is the default, so it is left out. Editing an algorithm stores that case’s algorithms; the status is stored with them.
 
-A PLL case you have only marked Learning or Learned is stored as `{ "status": "orange" }` or `{ "status": "green" }`. Not learned is the default, so it is left out. Editing an algorithm stores that change with the case. The same `pll` block is written into Export JSON (`all-data.json`) alongside OLL and F2L.
+A PLL case you have only marked Learning or Learned is stored as `{ "status": "orange" }` or `{ "status": "green" }`. Not learned is the default, so it is left out. Editing an algorithm stores that change with the case. The same `pll` block is written into the export JSON alongside OLL and F2L.
 
 Older exports still import. A file with no `f2l` block leaves F2L as it is. A file with no `pll` block leaves PLL as it is. A file with no `settings` block leaves the current settings as they are.
 
@@ -74,7 +74,7 @@ Easy inserts live with the F2L store and are included in the export settings.
 
 | File | Role |
 | --- | --- |
-| `index.html` | The page: markup, OLL cases, F2L cases, PLL cases, and scripts |
+| `index.html` | The page: markup, OLL/F2L/PLL JSON sources, and scripts |
 | `styles.css` | Layout, type, and colors |
 | `svg-cache/f2l/*.svg` | The 77 F2L diagrams. OLL and PLL diagrams are drawn inside the page |
 | `favicon.svg`, `apple-touch-icon.png` | Icons |
