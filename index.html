@@ -76,71 +76,12 @@
         </label>
       </div>
     </div>
-    <div class="practice-picker screen-only pll-only" id="pll-practice-picker" hidden>
-      <div class="practice-picker-options">
-        <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-pll-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
-        <label class="practice-check practice-check-status" title="Learning"><input type="checkbox" data-pll-practice-status="orange" /><span class="pip orange" aria-hidden="true"></span></label>
-        <label class="practice-check practice-check-status" title="Learned"><input type="checkbox" data-pll-practice-status="green" /><span class="pip green" aria-hidden="true"></span></label>
-        <span class="practice-picker-sep" aria-hidden="true"></span>
-        <label class="practice-check practice-check-group" data-pll-practice-group-bar="edges-only"><input type="checkbox" data-pll-practice-group="edges-only" /><span class="practice-check-label">Edges Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-        <label class="practice-check practice-check-group" data-pll-practice-group-bar="corners-only"><input type="checkbox" data-pll-practice-group="corners-only" /><span class="practice-check-label">Corners Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-        <label class="practice-check practice-check-group" data-pll-practice-group-bar="adjacent-swap"><input type="checkbox" data-pll-practice-group="adjacent-swap" /><span class="practice-check-label">Adjacent</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-        <label class="practice-check practice-check-group" data-pll-practice-group-bar="diagonal-swap"><input type="checkbox" data-pll-practice-group="diagonal-swap" /><span class="practice-check-label">Diagonal</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-        <label class="practice-check practice-check-group" data-pll-practice-group-bar="g-perms"><input type="checkbox" data-pll-practice-group="g-perms" /><span class="practice-check-label">G-Perms</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-        <div class="practice-picker-end">
-          <span class="practice-picker-count" id="pll-practice-pool-count" title="Cases in practice pool">0</span>
-          <div class="practice-order-switch" id="pll-practice-order-switch" data-mode="shuffle" role="group" aria-label="Practice order">
-            <span class="practice-order-thumb" aria-hidden="true"></span>
-            <button type="button" class="practice-order-opt" data-pll-practice-order="shuffle" aria-pressed="true" title="Shuffled" aria-label="Shuffled">
-              <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="practice-order-opt" data-pll-practice-order="fixed" aria-pressed="false" title="Fixed order" aria-label="Fixed order">
-              <i class="fa-solid fa-arrow-down-short-wide" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="practice-picker screen-only oll-only" id="practice-picker" hidden>
-      <div class="practice-picker-options">
-        <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
-        <label class="practice-check practice-check-status" title="Learning"><input type="checkbox" data-practice-status="orange" /><span class="pip orange" aria-hidden="true"></span></label>
-        <label class="practice-check practice-check-status" title="Learned"><input type="checkbox" data-practice-status="green" /><span class="pip green" aria-hidden="true"></span></label>
-        <span class="practice-picker-sep" aria-hidden="true"></span>
-        <label class="practice-check practice-check-group" data-practice-group-bar="ocll"><input type="checkbox" data-practice-group="ocll" /><span class="practice-check-label">OCLL</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="oriented-corners"><input type="checkbox" data-practice-group="oriented-corners" /><span class="practice-check-label">Oriented Corners</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="t-cases"><input type="checkbox" data-practice-group="t-cases" /><span class="practice-check-label">T</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="square-cases"><input type="checkbox" data-practice-group="square-cases" /><span class="practice-check-label">Square</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="lightning-cases"><input type="checkbox" data-practice-group="lightning-cases" /><span class="practice-check-label">Lightning</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="p-cases"><input type="checkbox" data-practice-group="p-cases" /><span class="practice-check-label">P</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="c-cases"><input type="checkbox" data-practice-group="c-cases" /><span class="practice-check-label">C</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="fish-cases"><input type="checkbox" data-practice-group="fish-cases" /><span class="practice-check-label">Fish</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="w-cases"><input type="checkbox" data-practice-group="w-cases" /><span class="practice-check-label">W</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="l-cases"><input type="checkbox" data-practice-group="l-cases" /><span class="practice-check-label">L</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="line-cases"><input type="checkbox" data-practice-group="line-cases" /><span class="practice-check-label">Line</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="knight-cases"><input type="checkbox" data-practice-group="knight-cases" /><span class="practice-check-label">Knight Move</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="awkward-cases"><input type="checkbox" data-practice-group="awkward-cases" /><span class="practice-check-label">Awkward</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-          <label class="practice-check practice-check-group" data-practice-group-bar="dot-cases"><input type="checkbox" data-practice-group="dot-cases" /><span class="practice-check-label">Dot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
-        <div class="practice-picker-end">
-          <span class="practice-picker-count" id="practice-pool-count" title="Cases in practice pool">0</span>
-          <div class="practice-order-switch" id="practice-order-switch" data-mode="shuffle" role="group" aria-label="Practice order">
-            <span class="practice-order-thumb" aria-hidden="true"></span>
-            <button type="button" class="practice-order-opt" data-practice-order="shuffle" aria-pressed="true" title="Shuffled" aria-label="Shuffled">
-              <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="practice-order-opt" data-practice-order="fixed" aria-pressed="false" title="Fixed order" aria-label="Fixed order">
-              <i class="fa-solid fa-arrow-down-short-wide" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
   </header>
 
   <div class="app-shell">
-    <aside class="side-nav browse-only" id="side-nav" aria-hidden="false">
+    <aside class="side-nav" id="side-nav" aria-hidden="false">
       <div class="side-nav-panel" id="side-nav-panel" aria-hidden="true">
-        <div class="side-nav-section oll-only">
+        <div class="side-nav-section oll-only browse-only">
           <nav class="anchors side-nav-anchors" id="anchors-nav" aria-label="Groups">
             <a class="nav-chip" href="#ocll" data-group-nav="ocll"><span class="nav-chip-top"><span class="nav-chip-label">OCLL</span><span class="nav-chip-count" data-nav-count>0</span></span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
             <a class="nav-chip" href="#oriented-corners" data-group-nav="oriented-corners"><span class="nav-chip-top"><span class="nav-chip-label">Oriented Corners</span><span class="nav-chip-count" data-nav-count>0</span></span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
@@ -160,7 +101,7 @@
           <div class="side-nav-sep" aria-hidden="true"></div>
           <button type="button" class="btn btn-primary side-nav-practice" id="btn-practice" aria-pressed="false" title="Practice selected cases in random order">Practice</button>
         </div>
-        <div class="side-nav-section f2l-only">
+        <div class="side-nav-section f2l-only browse-only">
           <nav class="anchors side-nav-anchors" id="f2l-anchors" aria-label="F2L groups">
             <a class="nav-chip" href="#f2l-easy-inserts" data-f2l-group="easy-inserts"><span class="nav-chip-top"><span class="nav-chip-label">Easy Inserts</span><span class="nav-chip-count" data-nav-count>0</span></span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
             <a class="nav-chip" href="#f2l-disconnected-pairs" data-f2l-group="disconnected-pairs"><span class="nav-chip-top"><span class="nav-chip-label">Disconnected Pairs</span><span class="nav-chip-count" data-nav-count>0</span></span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
@@ -174,7 +115,7 @@
           </nav>
           <div class="side-nav-sep" aria-hidden="true"></div>
           <div class="f2l-insert-control side-nav-toggle">
-            <span class="f2l-insert-label">Show easy inserts</span>
+            <span class="f2l-insert-label"><span class="lbl-full">Show easy inserts</span><span class="lbl-short">Inserts</span></span>
             <div class="practice-order-switch" id="f2l-insert-switch" data-mode="off" role="group" aria-label="Show easy inserts">
               <span class="practice-order-thumb" aria-hidden="true"></span>
               <button type="button" class="practice-order-opt" data-f2l-inserts="off" aria-pressed="true" title="Hide easy inserts" aria-label="Hide easy inserts">
@@ -186,7 +127,7 @@
             </div>
           </div>
         </div>
-        <div class="side-nav-section pll-only">
+        <div class="side-nav-section pll-only browse-only">
           <nav class="anchors side-nav-anchors" id="pll-anchors" aria-label="PLL groups">
             <a class="nav-chip" href="#pll-edges-only" data-pll-group="edges-only"><span class="nav-chip-top"><span class="nav-chip-label">Edges Only</span><span class="nav-chip-count" data-nav-count>0</span></span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
             <a class="nav-chip" href="#pll-corners-only" data-pll-group="corners-only"><span class="nav-chip-top"><span class="nav-chip-label">Corners Only</span><span class="nav-chip-count" data-nav-count>0</span></span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></a>
@@ -196,7 +137,7 @@
           </nav>
           <div class="side-nav-sep" aria-hidden="true"></div>
           <div class="f2l-insert-control pll-arrows-control side-nav-toggle">
-            <span class="f2l-insert-label">Show arrows</span>
+            <span class="f2l-insert-label"><span class="lbl-full">Show arrows</span><span class="lbl-short">Arrows</span></span>
             <div class="practice-order-switch" id="pll-arrows-switch" data-mode="off" role="group" aria-label="Show arrows">
               <span class="practice-order-thumb" aria-hidden="true"></span>
               <button type="button" class="practice-order-opt" data-pll-arrows="off" aria-pressed="true" title="Hide arrows" aria-label="Hide arrows">
@@ -209,6 +150,57 @@
           </div>
           <div class="side-nav-sep" aria-hidden="true"></div>
           <button type="button" class="btn btn-primary side-nav-practice" id="btn-pll-practice" aria-pressed="false" title="Practice selected cases">Practice</button>
+        </div>
+        <div class="side-nav-section oll-only practice-only" id="practice-picker" hidden>
+          <div class="practice-picker">
+            <div class="practice-picker-status" role="group" aria-label="Practice statuses">
+              <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
+              <label class="practice-check practice-check-status" title="Learning"><input type="checkbox" data-practice-status="orange" /><span class="pip orange" aria-hidden="true"></span></label>
+              <label class="practice-check practice-check-status" title="Learned"><input type="checkbox" data-practice-status="green" /><span class="pip green" aria-hidden="true"></span></label>
+            </div>
+            <span class="practice-picker-sep" aria-hidden="true"></span>
+            <div class="practice-picker-groups" role="group" aria-label="Practice groups">
+              <label class="practice-check practice-check-group" data-practice-group-bar="ocll"><input type="checkbox" data-practice-group="ocll" /><span class="practice-check-label">OCLL</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="oriented-corners"><input type="checkbox" data-practice-group="oriented-corners" /><span class="practice-check-label">Oriented Corners</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="t-cases"><input type="checkbox" data-practice-group="t-cases" /><span class="practice-check-label">T</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="square-cases"><input type="checkbox" data-practice-group="square-cases" /><span class="practice-check-label">Square</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="lightning-cases"><input type="checkbox" data-practice-group="lightning-cases" /><span class="practice-check-label">Lightning</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="p-cases"><input type="checkbox" data-practice-group="p-cases" /><span class="practice-check-label">P</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="c-cases"><input type="checkbox" data-practice-group="c-cases" /><span class="practice-check-label">C</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="fish-cases"><input type="checkbox" data-practice-group="fish-cases" /><span class="practice-check-label">Fish</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="w-cases"><input type="checkbox" data-practice-group="w-cases" /><span class="practice-check-label">W</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="l-cases"><input type="checkbox" data-practice-group="l-cases" /><span class="practice-check-label">L</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="line-cases"><input type="checkbox" data-practice-group="line-cases" /><span class="practice-check-label">Line</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="knight-cases"><input type="checkbox" data-practice-group="knight-cases" /><span class="practice-check-label">Knight Move</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="awkward-cases"><input type="checkbox" data-practice-group="awkward-cases" /><span class="practice-check-label">Awkward</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-practice-group-bar="dot-cases"><input type="checkbox" data-practice-group="dot-cases" /><span class="practice-check-label">Dot</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+            </div>
+          </div>
+          <div class="side-nav-sep" aria-hidden="true"></div>
+          <div class="practice-picker-end">
+            <span class="practice-picker-count" id="practice-pool-count" title="Cases in practice pool">0</span>
+          </div>
+        </div>
+        <div class="side-nav-section pll-only practice-only" id="pll-practice-picker" hidden>
+          <div class="practice-picker">
+            <div class="practice-picker-status" role="group" aria-label="Practice statuses">
+              <label class="practice-check practice-check-status" title="Not learned"><input type="checkbox" data-pll-practice-status="red" /><span class="pip red" aria-hidden="true"></span></label>
+              <label class="practice-check practice-check-status" title="Learning"><input type="checkbox" data-pll-practice-status="orange" /><span class="pip orange" aria-hidden="true"></span></label>
+              <label class="practice-check practice-check-status" title="Learned"><input type="checkbox" data-pll-practice-status="green" /><span class="pip green" aria-hidden="true"></span></label>
+            </div>
+            <span class="practice-picker-sep" aria-hidden="true"></span>
+            <div class="practice-picker-groups" role="group" aria-label="Practice groups">
+              <label class="practice-check practice-check-group" data-pll-practice-group-bar="edges-only"><input type="checkbox" data-pll-practice-group="edges-only" /><span class="practice-check-label">Edges Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-pll-practice-group-bar="corners-only"><input type="checkbox" data-pll-practice-group="corners-only" /><span class="practice-check-label">Corners Only</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-pll-practice-group-bar="adjacent-swap"><input type="checkbox" data-pll-practice-group="adjacent-swap" /><span class="practice-check-label">Adjacent</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-pll-practice-group-bar="diagonal-swap"><input type="checkbox" data-pll-practice-group="diagonal-swap" /><span class="practice-check-label">Diagonal</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+              <label class="practice-check practice-check-group" data-pll-practice-group-bar="g-perms"><input type="checkbox" data-pll-practice-group="g-perms" /><span class="practice-check-label">G-Perms</span><span class="nav-chip-bar" aria-hidden="true"><span class="nav-chip-seg red" data-seg="red"></span><span class="nav-chip-seg orange" data-seg="orange"></span><span class="nav-chip-seg green" data-seg="green"></span></span></label>
+            </div>
+          </div>
+          <div class="side-nav-sep" aria-hidden="true"></div>
+          <div class="practice-picker-end">
+            <span class="practice-picker-count" id="pll-practice-pool-count" title="Cases in practice pool">0</span>
+          </div>
         </div>
       </div>
       <button type="button" class="side-nav-tab" id="btn-side-nav" aria-expanded="false" aria-controls="side-nav-panel" title="Groups" aria-label="Show groups panel">
@@ -229,10 +221,30 @@
   </div>
 
   <div class="practice-bar screen-only" id="practice-bar" aria-label="Practice navigation">
-    <button type="button" class="btn btn-ghost" id="practice-prev" aria-label="Previous case">‹</button>
-    <span class="practice-meta" id="practice-meta">0 / 0</span>
-    <button type="button" class="btn btn-ghost" id="practice-next" aria-label="Next case">›</button>
-    <button type="button" class="btn btn-primary" id="practice-exit">Exit</button>
+    <div class="practice-order-switch oll-only" id="practice-order-switch" data-mode="shuffle" role="group" aria-label="Practice order">
+      <span class="practice-order-thumb" aria-hidden="true"></span>
+      <button type="button" class="practice-order-opt" data-practice-order="shuffle" aria-pressed="true" title="Shuffled" aria-label="Shuffled">
+        <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="practice-order-opt" data-practice-order="fixed" aria-pressed="false" title="Fixed order" aria-label="Fixed order">
+        <i class="fa-solid fa-arrow-down-short-wide" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="practice-order-switch pll-only" id="pll-practice-order-switch" data-mode="shuffle" role="group" aria-label="Practice order">
+      <span class="practice-order-thumb" aria-hidden="true"></span>
+      <button type="button" class="practice-order-opt" data-pll-practice-order="shuffle" aria-pressed="true" title="Shuffled" aria-label="Shuffled">
+        <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="practice-order-opt" data-pll-practice-order="fixed" aria-pressed="false" title="Fixed order" aria-label="Fixed order">
+        <i class="fa-solid fa-arrow-down-short-wide" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="practice-bar-nav">
+      <button type="button" class="btn btn-ghost" id="practice-prev" aria-label="Previous case">‹</button>
+      <span class="practice-meta" id="practice-meta">0 / 0</span>
+      <button type="button" class="btn btn-ghost" id="practice-next" aria-label="Next case">›</button>
+      <button type="button" class="btn btn-primary" id="practice-exit">Exit</button>
+    </div>
   </div>
 
   <div class="modal" id="alg-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="alg-modal-title">
@@ -2040,6 +2052,15 @@ function computeAlgOrder(raw, max = 1260) {
     if (picker) {
       picker.hidden = !on;
     }
+    const sideBtn = document.getElementById("btn-side-nav");
+    if (sideBtn) {
+      sideBtn.title = on ? "Practice filters" : "Groups";
+      sideBtn.setAttribute("aria-label", on ? (document.body.classList.contains("side-nav-open") ? "Hide practice filters" : "Show practice filters") : (document.body.classList.contains("side-nav-open") ? "Hide groups panel" : "Show groups panel"));
+    }
+    if (on) {
+      setSideNavOpen(true);
+      requestAnimationFrame(() => syncNavChipSizes("practice-picker"));
+    }
     if (!on) {
       practiceQueue = [];
       practiceIndex = 0;
@@ -2100,7 +2121,6 @@ function computeAlgOrder(raw, max = 1260) {
 
   function enterPractice(fromCase) {
     setPracticeUi(true);
-    setAnchorsCollapsed(true);
     setActionsOpen(false);
     rebuildPracticeQueue(false);
     if (fromCase != null && practiceQueue.length) {
@@ -2164,6 +2184,14 @@ function computeAlgOrder(raw, max = 1260) {
       });
       return;
     }
+    if (root.id === "practice-picker" || root.id === "pll-practice-picker") {
+      root.querySelectorAll(".practice-check-group").forEach((chip) => {
+        chip.style.width = "100%";
+        const bar = chip.querySelector(".nav-chip-bar");
+        if (bar) bar.style.width = "100%";
+      });
+      return;
+    }
     scaleNavChipBars([...root.querySelectorAll(".nav-chip")]);
   }
 
@@ -2202,7 +2230,23 @@ function computeAlgOrder(raw, max = 1260) {
         syncNavChipSizes("anchors-nav");
         syncNavChipSizes("f2l-anchors");
         syncNavChipSizes("pll-anchors");
+        syncNavChipSizes("practice-picker");
+        syncNavChipSizes("pll-practice-picker");
       });
+    }
+    if (btn) {
+      const practicing = document.body.classList.contains("practice-mode");
+      btn.title = practicing ? (on ? "Hide practice filters" : "Practice filters") : (on ? "Hide groups" : "Groups");
+      btn.setAttribute(
+        "aria-label",
+        practicing
+          ? on
+            ? "Hide practice filters"
+            : "Show practice filters"
+          : on
+            ? "Hide groups panel"
+            : "Show groups panel"
+      );
     }
   }
 
@@ -2512,18 +2556,50 @@ function computeAlgOrder(raw, max = 1260) {
     closeModal();
   }
 
+  function scrollOffsetTop() {
+    const sticky = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--f2l-sticky-top"));
+    if (Number.isFinite(sticky) && sticky > 0) return sticky + 6;
+    const header = document.querySelector(".toolbar");
+    return (header ? header.getBoundingClientRect().bottom : 0) + 8;
+  }
+
+  function scrollPlanForId(id) {
+    const section = document.getElementById(id);
+    if (!section) return null;
+    let target = section;
+    let offset = scrollOffsetTop();
+    if (String(id).startsWith("f2l-")) {
+      const slot = section.querySelector(":scope > .f2l-heading-slot");
+      const cards = section.querySelector(":scope > .f2l-cards");
+      // Align first cards under toolbar + sticky group heading (not mid-group).
+      target = cards || slot || section;
+      const headingH = slot
+        ? Math.round(parseFloat(slot.style.height) || slot.getBoundingClientRect().height || 0)
+        : 0;
+      offset += headingH + 4;
+    }
+    return { target, offset };
+  }
+
   function scrollToId(id, durationMs) {
-    const target = document.getElementById(id);
-    if (!target) return;
+    const plan = scrollPlanForId(id);
+    if (!plan) return;
     const duration = durationMs == null ? 220 : durationMs;
     const startY = window.scrollY || window.pageYOffset;
-    const header = document.querySelector(".toolbar");
-    const offset = (header ? header.getBoundingClientRect().height : 0) + 10;
-    const rect = target.getBoundingClientRect();
-    const endY = startY + rect.top - offset;
+    const endY = startY + plan.target.getBoundingClientRect().top - plan.offset;
     const dist = endY - startY;
+    function snap() {
+      const live = scrollPlanForId(id);
+      if (!live) return;
+      const y =
+        (window.scrollY || window.pageYOffset) +
+        live.target.getBoundingClientRect().top -
+        live.offset;
+      window.scrollTo(0, Math.max(0, y));
+    }
     if (Math.abs(dist) < 1 || duration <= 0) {
-      window.scrollTo(0, endY);
+      snap();
+      requestAnimationFrame(snap);
       return;
     }
     const t0 = performance.now();
@@ -2534,6 +2610,12 @@ function computeAlgOrder(raw, max = 1260) {
       const t = Math.min(1, (now - t0) / duration);
       window.scrollTo(0, startY + dist * easeOutCubic(t));
       if (t < 1) requestAnimationFrame(frame);
+      else {
+        requestAnimationFrame(() => {
+          snap();
+          requestAnimationFrame(snap);
+        });
+      }
     }
     requestAnimationFrame(frame);
   }
@@ -2626,9 +2708,18 @@ function computeAlgOrder(raw, max = 1260) {
     });
   }
 
+  function syncJumpPlaceholders() {
+    const short = window.matchMedia("(max-width: 600px)").matches;
+    document.querySelectorAll("#oll-case-search, #pll-case-search").forEach((input) => {
+      input.placeholder = short ? "Jump" : "Jump to case…";
+    });
+  }
+
   function bindGlobal() {
     restorePracticePrefs();
     bindAlgToolsReveal();
+    syncJumpPlaceholders();
+    window.addEventListener("resize", syncJumpPlaceholders);
     document.querySelectorAll("[data-filter]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const wasOn = btn.classList.contains("is-on");
@@ -4456,6 +4547,28 @@ function computeAlgOrder(raw, max = 1260) {
     }
     const picker = document.getElementById("pll-practice-picker");
     if (picker) picker.hidden = !on;
+    const sideBtn = document.getElementById("btn-side-nav");
+    if (sideBtn) {
+      sideBtn.title = on ? "Practice filters" : "Groups";
+      sideBtn.setAttribute(
+        "aria-label",
+        on
+          ? document.body.classList.contains("side-nav-open")
+            ? "Hide practice filters"
+            : "Show practice filters"
+          : document.body.classList.contains("side-nav-open")
+            ? "Hide groups panel"
+            : "Show groups panel"
+      );
+    }
+    if (on && typeof window.gabisSetSideNav === "function") {
+      window.gabisSetSideNav(true);
+      requestAnimationFrame(() => {
+        if (typeof window.gabisSyncNavChipSizes === "function") {
+          window.gabisSyncNavChipSizes("pll-practice-picker");
+        }
+      });
+    }
     if (!on) {
       practiceQueue = [];
       practiceIndex = 0;
